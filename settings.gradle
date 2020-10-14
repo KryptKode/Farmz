@@ -1,0 +1,2 @@
+rootProject.name='Flash Alerts'
+include ':app'

@@ -1,0 +1,64 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
+
+    <style name="AppTheme.Toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <!--This line changes the color of text in Toolbar-->
+
+    </style>
+
+
+    <!-- For titles-->
+    <style name="TextAppearance.App.H1" parent="@style/TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textSize">@dimen/text_size_h1</item>
+        <item name="fontFamily">@font/open_sans_semibold</item>
+        <item name="android:fontFamily">@font/open_sans_semibold</item>
+    </style>
+
+    <!-- For smaller titles-->
+    <style name="TextAppearance.App.H2" parent="@style/TextAppearance.App.H1">
+        <item name="android:textSize">@dimen/text_size_h2</item>
+        <item name="fontFamily">@font/open_sans_semibold</item>
+        <item name="android:fontFamily">@font/open_sans_semibold</item>
+    </style>
+
+    <!-- For other prominent text -->
+    <style name="TextAppearance.App.H3" parent="@style/TextAppearance.App.H1">
+        <item name="android:textSize">@dimen/text_size_h3</item>
+        <item name="fontFamily">@font/open_sans_semibold</item>
+        <item name="android:fontFamily">@font/open_sans_semibold</item>
+    </style>
+
+    <style name="TextAppearance.App.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:letterSpacing" tools:targetApi="lollipop">0</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="TextAppearance.App.Body" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/open_sans</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+    </style>
+
+    <style name="TextAppearance.App.ListPrimary" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/open_sans</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+    </style>
+
+    <style name="TextAppearance.App.Main" parent="TextAppearance.MaterialComponents.Subtitle2" >
+        <item name="fontFamily">@font/open_sans</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+    </style>
+
+
+</resources>

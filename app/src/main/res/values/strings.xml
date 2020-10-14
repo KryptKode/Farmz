@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Flash Alerts</string>
+    <string name="toggle_item_icon_content_description">Action icon</string>
+</resources>
