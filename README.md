@@ -1,2 +1,2 @@
-# Flash-Alerts
-An android app that provides flash alerts for calls and notifications
+# Farmz
+A simple android application to fetch, update farmers and register their farms
