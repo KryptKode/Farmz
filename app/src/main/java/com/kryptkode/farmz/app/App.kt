@@ -8,12 +8,10 @@ import com.kryptkode.farmz.app.di.app.DaggerApplicationComponent
 /**
  * Created by kryptkode on 5/21/2020.
  */
-class App : MultiDexApplication() {
-    lateinit var applicationComponent: ApplicationComponent
+open class App : MultiDexApplication() {
 
-    override fun onCreate() {
-        super.onCreate()
-        applicationComponent = DaggerApplicationComponent.builder()
+    open val applicationComponent: ApplicationComponent by lazy {
+        DaggerApplicationComponent.builder()
             .applicationModule(ApplicationModule(this))
             .build()
     }
