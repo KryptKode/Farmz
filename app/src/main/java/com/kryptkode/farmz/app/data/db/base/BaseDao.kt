@@ -33,6 +33,14 @@ interface BaseDao<T> {
     fun update(obj: T): Int
 
     /**
+     * Update an object from the database.
+     *
+     * @param obj the object to be updated
+     */
+    @Update
+    fun update(obj: List<T>): Int
+
+    /**
      * Delete an object from the database
      *
      * @param obj the object to be deleted
