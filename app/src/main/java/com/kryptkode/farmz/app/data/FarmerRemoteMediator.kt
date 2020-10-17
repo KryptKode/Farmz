@@ -6,28 +6,29 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.kryptkode.farmz.app.data.db.AppDatabase
+import com.kryptkode.farmz.app.data.db.farmer.DbFarmer
 import com.kryptkode.farmz.app.data.db.farmer.FarmerDbMapper
 import com.kryptkode.farmz.app.data.db.keys.FarmerRemoteKeys
 import com.kryptkode.farmz.app.data.network.mapper.FarmerApiMapper
-import com.kryptkode.farmz.app.data.network.response.FarmerRemote
 import com.kryptkode.farmz.app.data.network.service.FarmersService
 import retrofit2.HttpException
 import java.io.IOException
 import java.io.InvalidObjectException
+import javax.inject.Inject
 
 private const val STARTING_PAGE_INDEX = 1
 
 @OptIn(ExperimentalPagingApi::class)
-class FarmerRemoteMediator(
+class FarmerRemoteMediator @Inject constructor(
     private val service: FarmersService,
     private val repoDatabase: AppDatabase,
     private val farmerApiMapper: FarmerApiMapper,
     private val farmerDbMapper: FarmerDbMapper
-) : RemoteMediator<Int, FarmerRemote>() {
+) : RemoteMediator<Int, DbFarmer>() {
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, FarmerRemote>
+        state: PagingState<Int, DbFarmer>
     ): MediatorResult {
 
         val page = when (loadType) {
@@ -90,7 +91,7 @@ class FarmerRemoteMediator(
         }
     }
 
-    private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, FarmerRemote>): FarmerRemoteKeys? {
+    private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, DbFarmer>): FarmerRemoteKeys? {
         // Get the last page that was retrieved, that contained items.
         // From that last page, get the last item
         return state.pages.lastOrNull() { it.data.isNotEmpty() }?.data?.lastOrNull()
@@ -100,7 +101,7 @@ class FarmerRemoteMediator(
             }
     }
 
-    private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, FarmerRemote>): FarmerRemoteKeys? {
+    private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, DbFarmer>): FarmerRemoteKeys? {
         // Get the first page that was retrieved, that contained items.
         // From that first page, get the first item
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()
@@ -111,7 +112,7 @@ class FarmerRemoteMediator(
     }
 
     private suspend fun getRemoteKeyClosestToCurrentPosition(
-        state: PagingState<Int, FarmerRemote>
+        state: PagingState<Int, DbFarmer>
     ): FarmerRemoteKeys? {
         // The paging library is trying to load data after the anchor position
         // Get the item closest to the anchor position
