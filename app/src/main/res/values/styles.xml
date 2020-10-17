@@ -61,4 +61,56 @@
     </style>
 
 
+    <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:minHeight">?actionBarSize</item>
+        <item name="android:textAppearance">@style/TextAppearance.App.Button</item>
+    </style>
+
+    <style name="Widget.App.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:minHeight">?actionBarSize</item>
+        <item name="android:textAppearance">@style/TextAppearance.App.Button</item>
+    </style>
+
+    <style name="Widget.App.Button.Outlined.Primary">
+        <item name="strokeColor">?colorPrimary</item>
+    </style>
+
+    <style name="Widget.App.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:minHeight">?actionBarSize</item>
+        <item name="android:textAppearance">@style/TextAppearance.App.Button</item>
+    </style>
+
+    <style name="Widget.App.Button.Icon" parent="Widget.MaterialComponents.Button.OutlinedButton.Icon" />
+
+
+    <style name="TextAppearance.App.TextInputLayout.HintText" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textColor">?colorOnSurface</item>
+        <item name="fontFamily">@font/open_sans_light</item>
+        <item name="android:fontFamily">@font/open_sans_light</item>
+    </style>
+
+    <style name="TextAppearance.App.TextLimit" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textColor">?colorAccent</item>
+        <item name="fontFamily">@font/open_sans_light</item>
+        <item name="android:fontFamily">@font/open_sans_light</item>
+    </style>
+
+    <style name="TextAppearance.App.TextLimit.Error">
+        <item name="android:textColor">?colorError</item>
+    </style>
+
+    <style name="Widget.App.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="hintTextAppearance">@style/TextAppearance.App.TextInputLayout.HintText</item>
+        <item name="hintTextColor">?colorOnSurface</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="boxStrokeColor">@color/text_input_stroke_color</item>
+    </style>
+
+    <style name="Widget.App.TextInputLayout.Normal" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="hintTextAppearance">@style/TextAppearance.App.TextInputLayout.HintText</item>
+        <item name="android:textAppearance">@style/TextAppearance.App.Body</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="boxStrokeColor">@color/text_input_stroke_color</item>
+    </style>
+
 </resources>

@@ -3,6 +3,7 @@ package com.kryptkode.farmz.app.di.controller
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
+import com.kryptkode.farmz.navigation.NavControllerProvider
 import dagger.Module
 import dagger.Provides
 
@@ -31,4 +32,13 @@ class ControllerModule(
     fun fragmentManager(): FragmentManager {
         return fragmentManager
     }
+
+    @Provides
+    @ControllerScope
+    fun navControllerProvider(): NavControllerProvider {
+        return activity as NavControllerProvider
+    }
+
+
+
 }
