@@ -1,6 +1,7 @@
 package com.kryptkode.farmz.screens.splash
 
 import android.os.Bundle
+import com.kryptkode.farmz.screens.MainActivity
 import com.kryptkode.farmz.screens.common.activity.BaseActivity
 
 /**
@@ -11,5 +12,7 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         controllerComponent.inject(this)
         super.onCreate(savedInstanceState)
+        startActivity(MainActivity.createIntent(this))
+        finish()
     }
 }

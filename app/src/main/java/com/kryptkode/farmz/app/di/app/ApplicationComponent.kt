@@ -1,5 +1,6 @@
 package com.kryptkode.farmz.app.di.app
 
+import com.kryptkode.farmz.app.di.app.repo.RepositoryModule
 import com.kryptkode.farmz.app.di.controller.ControllerComponent
 import com.kryptkode.farmz.app.di.controller.ControllerModule
 import com.kryptkode.farmz.app.di.service.ServiceComponent
@@ -12,7 +13,8 @@ import dagger.Component
 @ApplicationScope
 @Component(
     modules = [
-        ApplicationModule::class
+        ApplicationModule::class,
+        RepositoryModule::class
     ]
 )
 interface ApplicationComponent {

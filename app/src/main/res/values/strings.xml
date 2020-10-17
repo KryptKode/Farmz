@@ -16,4 +16,13 @@
     <string name="login_sign_up_btn_text">Create Account Here</string>
     <string name="login_signup_message">New to %s?</string>
 
+
+    <!--VALIDATION-->
+    <string name="validation_email_required_message">Your email is required</string>
+    <string name="validation_valid_email_required_message">Please enter a valid email</string>
+    <string name="validation_name_required_message">Please enter your name</string>
+    <string name="validation_name_short_message">Please enter a name greater than %d characters</string>
+    <string name="validation_password_required_message">A password is required</string>
+    <string name="validation_password_short_message">Please enter a password greater than %d characters</string>
+
 </resources>

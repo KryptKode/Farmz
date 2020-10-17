@@ -94,12 +94,21 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/login_margin_top"
             android:text="@string/login_btn_text"
-            app:layout_constraintVertical_bias="0"
             app:layout_constraintBottom_toBottomOf="@id/guideline_b"
             app:layout_constraintEnd_toEndOf="@id/guideline_r"
             app:layout_constraintStart_toStartOf="@id/guideline_l"
-            app:layout_constraintTop_toBottomOf="@id/password_input" />
+            app:layout_constraintTop_toBottomOf="@id/password_input"
+            app:layout_constraintVertical_bias="0" />
 
+
+        <include
+            android:id="@+id/progress"
+            layout="@layout/layout_progress"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <include layout="@layout/app_guidelines" />
 

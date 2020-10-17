@@ -1,9 +1,11 @@
 package com.kryptkode.farmz.app.di.controller
 
 import android.content.Context
+import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import com.kryptkode.farmz.navigation.NavControllerProvider
+import com.kryptkode.farmz.screens.common.ViewFactory
 import dagger.Module
 import dagger.Provides
 
@@ -39,6 +41,15 @@ class ControllerModule(
         return activity as NavControllerProvider
     }
 
+    @Provides
+    @ControllerScope
+    fun layoutInflater(): LayoutInflater {
+        return activity.layoutInflater
+    }
 
-
+    @Provides
+    @ControllerScope
+    fun viewFactory(layoutInflater: LayoutInflater): ViewFactory {
+        return ViewFactory(layoutInflater)
+    }
 }
