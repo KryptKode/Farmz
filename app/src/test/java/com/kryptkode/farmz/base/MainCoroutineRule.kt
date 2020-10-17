@@ -1,5 +1,6 @@
 package com.kryptkode.farmz.base
 
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
@@ -32,3 +33,6 @@ fun MainCoroutineRule.runBlockingTest(block: suspend () -> Unit) {
         block()
     }
 }
+
+@ExperimentalCoroutinesApi
+fun MainCoroutineRule.CoroutineScope(): CoroutineScope = CoroutineScope(testDispatcher)

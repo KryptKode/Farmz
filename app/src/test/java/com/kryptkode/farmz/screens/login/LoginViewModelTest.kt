@@ -9,7 +9,7 @@ class LoginViewModelTest {
 
     @Before
     fun setUp() {
-        loginViewModel = LoginViewModel()
+
     }
 
     @Test

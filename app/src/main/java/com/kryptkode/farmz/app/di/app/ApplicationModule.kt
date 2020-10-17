@@ -1,6 +1,8 @@
 package com.kryptkode.farmz.app.di.app
 
 import android.app.Application
+import com.kryptkode.farmz.app.dispatcher.AppDispatchers
+import com.kryptkode.farmz.app.dispatcher.AppDispatchersImpl
 import com.kryptkode.farmz.app.logger.Logger
 import com.kryptkode.farmz.app.logger.LoggerImpl
 import dagger.Module
@@ -22,6 +24,12 @@ class ApplicationModule(private val application: Application) {
     @Provides
     fun provideLogger(): Logger {
         return LoggerImpl()
+    }
+
+    @ApplicationScope
+    @Provides
+    fun provideAppDispatcher(): AppDispatchers {
+        return AppDispatchersImpl()
     }
 
 
