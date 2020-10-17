@@ -8,7 +8,7 @@ import com.kryptkode.farmz.app.di.app.ApplicationScope
 import dagger.Module
 import dagger.Provides
 
-@Module
+@Module(includes = [MapperModule::class])
 class PersistenceModule {
 
     @ApplicationScope
