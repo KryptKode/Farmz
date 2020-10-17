@@ -1,5 +1,7 @@
 package com.kryptkode.farmz.screens
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.NavController
@@ -33,5 +35,11 @@ class MainActivity : BaseActivity(), NavControllerProvider {
         val bottomNavView: BottomNavigationView = findViewById(R.id.nav_view)
         bottomNavView.setupWithNavController(getNavController())
         return bottomNavView
+    }
+
+    companion object {
+        fun createIntent(context: Context): Intent {
+            return Intent(context, MainActivity::class.java)
+        }
     }
 }

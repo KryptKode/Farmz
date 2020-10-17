@@ -17,7 +17,6 @@ class MainNavigator @Inject constructor(
     private val navControllerProvider: NavControllerProvider
 ) : LifecycleObserver {
 
-
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun setup() {
         val loggedIn = false //TODO: Read locally
