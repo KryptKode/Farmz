@@ -1,5 +1,7 @@
 package com.kryptkode.farmz.app.di.app
 
+import com.kryptkode.farmz.app.di.app.network.NetworkModule
+import com.kryptkode.farmz.app.di.app.persistence.PersistenceModule
 import com.kryptkode.farmz.app.di.app.repo.RepositoryModule
 import com.kryptkode.farmz.app.di.controller.ControllerComponent
 import com.kryptkode.farmz.app.di.controller.ControllerModule
@@ -14,7 +16,9 @@ import dagger.Component
 @Component(
     modules = [
         ApplicationModule::class,
-        RepositoryModule::class
+        RepositoryModule::class,
+        NetworkModule::class,
+        PersistenceModule::class
     ]
 )
 interface ApplicationComponent {
