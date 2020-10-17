@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name="com.kryptkode.farmz.screens.home.MainActivity">
+
+        <activity android:name="com.kryptkode.farmz.screens.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
