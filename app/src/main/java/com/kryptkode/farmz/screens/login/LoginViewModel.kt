@@ -10,7 +10,7 @@ import com.kryptkode.farmz.app.utils.livedata.extension.asLiveData
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class LoginViewModel @Inject constructor(
+open class LoginViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
 
@@ -26,7 +26,7 @@ class LoginViewModel @Inject constructor(
     private val mutableGoToNext = MutableLiveData<Event<Unit>>()
     val goToNext = mutableGoToNext.asLiveData()
 
-    fun login(email: String, password: String) {
+    open fun login(email: String, password: String) {
         viewModelScope.launch {
             showLoading()
             when (val result = authRepository.login(email, password)) {

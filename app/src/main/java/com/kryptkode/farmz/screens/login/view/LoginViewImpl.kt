@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
+import com.kryptkode.farmz.app.utils.extension.beGone
+import com.kryptkode.farmz.app.utils.extension.beVisible
 import com.kryptkode.farmz.databinding.LayoutLoginBinding
 
 class LoginViewImpl(
@@ -14,6 +16,7 @@ class LoginViewImpl(
     private val binding = LayoutLoginBinding.inflate(layoutInflater, parent, false)
 
     init {
+        hideLoading()
         initListeners()
     }
 
@@ -43,6 +46,14 @@ class LoginViewImpl(
 
     override fun showPasswordError(message: String) {
         binding.passwordInput.error = message
+    }
+
+    override fun hideLoading() {
+        binding.progress.root.beGone()
+    }
+
+    override fun showLoading() {
+        binding.progress.root.beVisible()
     }
 
     override fun clearErrors() {

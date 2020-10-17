@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.kryptkode.farmz.screens.common.ViewFactory
 import com.kryptkode.farmz.screens.common.fragment.BaseFragment
 import javax.inject.Inject
@@ -16,6 +18,11 @@ class LoginFragment : BaseFragment(){
 
     @Inject
     lateinit var loginController: LoginController
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel: LoginViewModel by viewModels { viewModelFactory }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -31,6 +38,7 @@ class LoginFragment : BaseFragment(){
         lifecycle.addObserver(loginController)
         loginController.bindView(loginView)
         loginController.bindLifeCycleOwner(viewLifecycleOwner)
+        loginController.bindViewModel(viewModel)
         return loginView.rootView
     }
 }

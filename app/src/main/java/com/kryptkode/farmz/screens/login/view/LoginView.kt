@@ -11,4 +11,6 @@ abstract class LoginView : BaseObservableViewMvc<LoginView.Listener>() {
     abstract fun showEmailError(message:String)
     abstract fun showPasswordError(message:String)
     abstract fun clearErrors()
+    abstract fun showLoading()
+    abstract fun hideLoading()
 }

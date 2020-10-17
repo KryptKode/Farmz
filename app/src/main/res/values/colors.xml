@@ -19,4 +19,5 @@
 
     <color name="colorToolbarAccent">#FFFFFF</color>
     <color name="colorBottomNavItemUnselected">#9C9B9B</color>
+    <color name="colorOverlay">#339C9B9B</color>
 </resources>

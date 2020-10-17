@@ -13,5 +13,6 @@ class SplashActivity : BaseActivity() {
         controllerComponent.inject(this)
         super.onCreate(savedInstanceState)
         startActivity(MainActivity.createIntent(this))
+        finish()
     }
 }

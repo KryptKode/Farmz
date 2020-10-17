@@ -1,5 +1,6 @@
 package com.kryptkode.farmz.app.di.controller
 
+import com.kryptkode.farmz.app.di.controller.navigator.NavigatorModule
 import com.kryptkode.farmz.app.di.controller.util.UtilModule
 import com.kryptkode.farmz.app.di.controller.viewmodel.ViewModelModule
 import com.kryptkode.farmz.screens.MainActivity
@@ -15,6 +16,7 @@ import dagger.Subcomponent
     modules = [
         ControllerModule::class,
         ViewModelModule::class,
+        NavigatorModule::class,
         UtilModule::class
     ]
 )

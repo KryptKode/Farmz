@@ -1,8 +1,6 @@
 package com.kryptkode.farmz.app.di.app
 
 import android.app.Application
-import com.kryptkode.farmz.app.data.keyvaluestore.KeyValueStore
-import com.kryptkode.farmz.app.data.keyvaluestore.KeyValueStoreImpl
 import com.kryptkode.farmz.app.dispatcher.AppDispatchers
 import com.kryptkode.farmz.app.dispatcher.AppDispatchersImpl
 import com.kryptkode.farmz.app.logger.Logger
@@ -33,12 +31,5 @@ class ApplicationModule(private val application: Application) {
     fun provideAppDispatcher(): AppDispatchers {
         return AppDispatchersImpl()
     }
-
-    @Provides
-    @ApplicationScope
-    fun provideKeyValueStore(application: Application): KeyValueStore {
-        return KeyValueStoreImpl(application)
-    }
-
 
 }

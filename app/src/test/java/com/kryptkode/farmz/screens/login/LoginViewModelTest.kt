@@ -5,6 +5,7 @@ import com.google.common.truth.Truth.assertThat
 import com.kryptkode.farmz.app.data.state.DataState
 import com.kryptkode.farmz.app.domain.AuthRepository
 import com.kryptkode.farmz.app.utils.livedata.event.Event
+import com.kryptkode.farmz.base.MainCoroutineRule
 import com.kryptkode.farmz.utils.DataFactory.randomString
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -19,6 +20,10 @@ class LoginViewModelTest {
     // Executes tasks in the Architecture Components in the same thread
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
+
+    // Overrides Dispatchers.Main used in Coroutines
+    @get:Rule
+    var coroutineRule = MainCoroutineRule()
 
     private val authRepository: AuthRepository = mockk()
 
