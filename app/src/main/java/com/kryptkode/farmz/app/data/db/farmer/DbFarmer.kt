@@ -11,7 +11,7 @@ data class DbFarmer(
     val bvn: String,
     val firstName: String,
     val middleName: String,
-    val surName: String,
+    val surname: String,
     val dateOfBirth: String,
     val gender: String,
     val nationality: String,
