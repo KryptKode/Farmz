@@ -19,4 +19,7 @@ abstract class FarmersDao : BaseDao<DbFarmer> {
 
     @Query("SELECT * FROM farmers")
     abstract fun getFarmersAsList(): List<DbFarmer>
+
+    @Query("DELETE FROM farmers")
+    abstract suspend fun clearFarmers()
 }

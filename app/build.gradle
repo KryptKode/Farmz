@@ -18,6 +18,8 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "com.kryptkode.farmz.app.CustomTestRunner"
 
+        buildConfigField("String", "BASE_URL", "\"https://theagromall.com/api/v2/\"")
+
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = ["room.schemaLocation":
@@ -51,6 +53,7 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
+        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
     }
 
 }
