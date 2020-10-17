@@ -7,8 +7,9 @@ import com.kryptkode.farmz.app.dispatcher.AppDispatchers
 import com.kryptkode.farmz.app.domain.AuthRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class AuthRepositoryImpl(
+class AuthRepositoryImpl @Inject constructor(
     private val dispatchers: AppDispatchers,
     keyValueStore: KeyValueStore
 ) : AuthRepository, KeyValueStore by keyValueStore {
