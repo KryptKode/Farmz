@@ -9,11 +9,9 @@ fun TextView.imeListener(listener:()->Unit){
         if (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER) {
             if (event.action == KeyEvent.ACTION_UP) {
                 listener()
-                true
             }
         } else if (actionId == EditorInfo.IME_ACTION_DONE) {
             listener()
-            true
         }
         false
     }

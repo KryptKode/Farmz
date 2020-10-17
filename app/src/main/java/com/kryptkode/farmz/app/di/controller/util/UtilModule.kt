@@ -6,6 +6,8 @@ import com.kryptkode.farmz.app.utils.NetworkListener
 import com.kryptkode.farmz.app.utils.ToastHelper
 import com.kryptkode.farmz.app.utils.Validator
 import com.kryptkode.farmz.app.utils.VersionUtil
+import com.kryptkode.farmz.screens.common.imageloader.ImageLoader
+import com.kryptkode.farmz.screens.common.imageloader.ImageLoaderImpl
 import dagger.Module
 import dagger.Provides
 
@@ -34,5 +36,11 @@ class UtilModule {
     @ControllerScope
     fun provideVersionUtil(context: Context): VersionUtil {
         return VersionUtil(context)
+    }
+
+    @Provides
+    @ControllerScope
+    fun provideImageLoader(): ImageLoader {
+        return ImageLoaderImpl()
     }
 }

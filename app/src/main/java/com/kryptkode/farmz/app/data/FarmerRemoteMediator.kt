@@ -58,10 +58,11 @@ class FarmerRemoteMediator @Inject constructor(
             }
 
         }
+
         try {
 
-            val apiResponse = service.getFarmers(page)
-            if (apiResponse.status) {
+            val apiResponse = service.getFarmers(page * state.config.pageSize)
+            if (apiResponse.status.toBoolean()) {
                 val data = apiResponse.data
                 val endOfPaginationReached = data.totalRecords == data.farmers.size
                 repoDatabase.withTransaction {
@@ -77,8 +78,13 @@ class FarmerRemoteMediator @Inject constructor(
                         FarmerRemoteKeys(farmerId = it.id, prevKey = prevKey, nextKey = nextKey)
                     }
                     repoDatabase.farmersRemoteKeysDao().insert(keys)
-                    repoDatabase.farmersDao().insert(data.farmers.map {
-                        farmerDbMapper.mapDomainToDb(farmerApiMapper.mapRemoteToDomain(it))
+                    repoDatabase.farmersDao().insert(data.farmers.map { farmerRemote ->
+                        val withUpdatedLinks = farmerRemote.copy(
+                            passportPhoto = data.imageBaseUrl.plus(farmerRemote.passportPhoto),
+                            idImage = data.imageBaseUrl.plus(farmerRemote.idImage),
+                            fingerprint = data.imageBaseUrl.plus(farmerRemote.fingerprint)
+                        )
+                        farmerDbMapper.mapDomainToDb(farmerApiMapper.mapRemoteToDomain(withUpdatedLinks))
                     })
                 }
                 return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)

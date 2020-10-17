@@ -5,13 +5,13 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class FarmersResponse(
-    @field:Json(name = "status") val status: Boolean,
+    @field:Json(name = "status") val status: String,
     @field:Json(name = "data") val data: FarmersResponseData,
 )
 
 @JsonClass(generateAdapter = true)
 data class FarmersResponseData(
-    @field:Json(name = "status") val farmers: List<FarmerRemote>,
+    @field:Json(name = "farmers") val farmers: List<FarmerRemote>,
     @field:Json(name = "totalRec") val totalRecords: Int,
     @field:Json(name = "imageBaseUrl") val imageBaseUrl: String,
 )
@@ -34,10 +34,10 @@ data class FarmerRemote(
     @field:Json(name = "city") val city: String,
     @field:Json(name = "lga") val lga: String,
     @field:Json(name = "state") val state: String,
-    @field:Json(name = "mobile_number") val mobileNumber: String,
+    @field:Json(name = "mobile_no") val mobileNumber: String,
     @field:Json(name = "email_address") val emailAddress: String,
     @field:Json(name = "id_type") val idType: String,
-    @field:Json(name = "id_number") val idNumber: String,
+    @field:Json(name = "id_no") val idNumber: String,
     @field:Json(name = "issue_date") val issueDate: String,
     @field:Json(name = "expiry_date") val expiryDate: String,
     @field:Json(name = "id_image") val idImage: String,

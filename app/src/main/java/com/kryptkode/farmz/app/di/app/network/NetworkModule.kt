@@ -12,12 +12,12 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
-@Module (includes = [MapperModule::class])
+@Module(includes = [MapperModule::class])
 class NetworkModule {
 
     @Provides
     @ApplicationScope
-    fun provideRetrofit(
+    fun provideFarmersService(
         retrofit: Retrofit
     ): FarmersService {
         return retrofit.create(FarmersService::class.java)
