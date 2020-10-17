@@ -13,4 +13,5 @@ abstract class LoginView : BaseObservableViewMvc<LoginView.Listener>() {
     abstract fun clearErrors()
     abstract fun showLoading()
     abstract fun hideLoading()
+    abstract fun hideKeyboard()
 }

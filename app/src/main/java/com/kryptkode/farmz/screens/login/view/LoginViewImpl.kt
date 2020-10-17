@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import com.kryptkode.farmz.app.utils.extension.beGone
 import com.kryptkode.farmz.app.utils.extension.beVisible
+import com.kryptkode.farmz.app.utils.extension.hideKeyboard
+import com.kryptkode.farmz.app.utils.extension.imeListener
 import com.kryptkode.farmz.databinding.LayoutLoginBinding
 
 class LoginViewImpl(
@@ -22,12 +24,7 @@ class LoginViewImpl(
 
     private fun initListeners() {
         binding.btnLogin.setOnClickListener {
-            onEachListener {
-                it.onLoginClick(
-                    binding.emailEditText.text.toString(),
-                    binding.passwordEditText.text.toString()
-                )
-            }
+            handleLogin()
         }
 
         binding.emailEditText.addTextChangedListener {
@@ -37,6 +34,19 @@ class LoginViewImpl(
 
         binding.passwordEditText.addTextChangedListener {
             clearPasswordError()
+        }
+
+        binding.passwordEditText.imeListener {
+            handleLogin()
+        }
+    }
+
+    private fun handleLogin() {
+        onEachListener {
+            it.onLoginClick(
+                binding.emailEditText.text.toString(),
+                binding.passwordEditText.text.toString()
+            )
         }
     }
 
@@ -54,6 +64,10 @@ class LoginViewImpl(
 
     override fun showLoading() {
         binding.progress.root.beVisible()
+    }
+
+    override fun hideKeyboard() {
+        binding.root.hideKeyboard()
     }
 
     override fun clearErrors() {

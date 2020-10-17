@@ -72,6 +72,7 @@ class LoginController @Inject constructor(
     }
 
     override fun onLoginClick(email: String, password: String) {
+        loginView.hideKeyboard()
         loginView.clearErrors()
         if (validator.validateLogin(email, password)) {
             viewModel.login(email, password)
