@@ -7,19 +7,21 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.kryptkode.farmz.app.data.db.farmer.DbFarmer
 import com.kryptkode.farmz.app.data.db.farmer.FarmersDao
+import com.kryptkode.farmz.app.data.db.keys.FarmerRemoteKeys
+import com.kryptkode.farmz.app.data.db.keys.FarmerRemoteKeysDao
 
 /**
  * Database schema that holds the list of repos.
  */
 @Database(
-    entities = [DbFarmer::class],
+    entities = [DbFarmer::class, FarmerRemoteKeys::class],
     version = 1,
     exportSchema = true
 )
 @TypeConverters()
 abstract class AppDatabase : RoomDatabase() {
     abstract fun farmersDao(): FarmersDao
-
+    abstract fun farmersRemoteKeysDao(): FarmerRemoteKeysDao
 
     companion object {
 
