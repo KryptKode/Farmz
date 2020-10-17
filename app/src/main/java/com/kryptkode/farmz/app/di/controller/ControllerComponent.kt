@@ -1,6 +1,6 @@
 package com.kryptkode.farmz.app.di.controller
 
-import com.kryptkode.farmz.screens.home.MainActivity
+import com.kryptkode.farmz.screens.MainActivity
 import com.kryptkode.farmz.screens.splash.SplashActivity
 import dagger.Subcomponent
 
@@ -10,8 +10,7 @@ import dagger.Subcomponent
 @ControllerScope
 @Subcomponent(
     modules = [
-        ControllerModule::class,
-        ScreensNavigatorModule::class
+        ControllerModule::class
     ]
 )
 interface ControllerComponent {

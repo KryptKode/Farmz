@@ -1,4 +1,4 @@
-package com.kryptkode.farmz.screens.common.livedata.event
+package com.kryptkode.farmz.app.utils.livedata.event
 
 /**
  * Used as a wrapper for data that is exposed via a LiveData that represents an event.

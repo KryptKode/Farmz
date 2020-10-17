@@ -1,7 +1,7 @@
 package com.kryptkode.flashalerts.screens.common.livedata.event
 
 import androidx.lifecycle.Observer
-import com.kryptkode.farmz.screens.common.livedata.event.Event
+import com.kryptkode.farmz.app.utils.livedata.event.Event
 
 /**
  * An [Observer] for [Event]s, simplifying the pattern of checking if the [Event]'s content has

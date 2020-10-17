@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">Farmz</string>
     <string name="toggle_item_icon_content_description">Action icon</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_farmers">Farmers</string>
+
+
+
+    <!--LOGIN-->
+    <string name="email_hint">Email address</string>
+    <string name="password_hint">Password</string>
+    <string name="login_welcome_text">Welcome Back!</string>
+    <string name="login_welcome_message">Please login to continue.</string>
+    <string name="login_forgot_password">Forgot password?</string>
+    <string name="login_btn_text">Login</string>
+    <string name="login_sign_up_btn_text">Create Account Here</string>
+    <string name="login_signup_message">New to %s?</string>
+
 </resources>
