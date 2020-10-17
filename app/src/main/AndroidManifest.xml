@@ -13,14 +13,16 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
 
-        <activity android:name="com.kryptkode.farmz.screens.MainActivity">
+        <activity android:name="com.kryptkode.farmz.screens.splash.SplashActivity"
+            android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.kryptkode.farmz.screens.splash.SplashActivity" />
+
+        <activity android:name="com.kryptkode.farmz.screens.MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
