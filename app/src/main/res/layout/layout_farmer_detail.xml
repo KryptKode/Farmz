@@ -7,11 +7,15 @@
 
     <TextView
         android:id="@+id/tv_title"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="8dp"
         android:text="@string/title_farmer_details"
         android:textAppearance="@style/TextAppearance.App.H2"
+        app:drawableStartCompat="@drawable/ic_back"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
         app:layout_constraintTop_toTopOf="@id/guidelineTop" />
 

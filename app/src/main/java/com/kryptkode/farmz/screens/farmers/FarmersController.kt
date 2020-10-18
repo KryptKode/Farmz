@@ -51,7 +51,7 @@ class FarmersController @Inject constructor(
     }
 
     override fun onItemClick(item: FarmerView) {
-        homeNavigator.farmersListToFarmersDetail()
+        homeNavigator.farmersListToFarmersDetail(item.id)
     }
 
     override fun onLoadError(message: String) {

@@ -10,6 +10,7 @@ abstract class FarmerDetailView : BaseObservableViewMvc<FarmerDetailView.Listene
         fun onEditIdentification()
         fun onEditAddress()
         fun onClickPic()
+        fun onClickBack()
     }
 
     abstract fun bindFarmer(farmer: FarmerView)

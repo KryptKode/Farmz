@@ -25,6 +25,12 @@ class FarmerDetailViewImpl(
 
     init {
 
+        binding.tvTitle.setOnClickListener {
+            onEachListener {
+                it.onClickBack()
+            }
+        }
+
         binding.cardPersonalDetails.imagePic.setOnClickListener {
             onEachListener {
                 it.onClickPic()
