@@ -32,7 +32,9 @@ class HomeNavigatorImpl @Inject constructor(
     }
 
     override fun toEditIdentification(farmerId: String) {
-        
+        navControllerProvider.getNavController().navigate(
+            FarmerDetailFragmentDirections.actionFarmerDetailFragmentToEditIdFragment(farmerId)
+        )
     }
 
     override fun toEditContactDetails(farmerId: String) {
@@ -52,6 +54,10 @@ class HomeNavigatorImpl @Inject constructor(
     }
 
     override fun toUpdatePhoto() {
+
+    }
+
+    override fun toUpdateIdPhoto() {
 
     }
 

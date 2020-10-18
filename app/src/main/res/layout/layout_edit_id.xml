@@ -167,6 +167,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/bvn_edit_text"
                     android:layout_width="match_parent"
+                    android:inputType="number"
+                    android:maxLength="11"
                     android:layout_height="wrap_content"
                     android:hint="@string/bvn_name_hint" />
 

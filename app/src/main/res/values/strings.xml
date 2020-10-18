@@ -74,7 +74,7 @@
 
     <string name="data_id_passport">International Passport</string>
     <string name="data_id_driver_license">Driver\'s Licence</string>
-    <string name="data_id_voters_card">Voter\'s card</string>
+    <string name="data_id_voters_card">National Voters card</string>
     <string name="data_id_national_id">National ID</string>
 
 
@@ -90,6 +90,14 @@
     <string name="details_state_required_message">Please enter a state</string>
     <string name="details_mobile_number_required_message">Please enter a mobile number</string>
     <string name="details_email_address_required_message">Please enter an email address</string>
+
+    <string name="details_id_type_required_message">Please select an ID</string>
+    <string name="details_id_num_required_message">Please enter an ID number</string>
+    <string name="details_id_issue_date_required_message">Please enter a date</string>
+    <string name="details_id_expiry_date_required_message">Please enter a date</string>
+    <string name="details_reg_no_required_message">Please enter a registration number</string>
+    <string name="details_bvn_required_message">Please enter a BVN number</string>
+
     <string name="mobile_hint">Mobile number</string>
     <string name="edit_contact_details_title">Edit contact details</string>
     <string name="edit_address_title">Edit address</string>

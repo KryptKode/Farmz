@@ -2,10 +2,10 @@ package com.kryptkode.farmz.screens.farmers
 
 import androidx.lifecycle.*
 import com.kryptkode.farmz.app.utils.ToastHelper
+import com.kryptkode.farmz.app.utils.livedata.extension.observe
 import com.kryptkode.farmz.navigation.home.HomeNavigator
 import com.kryptkode.farmz.screens.farmers.model.FarmerView
 import com.kryptkode.farmz.screens.farmers.view.FarmerListView
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,8 +31,9 @@ class FarmersController @Inject constructor(
     }
 
     fun getData(){
-        lifeCycleOwner.lifecycleScope.launch {
-            viewModel.loadFarmers().collectLatest {
+        @Suppress("COMPATIBILITY_WARNING")
+        viewModel.farmersPageData.observe(lifeCycleOwner){
+            lifeCycleOwner.lifecycleScope.launch {
                 farmerListView.bindFarmers(it)
             }
         }
