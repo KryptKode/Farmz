@@ -123,4 +123,8 @@
     <string name="update_image_error_msg">Error occurred while updating photo</string>
     <string name="fingerprint_title">Fingerprint</string>
     <string name="fingerprint_msg">Tap image to change</string>
+    <string name="farm_name_hint">Farm name</string>
+    <string name="add_location">Add location</string>
+    <string name="farm_location_hint">Farm location</string>
+    <string name="capture_farm_title">Capture farm</string>
 </resources>
