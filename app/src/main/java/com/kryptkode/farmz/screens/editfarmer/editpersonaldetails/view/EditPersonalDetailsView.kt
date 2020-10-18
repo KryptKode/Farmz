@@ -7,7 +7,7 @@ abstract class EditPersonalDetailsView : BaseObservableViewMvc<EditPersonalDetai
     interface Listener {
         fun onSave(farmer: FarmerView)
         fun onBackClick()
-        fun onChangePic()
+        fun onChangePic(photoUri:String)
         fun onChooseDate(date: String)
     }
 
@@ -26,4 +26,5 @@ abstract class EditPersonalDetailsView : BaseObservableViewMvc<EditPersonalDetai
     abstract fun showLoading()
     abstract fun hideLoading()
     abstract fun onDateSelected(date:String)
+    abstract fun bindPic(photoUri: String)
 }

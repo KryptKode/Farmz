@@ -1,8 +1,11 @@
 package com.kryptkode.farmz.screens.editfarmer
 
 import androidx.lifecycle.*
+import com.kryptkode.farmz.R
 import com.kryptkode.farmz.app.data.state.DataState
 import com.kryptkode.farmz.app.domain.farmer.FarmerRepository
+import com.kryptkode.farmz.app.logger.Logger
+import com.kryptkode.farmz.app.utils.StringResource
 import com.kryptkode.farmz.app.utils.livedata.event.Event
 import com.kryptkode.farmz.app.utils.livedata.extension.asLiveData
 import com.kryptkode.farmz.screens.farmers.model.FarmerView
@@ -13,7 +16,9 @@ import javax.inject.Inject
 
 class EditFarmerViewModel @Inject constructor(
     private val farmerRepository: FarmerRepository,
-    private val farmerViewMapper: FarmerViewMapper
+    private val farmerViewMapper: FarmerViewMapper,
+    private val stringResource: StringResource,
+    private val logger: Logger
 ) : ViewModel() {
 
     private val mutableShowLoading = MutableLiveData<Event<Unit>>()
@@ -54,6 +59,24 @@ class EditFarmerViewModel @Inject constructor(
                 is DataState.Error -> {
                     hideLoading()
                     showErrorMessage(result.message)
+                }
+            }
+        }
+    }
+
+    fun updatePassport(farmerView: FarmerView) {
+        viewModelScope.launch {
+            when (farmerRepository.updateFarmer(farmerViewMapper.mapViewToDomain(farmerView))) {
+                is DataState.Success -> {
+                    logger.d("Updated passport successfully")
+                }
+
+                is DataState.Error -> {
+                    showErrorMessage(stringResource.getString(R.string.photo_update_failed))
+                }
+
+                DataState.Loading -> {
+
                 }
             }
         }

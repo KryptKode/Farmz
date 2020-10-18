@@ -61,7 +61,7 @@ class EditPersonalDetailsViewImpl(
 
         binding.imagePic.setOnClickListener {
             onEachListener {
-                it.onChangePic()
+                it.onChangePic(farmer.passportPhoto)
             }
         }
 
@@ -98,6 +98,10 @@ class EditPersonalDetailsViewImpl(
         binding.dateEditText.inputType = InputType.TYPE_NULL
     }
 
+    override fun bindPic(photoUri: String) {
+        imageLoader.load(photoUri, binding.imagePic)
+    }
+
     override fun bindPersonalDetails(farmer: FarmerView) {
         this.farmer = farmer
         binding.firstNameEditText.setText(farmer.firstName.capitalize())
@@ -110,8 +114,7 @@ class EditPersonalDetailsViewImpl(
         binding.maritalStatusEditText.setText(farmer.maritalStatus.capitalize(), false)
         binding.spouseEditText.setText(farmer.spouseName.capitalize())
 
-        imageLoader.load(farmer.passportPhoto, binding.imagePic)
-
+        bindPic(farmer.passportPhoto)
     }
 
     override fun bindGenderItems(genders: List<String>) {
