@@ -3,7 +3,7 @@ package com.kryptkode.farmz.screens.farmerdetails
 import androidx.lifecycle.*
 import com.kryptkode.farmz.navigation.home.HomeNavigator
 import com.kryptkode.farmz.screens.farmerdetails.view.FarmerDetailView
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -37,7 +37,7 @@ class FarmerDetailController @Inject constructor(
     fun onStart() {
         farmerListView.registerListener(this)
         lifeCycleOwner.lifecycleScope.launch {
-            viewModel.getFarmer(farmerId).collectLatest {
+            viewModel.getFarmer(farmerId).collect {
                 farmerListView.bindFarmer(it)
             }
         }

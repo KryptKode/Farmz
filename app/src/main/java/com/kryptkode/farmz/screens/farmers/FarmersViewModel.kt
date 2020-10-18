@@ -17,10 +17,20 @@ class FarmersViewModel @Inject constructor(
     private val farmerViewMapper: FarmerViewMapper
 ) : ViewModel() {
 
+    private var currentFarmerList: Flow<PagingData<FarmerView>>? = null
+
     fun loadFarmers(): Flow<PagingData<FarmerView>> {
-        return farmerRepository.getFarmers().map { pagingData ->
+        if (currentFarmerList != null) {
+            return currentFarmerList!!
+        }
+
+        val farmerList = farmerRepository.getFarmers().map { pagingData ->
             pagingData.map { farmerViewMapper.mapDomainToView(it) }
         }.cachedIn(viewModelScope)
+
+        currentFarmerList = farmerList
+
+        return farmerList
     }
 
 }
