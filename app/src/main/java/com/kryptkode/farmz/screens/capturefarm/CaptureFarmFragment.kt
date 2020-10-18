@@ -1,4 +1,8 @@
 package com.kryptkode.farmz.screens.capturefarm
 
-class CaptureFarmFragment {
+import com.kryptkode.farmz.screens.common.fragment.BaseFragment
+
+class CaptureFarmFragment : BaseFragment(){
+
+
 }
