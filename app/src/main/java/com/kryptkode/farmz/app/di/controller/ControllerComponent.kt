@@ -6,6 +6,7 @@ import com.kryptkode.farmz.app.di.controller.viewmodel.ViewModelModule
 import com.kryptkode.farmz.screens.MainActivity
 import com.kryptkode.farmz.screens.datedialog.DateDialog
 import com.kryptkode.farmz.screens.editfarmer.editaddress.EditAddressFragment
+import com.kryptkode.farmz.screens.editfarmer.editcontactdetails.EditContactDetailsFragment
 import com.kryptkode.farmz.screens.editfarmer.editpersonaldetails.EditPersonalDetailsFragment
 import com.kryptkode.farmz.screens.farmerdetails.FarmerDetailFragment
 import com.kryptkode.farmz.screens.farmers.FarmersFragment
@@ -34,4 +35,5 @@ interface ControllerComponent {
     fun inject(editPersonalDetailsFragment: EditPersonalDetailsFragment)
     fun inject(dateDialog: DateDialog)
     fun inject(editAddressFragment: EditAddressFragment)
+    fun inject(editContactDetailsFragment: EditContactDetailsFragment)
 }

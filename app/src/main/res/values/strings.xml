@@ -81,6 +81,8 @@
     <string name="details_city_required_message">Please enter a city</string>
     <string name="details_lga_required_message">Please enter an LGA</string>
     <string name="details_state_required_message">Please enter a state</string>
+    <string name="details_mobile_number_required_message">Please enter a mobile number</string>
+    <string name="details_email_address_required_message">Please enter an email address</string>
     <string name="mobile_hint">Mobile number</string>
     <string name="edit_contact_details_title">Edit contact details</string>
     <string name="edit_address_title">Edit address</string>

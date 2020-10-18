@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import com.kryptkode.farmz.screens.common.imageloader.ImageLoader
 import com.kryptkode.farmz.screens.editfarmer.editaddress.view.EditAddressView
 import com.kryptkode.farmz.screens.editfarmer.editaddress.view.EditAddressViewImpl
+import com.kryptkode.farmz.screens.editfarmer.editcontactdetails.view.EditContactDetailsView
+import com.kryptkode.farmz.screens.editfarmer.editcontactdetails.view.EditContactDetailsViewImpl
 import com.kryptkode.farmz.screens.editfarmer.editpersonaldetails.view.EditPersonalDetailsView
 import com.kryptkode.farmz.screens.editfarmer.editpersonaldetails.view.EditPersonalDetailsViewImpl
 import com.kryptkode.farmz.screens.farmerdetails.view.FarmerDetailView
@@ -52,6 +54,13 @@ class ViewFactory(
 
     fun getEditAddressView(parent: ViewGroup? = null): EditAddressView {
         return EditAddressViewImpl(
+            layoutInflater,
+            parent
+        )
+    }
+
+    fun getEditContactView(parent: ViewGroup? = null): EditContactDetailsView {
+        return EditContactDetailsViewImpl(
             layoutInflater,
             parent
         )
