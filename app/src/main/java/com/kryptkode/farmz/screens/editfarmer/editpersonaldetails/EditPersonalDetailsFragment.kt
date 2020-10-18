@@ -162,7 +162,7 @@ class EditPersonalDetailsFragment : BaseFragment(), EditPersonalDetailsView.List
     }
 
     override fun onChangePic() {
-        homeNavigator.toUpdatePhoto()
+        homeNavigator.toImageViewer("", "")
     }
 
     override fun onChooseDate(date:String) {

@@ -1,25 +1,133 @@
 package com.kryptkode.farmz.screens.imageviewer
 
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import com.kryptkode.farmz.R
+import com.kryptkode.farmz.app.utils.ToastHelper
+import com.kryptkode.farmz.app.utils.extension.beGone
 import com.kryptkode.farmz.app.utils.extension.beGoneIf
+import com.kryptkode.farmz.app.utils.extension.beVisible
+import com.kryptkode.farmz.app.utils.extension.openAppSettings
+import com.kryptkode.farmz.app.utils.file.FileUtils
 import com.kryptkode.farmz.app.utils.viewbinding.viewBinding
 import com.kryptkode.farmz.databinding.FragmentImageViewBinding
+import com.kryptkode.farmz.datareturn.ScreenDataReturnBuffer
+import com.kryptkode.farmz.navigation.home.HomeNavigator
+import com.kryptkode.farmz.screens.common.dialog.DialogEventBus
 import com.kryptkode.farmz.screens.common.fragment.BaseFragment
+import com.kryptkode.farmz.screens.common.imageloader.ImageLoader
+import com.kryptkode.farmz.screens.infodialog.InfoEvent
+import com.kryptkode.flashalerts.screens.common.infodialog.InfoDialogBuilder
+import timber.log.Timber
+import java.io.File
+import java.io.IOException
 import javax.inject.Inject
 
-
-class ImageViewerFragment : BaseFragment(R.layout.fragment_image_view) {
+class ImageViewerFragment : BaseFragment(R.layout.fragment_image_view), DialogEventBus.Listener {
 
     private var fullScreen: Boolean = false
+
+    private var currentPhotoPath: String? = null
 
     @Inject
     lateinit var systemUIHelper: SystemUIHelper
 
+    @Inject
+    lateinit var imageLoader: ImageLoader
+
+    @Inject
+    lateinit var toastHelper: ToastHelper
+
+    @Inject
+    lateinit var fileUtils: FileUtils
+
+    @Inject
+    lateinit var homeNavigator: HomeNavigator
+
+    @Inject
+    lateinit var dialogEventBus: DialogEventBus
+
+    @Inject
+    lateinit var screenDataReturnBuffer: ScreenDataReturnBuffer
+
     private val binding by viewBinding(FragmentImageViewBinding::bind)
+
+    private val takePicture = registerForActivityResult(ActivityResultContracts.TakePicture()) {
+        if (it) {
+            compressFile()
+        }else {
+            toastHelper.showMessage(getString(R.string.take_pic_error_msg))
+        }
+    }
+
+    private fun compressFile() {
+        showLoading()
+        var compressedFile = fileUtils.compressFile(File(currentPhotoPath ?: ""))
+        if (compressedFile != null) {
+            //delete the uncompressed file
+            fileUtils.deleteFile(File(currentPhotoPath ?: return))
+        }else {
+            compressedFile = File(currentPhotoPath ?: "")
+        }
+
+        hideLoading()
+        val fileUrl = fileUtils.getFileUri(compressedFile)
+
+        //return URI
+
+    }
+
+    private var fileObserver: ImageDirObserver? = null
+
+    private val fileObserverListener = object : ImageDirObserver.ImageDirListener {
+        override fun onCreate(path: String?) {
+            fileObserver?.let { observer ->
+                path?.let {
+                    val file = File(observer.getAbsolutePath(it))
+                    val fileUrl = fileUtils.getFileUri(file)
+
+                }
+            }
+        }
+
+        override fun onDelete(path: String?) {
+            fileObserver?.let { observer ->
+                path?.let {
+                    val file = File(observer.getAbsolutePath(it))
+
+                }
+            }
+        }
+
+    }
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                openCamera()
+            } else {
+                if (shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
+                    toastHelper.showMessage(getString(R.string.allow_camera_permission_msg))
+                } else {
+                    showCameraPermissionNeverAsk()
+                }
+            }
+        }
+
+    private fun initFileObserver() {
+        fileObserver = ImageDirObserver(getRootPathCompressed(), fileObserverListener)
+        lifecycle.addObserver(fileObserver ?: return)
+    }
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -30,6 +138,28 @@ class ImageViewerFragment : BaseFragment(R.layout.fragment_image_view) {
         super.onCreate(savedInstanceState)
         fullScreen = savedInstanceState?.getBoolean(FULL_SCREEN_KEY) ?: false
         changeSystemUI()
+        initFileObserver()
+    }
+
+    private fun checkCameraPermission() {
+        when {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED -> {
+
+                openCamera()
+            }
+
+            shouldShowRequestPermissionRationale(Manifest.permission.CAMERA) -> {
+                showCameraPermissionRationale()
+            }
+            else -> {
+                requestPermissionLauncher.launch(
+                    Manifest.permission.CAMERA
+                )
+            }
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -40,13 +170,50 @@ class ImageViewerFragment : BaseFragment(R.layout.fragment_image_view) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        imageLoader.load("", binding.image)
+
         binding.image.setOnClickListener {
             toggleFullScreen()
         }
 
         binding.imgEdit.setOnClickListener {
-
+            openCamera()
         }
+    }
+
+    private fun openCamera() {
+        val photoFile: File? = try {
+            createImageFile()
+        } catch (ex: Exception) {
+            // Error occurred while creating the File
+            Timber.e(ex)
+            toastHelper.showMessage(getString(R.string.change_pic_create_file_error))
+            null
+        }
+
+        photoFile?.let {
+            val outputUri = FileProvider.getUriForFile(
+                requireContext(),
+                "${requireContext().packageName}.provider",
+                photoFile
+            )
+            takePicture.launch(outputUri)
+        }
+    }
+
+
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        return fileUtils.createImageFile().apply {
+            // Save a file: path for use with ACTION_VIEW intents
+            Timber.d("Created image file with path: $absolutePath")
+            currentPhotoPath = absolutePath
+        }
+    }
+
+
+    private fun getRootPathCompressed(): String {
+        return fileUtils.getRootPathCompressed()
     }
 
     private fun changeSystemUI() {
@@ -63,7 +230,75 @@ class ImageViewerFragment : BaseFragment(R.layout.fragment_image_view) {
         changeSystemUI()
     }
 
+    override fun onStart() {
+        super.onStart()
+        dialogEventBus.registerListener(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        dialogEventBus.unregisterListener(this)
+    }
+
+    private fun showCameraPermissionRationale() {
+        val info = InfoDialogBuilder()
+            .title(getString(R.string.allow_camera_permission_title))
+            .message(getString(R.string.allow_camera_permission_msg))
+            .payload(PAYLOAD_RATIONALE)
+            .buildInfo()
+        homeNavigator.toInfoDialog(info)
+    }
+
+    private fun showCameraPermissionNeverAsk() {
+        val info = InfoDialogBuilder()
+            .title(getString(R.string.allow_camera_permission_title))
+            .message(getString(R.string.allow_camera_permission_never_ask))
+            .payload(PAYLOAD_NEVER_ASK)
+            .buildInfo()
+        homeNavigator.toInfoDialog(info)
+    }
+
+    private fun showLoading(){
+        binding.progress.root.beVisible()
+    }
+
+    private fun hideLoading(){
+        binding.progress.root.beGone()
+    }
+
+    override fun onDialogEvent(event: Any?) {
+        when (event) {
+            is InfoEvent -> {
+                when (event.payload) {
+                    PAYLOAD_NEVER_ASK -> {
+                        when (event.button) {
+                            InfoEvent.Button.POSITIVE -> {
+                                requireContext().openAppSettings()
+                            }
+                            else -> {
+
+                            }
+                        }
+                    }
+
+                    PAYLOAD_RATIONALE -> {
+                        when (event.button) {
+                            InfoEvent.Button.POSITIVE -> {
+                                checkCameraPermission()
+                            }
+                            else -> {
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     companion object {
         private const val FULL_SCREEN_KEY = "full_screen"
+        private const val PAYLOAD_RATIONALE = "PAYLOAD_RATIONALE"
+        private const val PAYLOAD_NEVER_ASK = "PAYLOAD_NEVER_ASK"
     }
 }

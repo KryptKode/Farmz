@@ -5,6 +5,8 @@ import com.kryptkode.farmz.app.dispatcher.AppDispatchers
 import com.kryptkode.farmz.app.dispatcher.AppDispatchersImpl
 import com.kryptkode.farmz.app.logger.Logger
 import com.kryptkode.farmz.app.logger.LoggerImpl
+import com.kryptkode.farmz.datareturn.ScreenDataReturnBuffer
+import com.kryptkode.farmz.datareturn.ScreenDataReturnBufferImpl
 import dagger.Module
 import dagger.Provides
 
@@ -30,6 +32,12 @@ class ApplicationModule(private val application: Application) {
     @Provides
     fun provideAppDispatcher(): AppDispatchers {
         return AppDispatchersImpl()
+    }
+
+    @ApplicationScope
+    @Provides
+    fun provideScreenReturnBuffer(): ScreenDataReturnBuffer {
+        return ScreenDataReturnBufferImpl()
     }
 
 }

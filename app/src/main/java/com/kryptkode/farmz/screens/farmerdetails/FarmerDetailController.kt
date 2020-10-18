@@ -71,7 +71,7 @@ class FarmerDetailController @Inject constructor(
     }
 
     override fun onClickPic() {
-        homeNavigator.toPic(farmerId)
+        homeNavigator.toImageViewer("", "")
     }
 
     override fun onClickBack() {

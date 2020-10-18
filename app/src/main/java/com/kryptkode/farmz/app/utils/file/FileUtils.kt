@@ -19,7 +19,7 @@ Created by kryptkode on 8/5/2019
 class FileUtils @Inject constructor(private val context: Context) {
 
     @Throws(IOException::class)
-    fun createImageFile(fileNamePrefix: String): File {
+    fun createImageFile(fileNamePrefix: String= FILE_NAME_PREFIX): File {
         // Create an image file name
         val file = File.createTempFile(
             "${fileNamePrefix}_${createTempName()}_", /* prefix */
@@ -72,28 +72,30 @@ class FileUtils @Inject constructor(private val context: Context) {
         return imageFile.name
     }
 
-    fun getRootPath(cargoCode: String?): String {
-        val file = provideRootDir(cargoCode ?: "")
+    fun getRootPath(fileNamePrefix: String = FILE_NAME_PREFIX): String {
+        val file = provideRootDir(fileNamePrefix)
         return file.absolutePath
     }
 
-    fun getRootPathCompressed(cargoCode: String?): String {
-        val file = provideRootDir("${cargoCode}_compressed")
+    fun getRootPathCompressed(fileNamePrefix: String = FILE_NAME_PREFIX): String {
+        val file = provideRootDir("${fileNamePrefix}_compressed")
         if (!file.exists()) {
             file.mkdirs()
         }
         return file.absolutePath
     }
 
-    fun compressFile(imageFile: File, cargoCode: String?): File? {
+    fun compressFile(imageFile: File, fileNamePrefix: String = FILE_NAME_PREFIX): File? {
         Timber.d("About to compress file: ${imageFile.absolutePath}")
         return Compressor(context)
-            .setDestinationDirectoryPath(getRootPathCompressed(cargoCode))
+            .setDestinationDirectoryPath(getRootPathCompressed(fileNamePrefix))
             .compressToFile(imageFile)
+
     }
 
     companion object {
         const val IMAGE_EXT = "jpg"
+        const val FILE_NAME_PREFIX = "image"
         const val VALID_IMAGE_SIZE_THRESHOLD = 1000L
     }
 }

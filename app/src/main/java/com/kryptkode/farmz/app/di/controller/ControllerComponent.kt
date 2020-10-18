@@ -12,6 +12,7 @@ import com.kryptkode.farmz.screens.editfarmer.editpersonaldetails.EditPersonalDe
 import com.kryptkode.farmz.screens.farmerdetails.FarmerDetailFragment
 import com.kryptkode.farmz.screens.farmers.FarmersFragment
 import com.kryptkode.farmz.screens.imageviewer.ImageViewerFragment
+import com.kryptkode.farmz.screens.infodialog.InfoDialog
 import com.kryptkode.farmz.screens.login.LoginFragment
 import com.kryptkode.farmz.screens.splash.SplashActivity
 import dagger.Subcomponent
@@ -40,4 +41,5 @@ interface ControllerComponent {
     fun inject(editContactDetailsFragment: EditContactDetailsFragment)
     fun inject(editIdFragment: EditIdFragment)
     fun inject(imageViewerFragment: ImageViewerFragment)
+    fun inject(infoDialog: InfoDialog)
 }

@@ -150,7 +150,7 @@ class EditIdFragment : BaseFragment(), EditIdView.Listener, DialogEventBus.Liste
     }
 
     override fun onChangeIdPic() {
-        homeNavigator.toUpdateIdPhoto()
+        homeNavigator.toImageViewer("", "")
     }
 
     override fun onChooseExpiryDate(date: String) {
