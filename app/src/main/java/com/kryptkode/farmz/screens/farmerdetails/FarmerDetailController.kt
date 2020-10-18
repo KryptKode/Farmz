@@ -49,26 +49,30 @@ class FarmerDetailController @Inject constructor(
     }
 
     override fun onEditPersonalDetails() {
-        homeNavigator.detailsToEditPersonalDetails(farmerId)
+        homeNavigator.toEditPersonalDetails(farmerId)
     }
 
     override fun onEditContactDetails() {
-        homeNavigator.detailsToEditContactDetails(farmerId)
+        homeNavigator.toEditContactDetails(farmerId)
     }
 
     override fun onEditIdentification() {
-        homeNavigator.detailsToEditIdentification(farmerId)
+        homeNavigator.toEditIdentification(farmerId)
     }
 
     override fun onEditAddress() {
-        homeNavigator.detailsToEditAddress(farmerId)
+        homeNavigator.toEditAddress(farmerId)
     }
 
     override fun onClickPic() {
-        homeNavigator.detailsToPic(farmerId)
+        homeNavigator.toPic(farmerId)
     }
 
     override fun onClickBack() {
         homeNavigator.navigateUp()
+    }
+
+    override fun onCaptureFarm() {
+        homeNavigator.toCaptureFarm(farmerId)
     }
 }

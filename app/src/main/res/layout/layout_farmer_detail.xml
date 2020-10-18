@@ -9,7 +9,7 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?selectableItemBackgroundBorderless"
+        android:background="?selectableItemBackground"
         android:padding="8dp"
         android:text="@string/title_farmer_details"
         android:textAppearance="@style/TextAppearance.App.H2"
@@ -77,6 +77,14 @@
                 app:layout_constraintTop_toBottomOf="@id/card_contact" />
 
 
+            <FrameLayout
+                android:id="@+id/redundant"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@id/card_identification" />
+
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guidelineStart"
                 android:layout_width="wrap_content"
@@ -113,5 +121,17 @@
     </androidx.core.widget.NestedScrollView>
 
     <include layout="@layout/app_guidelines_ltr" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab_capture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/capture_farm_btn_text"
+        android:textColor="@color/colorOnAccent"
+        app:backgroundTint="@color/colorAccent"
+        app:icon="@drawable/ic_capture_farm"
+        app:iconTint="@color/colorOnAccent"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

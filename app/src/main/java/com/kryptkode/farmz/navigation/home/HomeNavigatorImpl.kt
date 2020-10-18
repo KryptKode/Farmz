@@ -18,23 +18,27 @@ class HomeNavigatorImpl @Inject constructor(
         )
     }
 
-    override fun detailsToPic(farmerId: String) {
+    override fun toPic(farmerId: String) {
         
     }
 
-    override fun detailsToEditAddress(farmerId: String) {
+    override fun toEditAddress(farmerId: String) {
         
     }
 
-    override fun detailsToEditIdentification(farmerId: String) {
+    override fun toEditIdentification(farmerId: String) {
         
     }
 
-    override fun detailsToEditContactDetails(farmerId: String) {
+    override fun toEditContactDetails(farmerId: String) {
         
     }
 
-    override fun detailsToEditPersonalDetails(farmerId: String) {
+    override fun toEditPersonalDetails(farmerId: String) {
         
+    }
+
+    override fun toCaptureFarm(farmerId: String) {
+
     }
 }
