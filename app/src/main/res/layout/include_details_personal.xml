@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_personal_details"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/tv_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintTop_toTopOf="@id/guidelineTop"
+            tools:src="@tools:sample/avatars" />
+
+
+        <TextView
+            android:id="@+id/tv_full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textAppearance="@style/TextAppearance.App.ListPrimary"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@id/tv_image"
+            tools:text="@tools:sample/full_names" />
+
+
+        <TextView
+            android:id="@+id/tv_dob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.App.Body"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@id/tv_full_name"
+            tools:text="Born on Dec. 3, 1994" />
+
+
+        <TextView
+            android:id="@+id/tv_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/TextAppearance.App.Body"
+            app:drawableStartCompat="@drawable/point"
+            app:layout_constraintStart_toEndOf="@id/tv_dob"
+            app:layout_constraintTop_toBottomOf="@id/tv_full_name"
+            tools:text="Male" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_dob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="tv_dob,tv_gender" />
+
+        <TextView
+            android:id="@+id/tv_occupation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.App.Body"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@id/barrier_dob"
+            tools:text="Farmer" />
+
+        <TextView
+            android:id="@+id/tv_nationality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:drawablePadding="8dp"
+            android:textAppearance="@style/TextAppearance.App.Body"
+            app:drawableStartCompat="@drawable/point"
+            app:layout_constraintStart_toEndOf="@id/tv_occupation"
+            app:layout_constraintTop_toBottomOf="@id/barrier_dob"
+            tools:text="Nigerian" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_occupation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="tv_occupation,tv_nationality" />
+
+
+        <TextView
+            android:id="@+id/tv_marital_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.App.Body"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@id/barrier_occupation"
+            tools:text="Married" />
+
+        <ImageView
+            android:id="@+id/img_edit"
+            android:layout_width="@dimen/detail_edit_icon_size"
+            android:layout_height="@dimen/detail_edit_icon_size"
+            android:background="?selectableItemBackgroundBorderless"
+            android:contentDescription="@string/edit_content_description"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            app:layout_constraintTop_toTopOf="@id/guidelineTop"
+            app:srcCompat="@drawable/ic_edit" />
+
+        <include layout="@layout/app_guidelines_details" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
+

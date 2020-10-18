@@ -40,5 +40,6 @@
     <dimen name="line_drawable_padding">8dp</dimen>
     <dimen name="thumb_drawable_padding">16dp</dimen>
     <dimen name="thumb_drawable_corners">32dp</dimen>
+    <dimen name="detail_edit_icon_size">24dp</dimen>
 
 </resources>

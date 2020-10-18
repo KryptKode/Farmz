@@ -26,5 +26,10 @@
     <string name="validation_password_short_message">Please enter a password greater than %d characters</string>
     <string name="retry_text">Retry</string>
     <string name="error_message_generic">An error occurred. Please try again</string>
+    <string name="edit_content_description">Edit button</string>
+    <string name="title_farmer_details">Farmer details</string>
+    <string name="title_address">Address</string>
+    <string name="title_contact">Contact</string>
+    <string name="title_identification">Identification</string>
 
 </resources>
