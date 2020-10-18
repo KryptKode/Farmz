@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/tv_image"
+            android:id="@+id/image_pic"
             android:layout_width="96dp"
             android:layout_height="96dp"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
@@ -26,7 +26,7 @@
             android:layout_marginTop="16dp"
             android:textAppearance="@style/TextAppearance.App.ListPrimary"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@id/tv_image"
+            app:layout_constraintTop_toBottomOf="@id/image_pic"
             tools:text="@tools:sample/full_names" />
 
 
