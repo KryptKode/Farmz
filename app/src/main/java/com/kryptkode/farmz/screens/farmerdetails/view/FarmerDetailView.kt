@@ -15,4 +15,5 @@ abstract class FarmerDetailView : BaseObservableViewMvc<FarmerDetailView.Listene
     }
 
     abstract fun bindFarmer(farmer: FarmerView)
+    abstract fun updateFarmerPhoto(newPhotoUri: String)
 }

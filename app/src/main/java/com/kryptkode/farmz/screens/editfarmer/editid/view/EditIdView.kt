@@ -7,6 +7,7 @@ abstract class EditIdView: BaseObservableViewMvc<EditIdView.Listener>() {
 
     interface Listener {
         fun onChangeIdPic()
+        fun onChangeFingerPrintPic()
         fun onChooseExpiryDate(date: String)
         fun onChooseIssueDate(date: String)
         fun onSave(farmer: FarmerView)
@@ -28,6 +29,9 @@ abstract class EditIdView: BaseObservableViewMvc<EditIdView.Listener>() {
     abstract fun onExpiryDateSelected(date:String)
 
     abstract fun clearErrors()
+
+    abstract fun bindIdPhoto(photoUri: String)
+    abstract fun bindFingerPrintPhoto(photoUri: String)
 
     abstract fun showLoading()
     abstract fun hideLoading()

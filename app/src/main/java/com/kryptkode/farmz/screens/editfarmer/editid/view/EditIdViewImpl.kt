@@ -31,6 +31,12 @@ class EditIdViewImpl(
             }
         }
 
+        binding.imageFingerprint.setOnClickListener {
+            onEachListener {
+                it.onChangeFingerPrintPic()
+            }
+        }
+
         binding.fabSave.setOnClickListener {
             onEachListener {
                 it.onSave(
@@ -104,7 +110,16 @@ class EditIdViewImpl(
         binding.regNoEditText.setText(farmer.registrationNumber.capitalize())
         binding.bvnEditText.setText(farmer.bvn.capitalize())
 
-        imageLoader.load(farmer.idImage, binding.imagePic)
+        bindIdPhoto(farmer.idImage)
+        bindFingerPrintPhoto(farmer.fingerprint)
+    }
+
+    override fun bindFingerPrintPhoto(photoUri: String) {
+        imageLoader.load(photoUri, binding.imageFingerprint)
+    }
+
+    override fun bindIdPhoto(photoUri: String) {
+        imageLoader.load(photoUri, binding.imagePic)
     }
 
     override fun showBvnError(message: String) {

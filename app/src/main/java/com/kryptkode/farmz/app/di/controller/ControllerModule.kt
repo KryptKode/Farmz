@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import com.kryptkode.farmz.navigation.NavControllerProvider
+import com.kryptkode.farmz.screens.common.DialogViewFactory
 import com.kryptkode.farmz.screens.common.ViewFactory
 import com.kryptkode.farmz.screens.common.dialog.DialogEventBus
 import com.kryptkode.farmz.screens.common.imageloader.ImageLoader
@@ -57,6 +58,16 @@ class ControllerModule(
     ): ViewFactory {
         return ViewFactory(
             imageLoader,
+            layoutInflater
+        )
+    }
+
+    @Provides
+    @ControllerScope
+    fun dialogViewFactory(
+        layoutInflater: LayoutInflater
+    ): DialogViewFactory {
+        return DialogViewFactory(
             layoutInflater
         )
     }

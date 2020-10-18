@@ -26,4 +26,5 @@ abstract class EditPersonalDetailsView : BaseObservableViewMvc<EditPersonalDetai
     abstract fun showLoading()
     abstract fun hideLoading()
     abstract fun onDateSelected(date:String)
+    abstract fun bindPic(photoUri: String)
 }

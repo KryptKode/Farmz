@@ -13,6 +13,7 @@ import com.kryptkode.farmz.app.logger.Logger
 import com.kryptkode.farmz.app.utils.ToastHelper
 import com.kryptkode.farmz.app.utils.date.DisplayedDateFormatter
 import com.kryptkode.farmz.app.utils.livedata.extension.observeEvent
+import com.kryptkode.farmz.datareturn.ScreenDataReturnBuffer
 import com.kryptkode.farmz.navigation.home.HomeNavigator
 import com.kryptkode.farmz.screens.common.ViewFactory
 import com.kryptkode.farmz.screens.common.dialog.DialogEventBus
@@ -48,6 +49,9 @@ class EditPersonalDetailsFragment : BaseFragment(), EditPersonalDetailsView.List
     lateinit var displayedDateFormatter: DisplayedDateFormatter
 
     @Inject
+    lateinit var screenDataReturnBuffer: ScreenDataReturnBuffer
+
+    @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val viewModel: EditFarmerViewModel by viewModels { viewModelFactory }
@@ -55,6 +59,8 @@ class EditPersonalDetailsFragment : BaseFragment(), EditPersonalDetailsView.List
     private val args by navArgs<EditPersonalDetailsFragmentArgs>()
 
     private lateinit var viewMvc: EditPersonalDetailsView
+
+    private var farmerView: FarmerView? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -90,6 +96,26 @@ class EditPersonalDetailsFragment : BaseFragment(), EditPersonalDetailsView.List
         super.onStart()
         viewMvc.registerListener(this)
         dialogEventBus.registerListener(this)
+        checkIfPassportWasUpdated()
+    }
+
+    private fun checkIfPassportWasUpdated() {
+        val key = getPhotoReturnKey()
+        if (screenDataReturnBuffer.hasDataForToken(key)) {
+            val newPhotoUri = screenDataReturnBuffer.getValue<String>(key)
+            logger.d("New photo: $newPhotoUri")
+            if (newPhotoUri != null) {
+                farmerView?.let {
+                    farmerView = it.copy(passportPhoto = newPhotoUri)
+                    viewModel.updatePassport(farmerView!!)
+                    viewMvc.bindPic(newPhotoUri)
+                    screenDataReturnBuffer.removeValue(key)
+                    logger.d("updating photo...")
+                }
+            } else {
+                toastHelper.showMessage(getString(R.string.update_image_error_msg))
+            }
+        }
     }
 
     private fun setupObservers() {
@@ -140,6 +166,7 @@ class EditPersonalDetailsFragment : BaseFragment(), EditPersonalDetailsView.List
         }
 
         viewModel.farmer.observe(viewLifecycleOwner) {
+            farmerView = it
             viewMvc.bindPersonalDetails(it)
         }
     }
@@ -162,10 +189,12 @@ class EditPersonalDetailsFragment : BaseFragment(), EditPersonalDetailsView.List
     }
 
     override fun onChangePic() {
-        homeNavigator.toUpdatePhoto()
+        farmerView?.let {
+            homeNavigator.toImageViewer(it.passportPhoto, getPhotoReturnKey())
+        }
     }
 
-    override fun onChooseDate(date:String) {
+    override fun onChooseDate(date: String) {
         homeNavigator.toDatePicker(displayedDateFormatter.parseDisplayedDate(date))
     }
 
@@ -176,6 +205,14 @@ class EditPersonalDetailsFragment : BaseFragment(), EditPersonalDetailsView.List
                 viewMvc.onDateSelected(displayedDateFormatter.formatToDisplayedDate(date))
             }
         }
+    }
+
+    private fun getPhotoReturnKey(): String {
+        return javaClass.name.plus(PHOTO_RETURN_KEY)
+    }
+
+    companion object {
+        private const val PHOTO_RETURN_KEY = "PHOTO_RETURN_KEY"
     }
 
 }

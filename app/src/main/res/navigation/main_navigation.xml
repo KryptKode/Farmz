@@ -92,14 +92,47 @@
         <argument
             android:name="farmerId"
             app:argType="string" />
+
     </fragment>
 
     <fragment
         android:id="@+id/editIdFragment"
         android:name="com.kryptkode.farmz.screens.editfarmer.editid.EditIdFragment"
-        android:label="EditIdFragment" >
+        android:label="EditIdFragment"
+        tools:layout="@layout/layout_edit_id">
         <argument
             android:name="farmerId"
             app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/imageViewerFragment"
+        android:name="com.kryptkode.farmz.screens.imageviewer.ImageViewerFragment"
+        android:label="ImageViewerFragment"
+        tools:layout="@layout/fragment_image_view">
+        <argument
+            android:name="imagePath"
+            app:argType="string" />
+        <argument
+            android:name="returnKey"
+            app:argType="string" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_to_imageViewerFragment"
+        app:destination="@id/imageViewerFragment" />
+
+    <action
+        android:id="@+id/action_to_infoDialog"
+        app:destination="@id/infoDialog" />
+
+    <fragment
+        android:id="@+id/infoDialog"
+        android:name="com.kryptkode.farmz.screens.infodialog.InfoDialog"
+        android:label="InfoDialog"
+        tools:layout="@layout/dialog_info">
+        <argument
+            android:name="infoParms"
+            app:argType="com.kryptkode.farmz.screens.infodialog.Info" />
     </fragment>
 </navigation>
