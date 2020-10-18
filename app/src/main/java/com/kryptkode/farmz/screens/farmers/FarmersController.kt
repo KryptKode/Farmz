@@ -30,14 +30,17 @@ class FarmersController @Inject constructor(
         this.viewModel = viewModel
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun onStart() {
-        farmerListView.registerListener(this)
+    fun getData(){
         lifeCycleOwner.lifecycleScope.launch {
             viewModel.loadFarmers().collectLatest {
                 farmerListView.bindFarmers(it)
             }
         }
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    fun onStart() {
+        farmerListView.registerListener(this)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)

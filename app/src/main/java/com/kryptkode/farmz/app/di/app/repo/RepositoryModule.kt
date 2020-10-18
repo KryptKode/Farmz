@@ -25,10 +25,11 @@ class RepositoryModule {
     @Provides
     @ApplicationScope
     fun provideFarmerRepo(
+        dispatchers: AppDispatchers,
         remoteMediator: FarmerRemoteMediator,
         appDatabase: AppDatabase,
         farmerDbMapper: FarmerDbMapper
     ): FarmerRepository {
-        return FarmerRepositoryImpl(remoteMediator, appDatabase, farmerDbMapper)
+        return FarmerRepositoryImpl(dispatchers, remoteMediator, appDatabase, farmerDbMapper)
     }
 }

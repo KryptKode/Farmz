@@ -54,4 +54,12 @@
     <string name="spouse_name_hint">Spouse name</string>
     <string name="edit_details_title">Edit details</string>
 
+
+    <string name="details_first_name_required_message">Please enter a name</string>
+    <string name="details_last_name_required_message">Please enter a name</string>
+    <string name="details_nationality_required_message">Please enter a nationality eg. Nigerian</string>
+    <string name="details_dob_required_message">Please select a date</string>
+    <string name="details_gender_required_message">Please select a gender</string>
+    <string name="details_occupation_required_message">Please enter an occupation </string>
+    <string name="details_marital_status_required_message">Please select a marital status</string>
 </resources>

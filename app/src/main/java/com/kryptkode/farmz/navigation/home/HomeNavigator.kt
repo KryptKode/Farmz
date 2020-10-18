@@ -9,4 +9,5 @@ interface HomeNavigator {
     fun toEditContactDetails(farmerId: String)
     fun toEditPersonalDetails(farmerId: String)
     fun toCaptureFarm(farmerId: String)
+    fun toUpdatePhoto()
 }

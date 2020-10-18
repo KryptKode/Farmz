@@ -5,12 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
+import com.kryptkode.farmz.app.utils.extension.beGone
+import com.kryptkode.farmz.app.utils.extension.beVisible
 import com.kryptkode.farmz.app.utils.extension.bindData
 import com.kryptkode.farmz.databinding.LayoutEditPersonalDetailsBinding
+import com.kryptkode.farmz.screens.common.imageloader.ImageLoader
 import com.kryptkode.farmz.screens.farmers.model.FarmerView
 
 @SuppressLint("DefaultLocale")
 class EditPersonalDetailsViewImpl(
+    private val imageLoader: ImageLoader,
     layoutInflater: LayoutInflater,
     parent: ViewGroup?
 ) : EditPersonalDetailsView() {
@@ -71,6 +75,12 @@ class EditPersonalDetailsViewImpl(
                 )
             }
         }
+
+        binding.tvTitle.setOnClickListener {
+            onEachListener {
+                it.onBackClick()
+            }
+        }
     }
 
     override fun bindPersonalDetails(farmer: FarmerView) {
@@ -84,6 +94,9 @@ class EditPersonalDetailsViewImpl(
         binding.nationalityEditText.setText(farmer.nationality.capitalize())
         binding.maritalStatusEditText.setText(farmer.maritalStatus.capitalize())
         binding.spouseEditText.setText(farmer.spouseName.capitalize())
+
+        imageLoader.load(farmer.passportPhoto, binding.imagePic)
+
     }
 
     override fun bindGenderItems(genders: List<String>) {
@@ -120,6 +133,16 @@ class EditPersonalDetailsViewImpl(
 
     override fun showMaritalStatusError(message: String) {
         binding.maritalStatusInput.error = message
+    }
+
+    override fun hideLoading() {
+        binding.progress.root.beGone()
+        binding.fabSave.isEnabled = true
+    }
+
+    override fun showLoading() {
+        binding.progress.root.beVisible()
+        binding.fabSave.isEnabled = false
     }
 
     override fun clearErrors() {
