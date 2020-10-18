@@ -38,11 +38,6 @@ class FarmersController @Inject constructor(
                 farmerListView.bindFarmers(it)
             }
         }
-        setupObservers()
-    }
-
-    private fun setupObservers() {
-
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)

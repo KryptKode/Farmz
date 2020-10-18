@@ -34,4 +34,11 @@ class FarmerRepositoryImpl(
             }
         }
     }
+
+    override fun getFarmerById(id: String): Flow<Farmer> {
+        return appDatabase.farmersDao().getFarmerByIdAsFlow(id)
+            .map {
+                farmerDbMapper.mapDbToDomain(it)
+            }
+    }
 }
