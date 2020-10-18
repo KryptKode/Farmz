@@ -12,7 +12,7 @@ import androidx.navigation.NavController.OnDestinationChangedListener
 import androidx.navigation.NavDestination
 import com.kryptkode.farmz.R
 import com.kryptkode.farmz.app.domain.AuthRepository
-import com.kryptkode.farmz.app.utils.extension.beVisibleIf
+import com.kryptkode.farmz.app.utils.extension.beGoneIf
 import kotlinx.coroutines.flow.collect
 import java.lang.ref.WeakReference
 import javax.inject.Inject
@@ -59,7 +59,7 @@ class MainNavigator @Inject constructor(
                     this
                 )
             }
-            weakNavView.get()?.beVisibleIf(destination.id != R.id.loginFragment)
+            weakNavView.get()?.beGoneIf(destination.id == R.id.loginFragment || destination.id == R.id.imageViewerFragment)
         }
     }
 }

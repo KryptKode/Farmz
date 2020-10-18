@@ -9,11 +9,10 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.navigation.fragment.navArgs
 import com.kryptkode.farmz.R
 import com.kryptkode.farmz.app.utils.ToastHelper
-import com.kryptkode.farmz.app.utils.extension.beGone
 import com.kryptkode.farmz.app.utils.extension.beGoneIf
-import com.kryptkode.farmz.app.utils.extension.beVisible
 import com.kryptkode.farmz.app.utils.extension.openAppSettings
 import com.kryptkode.farmz.app.utils.file.FileUtils
 import com.kryptkode.farmz.app.utils.viewbinding.viewBinding
@@ -59,8 +58,11 @@ class ImageViewerFragment : BaseFragment(R.layout.fragment_image_view), DialogEv
 
     private val binding by viewBinding(FragmentImageViewBinding::bind)
 
+    private val args by navArgs<ImageViewerFragmentArgs>()
+
     private val takePicture = registerForActivityResult(ActivityResultContracts.TakePicture()) {
         if (it) {
+            loadImage(currentPhotoPath ?: "")
             compressFile()
         }else {
             toastHelper.showMessage(getString(R.string.take_pic_error_msg))
@@ -81,6 +83,7 @@ class ImageViewerFragment : BaseFragment(R.layout.fragment_image_view), DialogEv
         val fileUrl = fileUtils.getFileUri(compressedFile)
 
         //return URI
+        screenDataReturnBuffer.putValue(args.returnKey, fileUrl)
 
     }
 
@@ -92,7 +95,6 @@ class ImageViewerFragment : BaseFragment(R.layout.fragment_image_view), DialogEv
                 path?.let {
                     val file = File(observer.getAbsolutePath(it))
                     val fileUrl = fileUtils.getFileUri(file)
-
                 }
             }
         }
@@ -137,7 +139,6 @@ class ImageViewerFragment : BaseFragment(R.layout.fragment_image_view), DialogEv
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         fullScreen = savedInstanceState?.getBoolean(FULL_SCREEN_KEY) ?: false
-        changeSystemUI()
         initFileObserver()
     }
 
@@ -169,16 +170,21 @@ class ImageViewerFragment : BaseFragment(R.layout.fragment_image_view), DialogEv
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        changeSystemUI()
 
-        imageLoader.load("", binding.image)
+        loadImage(args.imagePath)
 
         binding.image.setOnClickListener {
             toggleFullScreen()
         }
 
         binding.imgEdit.setOnClickListener {
-            openCamera()
+            checkCameraPermission()
         }
+    }
+
+    private fun loadImage(uri:String) {
+        imageLoader.load(uri, binding.image)
     }
 
     private fun openCamera() {
