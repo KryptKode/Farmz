@@ -74,8 +74,8 @@
 
     <string name="data_id_passport">International Passport</string>
     <string name="data_id_driver_license">Driver\'s Licence</string>
-    <string name="data_id_voters_card">National Voters card</string>
-    <string name="data_id_national_id">National ID</string>
+    <string name="data_id_voters_card">National Voters Card</string>
+    <string name="data_id_national_id">National ID Card</string>
 
 
     <string name="address_hint">Address</string>

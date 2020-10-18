@@ -1,6 +1,7 @@
 package com.kryptkode.farmz.app.di.controller.util
 
 import android.content.Context
+import androidx.appcompat.app.AppCompatActivity
 import com.kryptkode.farmz.app.di.controller.ControllerScope
 import com.kryptkode.farmz.app.utils.NetworkListener
 import com.kryptkode.farmz.app.utils.ToastHelper
@@ -8,6 +9,7 @@ import com.kryptkode.farmz.app.utils.Validator
 import com.kryptkode.farmz.app.utils.VersionUtil
 import com.kryptkode.farmz.screens.common.imageloader.ImageLoader
 import com.kryptkode.farmz.screens.common.imageloader.ImageLoaderImpl
+import com.kryptkode.farmz.screens.imageviewer.SystemUIHelper
 import dagger.Module
 import dagger.Provides
 
@@ -42,5 +44,11 @@ class UtilModule {
     @ControllerScope
     fun provideImageLoader(): ImageLoader {
         return ImageLoaderImpl()
+    }
+
+    @Provides
+    @ControllerScope
+    fun provideSystemUiHelper(activity: AppCompatActivity): SystemUIHelper {
+        return SystemUIHelper(activity)
     }
 }

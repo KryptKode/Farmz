@@ -92,6 +92,7 @@
         <argument
             android:name="farmerId"
             app:argType="string" />
+
     </fragment>
 
     <fragment
@@ -102,4 +103,16 @@
             android:name="farmerId"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/imageViewerFragment"
+        android:name="com.kryptkode.farmz.screens.imageviewer.ImageViewerFragment"
+        android:label="ImageViewerFragment" >
+        <argument
+            android:name="imagePath"
+            app:argType="string" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_to_imageViewerFragment"
+        app:destination="@id/imageViewerFragment" />
 </navigation>
