@@ -10,7 +10,7 @@
         android:id="@+id/tv_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Farmers"
+        android:text="@string/title_farmers"
         android:textAppearance="@style/TextAppearance.App.H2"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
@@ -67,6 +67,6 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <include layout="@layout/app_guidelines_outer" />
+    <include layout="@layout/app_guidelines_ltr" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
