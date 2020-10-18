@@ -1,10 +1,12 @@
 package com.kryptkode.farmz.screens.farmerdetails
 
-import androidx.lifecycle.*
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.OnLifecycleEvent
+import com.kryptkode.farmz.app.utils.livedata.extension.observe
 import com.kryptkode.farmz.navigation.home.HomeNavigator
 import com.kryptkode.farmz.screens.farmerdetails.view.FarmerDetailView
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class FarmerDetailController @Inject constructor(
@@ -36,10 +38,14 @@ class FarmerDetailController @Inject constructor(
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun onStart() {
         farmerListView.registerListener(this)
-        lifeCycleOwner.lifecycleScope.launch {
-            viewModel.getFarmer(farmerId).collect {
-                farmerListView.bindFarmer(it)
-            }
+        setupObservers()
+        viewModel.getFarmer(farmerId)
+    }
+
+    private fun setupObservers() {
+        @Suppress("COMPATIBILITY_WARNING")
+        viewModel.farmer.observe(lifeCycleOwner){
+            farmerListView.bindFarmer(it)
         }
     }
 

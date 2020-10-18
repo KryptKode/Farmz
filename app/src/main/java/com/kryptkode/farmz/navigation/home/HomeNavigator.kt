@@ -1,5 +1,7 @@
 package com.kryptkode.farmz.navigation.home
 
+import java.util.*
+
 interface HomeNavigator {
     fun navigateUp()
     fun farmersListToFarmersDetail(farmerId:String)
@@ -9,4 +11,6 @@ interface HomeNavigator {
     fun toEditContactDetails(farmerId: String)
     fun toEditPersonalDetails(farmerId: String)
     fun toCaptureFarm(farmerId: String)
+    fun toUpdatePhoto()
+    fun toDatePicker(parseDisplayedDate: Date?)
 }

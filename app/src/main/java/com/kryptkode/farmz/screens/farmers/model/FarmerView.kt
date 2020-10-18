@@ -1,5 +1,9 @@
 package com.kryptkode.farmz.screens.farmers.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class FarmerView (
     val id: String,
     val registrationNumber: String,
@@ -26,4 +30,4 @@ data class FarmerView (
     val idImage: String,
     val passportPhoto: String,
     val fingerprint: String,
-)
+): Parcelable

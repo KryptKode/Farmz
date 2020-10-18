@@ -69,6 +69,13 @@
     </style>
 
 
+    <style name="Widget.App.TextInputLayout.DropDown" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="hintTextAppearance">@style/TextAppearance.App.TextInputLayout.HintText</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="boxStrokeColor">@color/text_input_stroke_color</item>
+        <item name="endIconTint">?colorOnSurface</item>
+    </style>
+
     <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button">
         <item name="android:minHeight">?actionBarSize</item>
         <item name="android:textAppearance">@style/TextAppearance.App.Button</item>

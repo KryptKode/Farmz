@@ -18,6 +18,7 @@ class FarmersFragment : BaseFragment() {
     @Inject
     lateinit var farmersController: FarmersController
 
+
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
@@ -38,6 +39,7 @@ class FarmersFragment : BaseFragment() {
         farmersController.bindView(farmerListView)
         farmersController.bindLifeCycleOwner(viewLifecycleOwner)
         farmersController.bindViewModel(viewModel)
+        farmersController.getData()
         return farmerListView.rootView
     }
 

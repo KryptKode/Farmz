@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.kryptkode.farmz.R
-import com.kryptkode.farmz.app.utils.PhoneNumberSanitizer
-import com.kryptkode.farmz.app.utils.date.ServerDisplayedDateConverter
 import com.kryptkode.farmz.databinding.LayoutFarmerDetailBinding
 import com.kryptkode.farmz.screens.common.imageloader.ImageLoader
 import com.kryptkode.farmz.screens.farmers.model.FarmerView
@@ -14,8 +12,6 @@ import com.kryptkode.farmz.screens.farmers.model.FarmerView
 @SuppressLint("DefaultLocale")
 class FarmerDetailViewImpl(
     private val imageLoader: ImageLoader,
-    private val phoneNumberSanitizer: PhoneNumberSanitizer,
-    private val serverDisplayedDateConverter: ServerDisplayedDateConverter,
     layoutInflater: LayoutInflater,
     parent: ViewGroup?
 ) : FarmerDetailView() {
@@ -80,7 +76,7 @@ class FarmerDetailViewImpl(
         binding.cardPersonalDetails.tvFullName.text = joinNames(farmer)
         binding.cardPersonalDetails.tvDob.text = getString(
             R.string.farmer_dob,
-            getDisplayedDate(farmer.dateOfBirth)
+            farmer.dateOfBirth
         )
         binding.cardPersonalDetails.tvGender.text = farmer.gender.capitalize()
         binding.cardPersonalDetails.tvOccupation.text = farmer.occupation.capitalize()
@@ -88,10 +84,6 @@ class FarmerDetailViewImpl(
         binding.cardPersonalDetails.tvMaritalStatus.text = getMaritalStatus(farmer)
 
         imageLoader.load(farmer.passportPhoto, binding.cardPersonalDetails.imagePic)
-    }
-
-    private fun getDisplayedDate(date: String): String {
-        return serverDisplayedDateConverter.convertServerDateToDisplayedDate(date)
     }
 
     private fun joinNames(farmer: FarmerView): String {
@@ -136,17 +128,20 @@ class FarmerDetailViewImpl(
 
     private fun bindContactDetails(farmer: FarmerView) {
         binding.cardContact.tvEmail.text = farmer.emailAddress.toLowerCase()
-        binding.cardContact.tvPhone.text =
-            phoneNumberSanitizer.formatWithCountryCode(farmer.mobileNumber)
+        binding.cardContact.tvPhone.text = farmer.mobileNumber
+
     }
 
     private fun bindIdentification(farmer: FarmerView) {
         imageLoader.load(farmer.idImage, binding.cardIdentification.imageId)
         binding.cardIdentification.tvIdType.text = farmer.idType.capitalize()
         binding.cardIdentification.tvIdNum.text = farmer.idNumber.capitalize()
-        binding.cardIdentification.tvIssueDate.text = getString(R.string.farmer_id_issue_date, getDisplayedDate(farmer.issueDate))
-        binding.cardIdentification.tvExpiryDate.text = getString(R.string.farmer_id_expiry_date, getDisplayedDate(farmer.expiryDate))
-        binding.cardIdentification.tvRegNo.text = getString(R.string.farmer_id_reg_no, farmer.registrationNumber)
+        binding.cardIdentification.tvIssueDate.text =
+            getString(R.string.farmer_id_issue_date, farmer.issueDate)
+        binding.cardIdentification.tvExpiryDate.text =
+            getString(R.string.farmer_id_expiry_date, farmer.expiryDate)
+        binding.cardIdentification.tvRegNo.text =
+            getString(R.string.farmer_id_reg_no, farmer.registrationNumber)
         binding.cardIdentification.tvBvn.text = getString(R.string.farmer_id_bvn, farmer.bvn)
     }
 

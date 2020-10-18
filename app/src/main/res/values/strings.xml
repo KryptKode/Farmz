@@ -42,5 +42,34 @@
     <string name="farmer_id_reg_no">Reg # %1$s</string>
     <string name="farmer_id_bvn">BVN # %1$s</string>
     <string name="capture_farm_btn_text">Capture Farm</string>
+    <string name="save_text">Save</string>
+    <string name="first_name_hint">First name</string>
+    <string name="middle_name_hint">Middle name</string>
+    <string name="last_name_hint">Surname</string>
+    <string name="date_of_birth_hint">Date of birth</string>
+    <string name="gender_hint">Gender</string>
+    <string name="occupation_hint">Occupation</string>
+    <string name="nationality_hint">Nationality</string>
+    <string name="marital_status_hint">Marital status</string>
+    <string name="spouse_name_hint">Spouse name</string>
+    <string name="edit_details_title">Edit details</string>
+
+
+    <string name="details_first_name_required_message">Please enter a name</string>
+    <string name="details_last_name_required_message">Please enter a name</string>
+    <string name="details_nationality_required_message">Please enter a nationality eg. Nigerian</string>
+    <string name="details_dob_required_message">Please select a date</string>
+    <string name="details_gender_required_message">Please select a gender</string>
+    <string name="details_occupation_required_message">Please enter an occupation </string>
+    <string name="details_marital_status_required_message">Please select a marital status</string>
+
+    <string name="data_gender_male">Male</string>
+    <string name="data_gender_female">Female</string>
+    <string name="data_gender_other">Other gender</string>
+
+    <string name="data_marital_married">Married</string>
+    <string name="data_marital_single">Single</string>
+    <string name="data_marital_divorced">Divorced</string>
+    <string name="data_marital_separated">Separated</string>
 
 </resources>

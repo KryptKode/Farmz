@@ -3,6 +3,7 @@ package com.kryptkode.farmz.app.di.controller.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.kryptkode.farmz.app.di.controller.ControllerScope
+import com.kryptkode.farmz.screens.editpersonaldetails.EditPersonalDetailsViewModel
 import com.kryptkode.farmz.screens.farmerdetails.FarmerDetailViewModel
 import com.kryptkode.farmz.screens.farmers.FarmersViewModel
 import com.kryptkode.farmz.screens.login.LoginViewModel
@@ -32,5 +33,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(FarmerDetailViewModel::class)
     abstract fun bindFarmerDetailViewModel(viewModel: FarmerDetailViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EditPersonalDetailsViewModel::class)
+    abstract fun bindEditPersonalDetailsViewModel(viewModel: EditPersonalDetailsViewModel): ViewModel
 
 }

@@ -1,9 +1,14 @@
 package com.kryptkode.farmz.screens.farmers.model
 
 import com.kryptkode.farmz.app.domain.Farmer
+import com.kryptkode.farmz.app.utils.PhoneNumberSanitizer
+import com.kryptkode.farmz.app.utils.date.ServerDisplayedDateConverter
 import javax.inject.Inject
 
-class FarmerViewMapperImpl @Inject constructor() : FarmerViewMapper {
+class FarmerViewMapperImpl @Inject constructor(
+    private val phoneNumberSanitizer: PhoneNumberSanitizer,
+    private val serverDisplayedDateConverter: ServerDisplayedDateConverter
+) : FarmerViewMapper {
 
     override fun mapDomainToView(farmer: Farmer): FarmerView {
         return FarmerView(
@@ -13,7 +18,7 @@ class FarmerViewMapperImpl @Inject constructor() : FarmerViewMapper {
             farmer.firstName,
             farmer.middleName,
             farmer.surname,
-            farmer.dateOfBirth,
+            getDisplayedDate(farmer.dateOfBirth),
             farmer.gender,
             farmer.nationality,
             farmer.occupation,
@@ -27,8 +32,8 @@ class FarmerViewMapperImpl @Inject constructor() : FarmerViewMapper {
             farmer.emailAddress,
             farmer.idType,
             farmer.idNumber,
-            farmer.issueDate,
-            farmer.expiryDate,
+            getDisplayedDate(farmer.issueDate),
+            getDisplayedDate(farmer.expiryDate),
             farmer.idImage,
             farmer.passportPhoto,
             farmer.fingerprint,
@@ -43,7 +48,7 @@ class FarmerViewMapperImpl @Inject constructor() : FarmerViewMapper {
             farmerView.firstName,
             farmerView.middleName,
             farmerView.surname,
-            farmerView.dateOfBirth,
+            getServerDate(farmerView.dateOfBirth),
             farmerView.gender,
             farmerView.nationality,
             farmerView.occupation,
@@ -57,11 +62,26 @@ class FarmerViewMapperImpl @Inject constructor() : FarmerViewMapper {
             farmerView.emailAddress,
             farmerView.idType,
             farmerView.idNumber,
-            farmerView.issueDate,
-            farmerView.expiryDate,
+            getServerDate(farmerView.issueDate),
+            getServerDate(farmerView.expiryDate),
             farmerView.idImage,
             farmerView.passportPhoto,
             farmerView.fingerprint,
         )
     }
+
+
+    private fun getServerDate(displayDate: String): String {
+        return serverDisplayedDateConverter.convertDisplayedDateToServerDate(displayDate)
+    }
+
+    private fun getDisplayedDate(date: String): String {
+        return serverDisplayedDateConverter.convertServerDateToDisplayedDate(date)
+    }
+
+    private fun getDisplayedPhone(phone: String): String {
+        return phoneNumberSanitizer.formatWithCountryCode(phone)
+    }
+
+
 }
