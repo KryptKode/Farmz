@@ -39,7 +39,7 @@
     <include app:graph="@navigation/login_navigation" />
     <fragment
         android:id="@+id/editPersonalDetailsFragment"
-        android:name="com.kryptkode.farmz.screens.editpersonaldetails.EditPersonalDetailsFragment"
+        android:name="com.kryptkode.farmz.screens.editfarmer.editpersonaldetails.EditPersonalDetailsFragment"
         android:label="EditPersonalDetailsFragment"
         tools:layout="@layout/layout_edit_personal_details">
         <argument

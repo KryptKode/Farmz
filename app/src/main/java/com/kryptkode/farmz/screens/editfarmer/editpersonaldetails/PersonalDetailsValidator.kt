@@ -1,4 +1,4 @@
-package com.kryptkode.farmz.screens.editpersonaldetails
+package com.kryptkode.farmz.screens.editfarmer.editpersonaldetails
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
