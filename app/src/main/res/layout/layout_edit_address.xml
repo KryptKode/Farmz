@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -36,18 +35,8 @@
             android:layout_height="match_parent">
 
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_pic"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:background="?selectableItemBackgroundBorderless"
-                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-                app:layout_constraintStart_toStartOf="@id/guidelineStart"
-                app:layout_constraintTop_toTopOf="@id/guidelineTop"
-                tools:src="@tools:sample/avatars" />
-
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/first_name_input"
+                android:id="@+id/address_input"
                 style="@style/Widget.App.TextInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -55,21 +44,21 @@
                 app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout.HintText"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                 app:layout_constraintStart_toStartOf="@id/guidelineStart"
-                app:layout_constraintTop_toBottomOf="@id/image_pic">
+                app:layout_constraintTop_toTopOf="@id/guidelineTop">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/first_name_edit_text"
+                    android:id="@+id/address_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/first_name_hint"
-                    android:inputType="textPersonName"
+                    android:hint="@string/address_hint"
+                    android:inputType="textPostalAddress"
                     android:maxLength="@integer/name_length" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/middle_name_input"
+                android:id="@+id/city_input"
                 style="@style/Widget.App.TextInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -77,21 +66,21 @@
                 app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout.HintText"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                 app:layout_constraintStart_toStartOf="@id/guidelineStart"
-                app:layout_constraintTop_toBottomOf="@id/first_name_input">
+                app:layout_constraintTop_toBottomOf="@id/address_input">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/middle_name_edit_text"
+                    android:id="@+id/city_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/middle_name_hint"
-                    android:inputType="textPersonName"
+                    android:hint="@string/city_hint"
+                    android:inputType="text"
                     android:maxLength="@integer/name_length" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/last_name_input"
+                android:id="@+id/lga_input"
                 style="@style/Widget.App.TextInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -99,21 +88,21 @@
                 app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout.HintText"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                 app:layout_constraintStart_toStartOf="@id/guidelineStart"
-                app:layout_constraintTop_toBottomOf="@id/middle_name_input">
+                app:layout_constraintTop_toBottomOf="@id/city_input">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/last_name_edit_text"
+                    android:id="@+id/lga_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/last_name_hint"
-                    android:inputType="textPersonName"
+                    android:hint="@string/lga_hint"
+                    android:inputType="text"
                     android:maxLength="@integer/name_length" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/date_input"
+                android:id="@+id/state_input"
                 style="@style/Widget.App.TextInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -121,120 +110,14 @@
                 app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout.HintText"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                 app:layout_constraintStart_toStartOf="@id/guidelineStart"
-                app:layout_constraintTop_toBottomOf="@id/last_name_input">
+                app:layout_constraintTop_toBottomOf="@id/lga_input">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/date_edit_text"
+                    android:id="@+id/state_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:hint="@string/date_of_birth_hint" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/gender_input"
-                style="@style/Widget.App.TextInputLayout.DropDown"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout.HintText"
-                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-                app:layout_constraintStart_toStartOf="@id/guidelineStart"
-                app:layout_constraintTop_toBottomOf="@id/date_input">
-
-                <AutoCompleteTextView
-                    android:id="@+id/gender_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:hint="@string/gender_hint"
-                    android:imeOptions="actionDone"
-                    tools:ignore="Deprecated,LabelFor" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/occupation_input"
-                style="@style/Widget.App.TextInputLayout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout.HintText"
-                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-                app:layout_constraintStart_toStartOf="@id/guidelineStart"
-                app:layout_constraintTop_toBottomOf="@id/gender_input">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/occupation_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/occupation_hint" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/nationality_input"
-                style="@style/Widget.App.TextInputLayout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout.HintText"
-                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-                app:layout_constraintStart_toStartOf="@id/guidelineStart"
-                app:layout_constraintTop_toBottomOf="@id/occupation_input">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nationality_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/nationality_hint" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/marital_status_input"
-                style="@style/Widget.App.TextInputLayout.DropDown"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout.HintText"
-                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-                app:layout_constraintStart_toStartOf="@id/guidelineStart"
-                app:layout_constraintTop_toBottomOf="@id/nationality_input">
-
-                <AutoCompleteTextView
-                    android:id="@+id/marital_status_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:hint="@string/marital_status_hint"
-                    android:imeOptions="actionDone"
-                    tools:ignore="Deprecated,LabelFor" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/spouse_input"
-                style="@style/Widget.App.TextInputLayout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout.HintText"
-                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-                app:layout_constraintStart_toStartOf="@id/guidelineStart"
-                app:layout_constraintTop_toBottomOf="@id/marital_status_input">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/spouse_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/spouse_name_hint" />
+                    android:hint="@string/state_hint"
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -245,7 +128,7 @@
                 android:layout_height="100dp"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                 app:layout_constraintStart_toStartOf="@id/guidelineStart"
-                app:layout_constraintTop_toBottomOf="@id/spouse_input" />
+                app:layout_constraintTop_toBottomOf="@id/state_input" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guidelineStart"

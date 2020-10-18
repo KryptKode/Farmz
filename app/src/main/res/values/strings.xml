@@ -71,5 +71,15 @@
     <string name="data_marital_single">Single</string>
     <string name="data_marital_divorced">Divorced</string>
     <string name="data_marital_separated">Separated</string>
+    <string name="address_hint">Address</string>
+    <string name="city_hint">City</string>
+    <string name="lga_hint">LGA</string>
+    <string name="state_hint">State</string>
+
+
+    <string name="details_address_required_message">Please enter an address</string>
+    <string name="details_city_required_message">Please enter a city</string>
+    <string name="details_lga_required_message">Please enter an LGA</string>
+    <string name="details_state_required_message">Please enter a state</string>
 
 </resources>

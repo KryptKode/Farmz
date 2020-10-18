@@ -1,4 +1,4 @@
-package com.kryptkode.farmz.screens.editpersonaldetails.view
+package com.kryptkode.farmz.screens.editfarmer.editpersonaldetails.view
 
 import com.kryptkode.farmz.screens.common.view.BaseObservableViewMvc
 import com.kryptkode.farmz.screens.farmers.model.FarmerView
@@ -6,8 +6,8 @@ import com.kryptkode.farmz.screens.farmers.model.FarmerView
 abstract class EditPersonalDetailsView : BaseObservableViewMvc<EditPersonalDetailsView.Listener>() {
     interface Listener {
         fun onSave(farmer: FarmerView)
-        fun onChangePic()
         fun onBackClick()
+        fun onChangePic()
         fun onChooseDate(date: String)
     }
 

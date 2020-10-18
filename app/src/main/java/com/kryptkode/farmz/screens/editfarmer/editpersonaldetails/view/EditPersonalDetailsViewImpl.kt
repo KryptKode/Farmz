@@ -1,4 +1,4 @@
-package com.kryptkode.farmz.screens.editpersonaldetails.view
+package com.kryptkode.farmz.screens.editfarmer.editpersonaldetails.view
 
 import android.annotation.SuppressLint
 import android.text.InputType
@@ -21,8 +21,6 @@ class EditPersonalDetailsViewImpl(
     parent: ViewGroup?
 ) : EditPersonalDetailsView() {
 
-    private lateinit var maritalStatues: List<String>
-    private lateinit var genders: List<String>
     private val binding = LayoutEditPersonalDetailsBinding.inflate(layoutInflater, parent, false)
 
     private lateinit var farmer: FarmerView
@@ -116,25 +114,11 @@ class EditPersonalDetailsViewImpl(
 
     }
 
-    private fun findGender(gender: String): String? {
-        return genders.firstOrNull {
-            it.equals(gender, true)
-        }
-    }
-
-    private fun findMaritalStatus(status: String): String? {
-        return maritalStatues.firstOrNull {
-            it.equals(status, true)
-        }
-    }
-
     override fun bindGenderItems(genders: List<String>) {
-        this.genders = genders
         binding.genderEditText.bindData(genders)
     }
 
     override fun bindMaritalStatusItems(statuses: List<String>) {
-        this.maritalStatues = statuses
         binding.maritalStatusEditText.bindData(statuses)
     }
 

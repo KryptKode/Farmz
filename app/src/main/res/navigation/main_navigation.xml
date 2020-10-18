@@ -34,12 +34,15 @@
         <action
             android:id="@+id/action_farmerDetailFragment_to_editPersonalDetailsFragment"
             app:destination="@id/editPersonalDetailsFragment" />
+        <action
+            android:id="@+id/action_farmerDetailFragment_to_editAddressFragment"
+            app:destination="@id/editAddressFragment" />
     </fragment>
 
     <include app:graph="@navigation/login_navigation" />
     <fragment
         android:id="@+id/editPersonalDetailsFragment"
-        android:name="com.kryptkode.farmz.screens.editpersonaldetails.EditPersonalDetailsFragment"
+        android:name="com.kryptkode.farmz.screens.editfarmer.editpersonaldetails.EditPersonalDetailsFragment"
         android:label="EditPersonalDetailsFragment"
         tools:layout="@layout/layout_edit_personal_details">
         <argument
@@ -62,4 +65,15 @@
             app:argType="java.util.Date"
             app:nullable="true"/>
     </dialog>
+
+    <fragment
+        android:id="@+id/editAddressFragment"
+        android:name="com.kryptkode.farmz.screens.editfarmer.editaddress.EditAddressFragment"
+        android:label="EditAddressFragment"
+        tools:layout="@layout/layout_edit_address">
+
+        <argument
+            android:name="farmerId"
+            app:argType="string" />
+    </fragment>
 </navigation>

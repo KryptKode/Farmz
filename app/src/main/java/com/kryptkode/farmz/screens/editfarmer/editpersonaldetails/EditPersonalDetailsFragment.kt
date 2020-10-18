@@ -1,4 +1,4 @@
-package com.kryptkode.farmz.screens.editpersonaldetails
+package com.kryptkode.farmz.screens.editfarmer.editpersonaldetails
 
 import android.content.Context
 import android.os.Bundle
@@ -18,7 +18,8 @@ import com.kryptkode.farmz.screens.common.ViewFactory
 import com.kryptkode.farmz.screens.common.dialog.DialogEventBus
 import com.kryptkode.farmz.screens.common.fragment.BaseFragment
 import com.kryptkode.farmz.screens.datedialog.DateSelectedEvent
-import com.kryptkode.farmz.screens.editpersonaldetails.view.EditPersonalDetailsView
+import com.kryptkode.farmz.screens.editfarmer.EditFarmerViewModel
+import com.kryptkode.farmz.screens.editfarmer.editpersonaldetails.view.EditPersonalDetailsView
 import com.kryptkode.farmz.screens.farmers.model.FarmerView
 import javax.inject.Inject
 
@@ -49,7 +50,7 @@ class EditPersonalDetailsFragment : BaseFragment(), EditPersonalDetailsView.List
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private val viewModel: EditPersonalDetailsViewModel by viewModels { viewModelFactory }
+    private val viewModel: EditFarmerViewModel by viewModels { viewModelFactory }
 
     private val args by navArgs<EditPersonalDetailsFragmentArgs>()
 
@@ -150,6 +151,7 @@ class EditPersonalDetailsFragment : BaseFragment(), EditPersonalDetailsView.List
     }
 
     override fun onSave(farmer: FarmerView) {
+        viewMvc.clearErrors()
         if (validator.validatePersonalDetails(farmer)) {
             viewModel.save(farmer)
         }

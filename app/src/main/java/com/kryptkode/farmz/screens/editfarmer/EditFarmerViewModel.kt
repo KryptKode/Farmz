@@ -1,4 +1,4 @@
-package com.kryptkode.farmz.screens.editpersonaldetails
+package com.kryptkode.farmz.screens.editfarmer
 
 import androidx.lifecycle.*
 import com.kryptkode.farmz.app.data.state.DataState
@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class EditPersonalDetailsViewModel @Inject constructor(
+class EditFarmerViewModel @Inject constructor(
     private val farmerRepository: FarmerRepository,
     private val farmerViewMapper: FarmerViewMapper
 ) : ViewModel() {
