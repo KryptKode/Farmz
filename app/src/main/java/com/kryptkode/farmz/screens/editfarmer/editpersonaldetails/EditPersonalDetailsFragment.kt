@@ -151,6 +151,7 @@ class EditPersonalDetailsFragment : BaseFragment(), EditPersonalDetailsView.List
     }
 
     override fun onSave(farmer: FarmerView) {
+        viewMvc.clearErrors()
         if (validator.validatePersonalDetails(farmer)) {
             viewModel.save(farmer)
         }

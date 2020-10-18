@@ -26,7 +26,9 @@ class HomeNavigatorImpl @Inject constructor(
     }
 
     override fun toEditAddress(farmerId: String) {
-        
+        navControllerProvider.getNavController().navigate(
+            FarmerDetailFragmentDirections.actionFarmerDetailFragmentToEditAddressFragment(farmerId)
+        )
     }
 
     override fun toEditIdentification(farmerId: String) {
