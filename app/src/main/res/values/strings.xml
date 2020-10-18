@@ -42,5 +42,16 @@
     <string name="farmer_id_reg_no">Reg # %1$s</string>
     <string name="farmer_id_bvn">BVN # %1$s</string>
     <string name="capture_farm_btn_text">Capture Farm</string>
+    <string name="save_text">Save</string>
+    <string name="first_name_hint">First name</string>
+    <string name="middle_name_hint">Middle name</string>
+    <string name="last_name_hint">Surname</string>
+    <string name="date_of_birth_hint">Date of birth</string>
+    <string name="gender_hint">Gender</string>
+    <string name="occupation_hint">Occupation</string>
+    <string name="nationality_hint">Nationality</string>
+    <string name="marital_status_hint">Marital status</string>
+    <string name="spouse_name_hint">Spouse name</string>
+    <string name="edit_details_title">Edit details</string>
 
 </resources>
