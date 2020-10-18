@@ -121,6 +121,7 @@
             android:id="@+id/img_edit"
             android:layout_width="@dimen/detail_edit_icon_size"
             android:layout_height="@dimen/detail_edit_icon_size"
+            android:padding="10dp"
             android:background="?selectableItemBackgroundBorderless"
             android:contentDescription="@string/edit_content_description"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"

@@ -64,6 +64,7 @@
             android:layout_height="@dimen/detail_edit_icon_size"
             android:background="?selectableItemBackgroundBorderless"
             android:contentDescription="@string/edit_content_description"
+            android:padding="10dp"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             app:layout_constraintTop_toTopOf="@id/guidelineTop"
             app:srcCompat="@drawable/ic_edit" />
