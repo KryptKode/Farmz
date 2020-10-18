@@ -8,6 +8,7 @@ abstract class EditPersonalDetailsView : BaseObservableViewMvc<EditPersonalDetai
         fun onSave(farmer: FarmerView)
         fun onChangePic()
         fun onBackClick()
+        fun onChooseDate(date: String)
     }
 
     abstract fun showFirstNameError(message:String)
@@ -24,4 +25,5 @@ abstract class EditPersonalDetailsView : BaseObservableViewMvc<EditPersonalDetai
     abstract fun bindMaritalStatusItems(statuses:List<String>)
     abstract fun showLoading()
     abstract fun hideLoading()
+    abstract fun onDateSelected(date:String)
 }

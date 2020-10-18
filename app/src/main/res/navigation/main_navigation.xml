@@ -46,4 +46,20 @@
             android:name="farmerId"
             app:argType="string" />
     </fragment>
+
+
+    <action
+        android:id="@+id/action_to_dateDialog"
+        app:destination="@id/dateDialog" />
+
+    <dialog
+        android:id="@+id/dateDialog"
+        android:name="com.kryptkode.farmz.screens.datedialog.DateDialog"
+        android:label="DateDialog">
+
+        <argument
+            android:name="date"
+            app:argType="java.util.Date"
+            app:nullable="true"/>
+    </dialog>
 </navigation>

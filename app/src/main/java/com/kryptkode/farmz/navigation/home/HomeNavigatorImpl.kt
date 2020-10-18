@@ -1,8 +1,10 @@
 package com.kryptkode.farmz.navigation.home
 
 import com.kryptkode.farmz.navigation.NavControllerProvider
+import com.kryptkode.farmz.screens.datedialog.DateDialogDirections
 import com.kryptkode.farmz.screens.farmerdetails.FarmerDetailFragmentDirections
 import com.kryptkode.farmz.screens.farmers.FarmersFragmentDirections
+import java.util.*
 import javax.inject.Inject
 
 class HomeNavigatorImpl @Inject constructor(
@@ -47,5 +49,9 @@ class HomeNavigatorImpl @Inject constructor(
 
     override fun toUpdatePhoto() {
 
+    }
+
+    override fun toDatePicker(parseDisplayedDate: Date?) {
+        navControllerProvider.getNavController().navigate(DateDialogDirections.actionToDateDialog(parseDisplayedDate))
     }
 }

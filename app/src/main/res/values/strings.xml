@@ -62,4 +62,14 @@
     <string name="details_gender_required_message">Please select a gender</string>
     <string name="details_occupation_required_message">Please enter an occupation </string>
     <string name="details_marital_status_required_message">Please select a marital status</string>
+
+    <string name="data_gender_male">Male</string>
+    <string name="data_gender_female">Female</string>
+    <string name="data_gender_other">Other gender</string>
+
+    <string name="data_marital_married">Married</string>
+    <string name="data_marital_single">Single</string>
+    <string name="data_marital_divorced">Divorced</string>
+    <string name="data_marital_separated">Separated</string>
+
 </resources>

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import com.kryptkode.farmz.navigation.NavControllerProvider
 import com.kryptkode.farmz.screens.common.ViewFactory
+import com.kryptkode.farmz.screens.common.dialog.DialogEventBus
 import com.kryptkode.farmz.screens.common.imageloader.ImageLoader
 import dagger.Module
 import dagger.Provides
@@ -59,4 +60,11 @@ class ControllerModule(
             layoutInflater
         )
     }
+
+    @Provides
+    @ControllerScope
+    fun dialogEventBus(): DialogEventBus {
+        return DialogEventBus()
+    }
+
 }

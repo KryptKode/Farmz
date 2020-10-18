@@ -28,7 +28,7 @@ class FarmerViewMapperImpl @Inject constructor(
             farmer.city,
             farmer.lga,
             farmer.state,
-            getDisplayedPhone(farmer.mobileNumber),
+            farmer.mobileNumber,
             farmer.emailAddress,
             farmer.idType,
             farmer.idNumber,

@@ -1,6 +1,7 @@
 package com.kryptkode.farmz.screens.editpersonaldetails.view
 
 import android.annotation.SuppressLint
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import androidx.core.widget.addTextChangedListener
 import com.kryptkode.farmz.app.utils.extension.beGone
 import com.kryptkode.farmz.app.utils.extension.beVisible
 import com.kryptkode.farmz.app.utils.extension.bindData
+import com.kryptkode.farmz.app.utils.extension.setCapsInputFilter
 import com.kryptkode.farmz.databinding.LayoutEditPersonalDetailsBinding
 import com.kryptkode.farmz.screens.common.imageloader.ImageLoader
 import com.kryptkode.farmz.screens.farmers.model.FarmerView
@@ -19,11 +21,18 @@ class EditPersonalDetailsViewImpl(
     parent: ViewGroup?
 ) : EditPersonalDetailsView() {
 
+    private lateinit var maritalStatues: List<String>
+    private lateinit var genders: List<String>
     private val binding = LayoutEditPersonalDetailsBinding.inflate(layoutInflater, parent, false)
 
     private lateinit var farmer: FarmerView
 
     init {
+
+        binding.firstNameEditText.setCapsInputFilter()
+        binding.lastNameEditText.setCapsInputFilter()
+        binding.middleNameEditText.setCapsInputFilter()
+
         binding.firstNameEditText.addTextChangedListener {
             clearFirstNameError()
         }
@@ -81,6 +90,14 @@ class EditPersonalDetailsViewImpl(
                 it.onBackClick()
             }
         }
+
+        binding.dateEditText.setOnClickListener {
+            onEachListener {
+                it.onChooseDate(binding.dateEditText.text.toString())
+            }
+        }
+
+        binding.dateEditText.inputType = InputType.TYPE_NULL
     }
 
     override fun bindPersonalDetails(farmer: FarmerView) {
@@ -89,21 +106,35 @@ class EditPersonalDetailsViewImpl(
         binding.middleNameEditText.setText(farmer.middleName.capitalize())
         binding.lastNameEditText.setText(farmer.surname.capitalize())
         binding.dateEditText.setText(farmer.dateOfBirth.capitalize())
-        binding.genderEditText.setText(farmer.gender.capitalize())
+        binding.genderEditText.setText(farmer.gender.capitalize(), false)
         binding.occupationEditText.setText(farmer.occupation.capitalize())
         binding.nationalityEditText.setText(farmer.nationality.capitalize())
-        binding.maritalStatusEditText.setText(farmer.maritalStatus.capitalize())
+        binding.maritalStatusEditText.setText(farmer.maritalStatus.capitalize(), false)
         binding.spouseEditText.setText(farmer.spouseName.capitalize())
 
         imageLoader.load(farmer.passportPhoto, binding.imagePic)
 
     }
 
+    private fun findGender(gender: String): String? {
+        return genders.firstOrNull {
+            it.equals(gender, true)
+        }
+    }
+
+    private fun findMaritalStatus(status: String): String? {
+        return maritalStatues.firstOrNull {
+            it.equals(status, true)
+        }
+    }
+
     override fun bindGenderItems(genders: List<String>) {
+        this.genders = genders
         binding.genderEditText.bindData(genders)
     }
 
     override fun bindMaritalStatusItems(statuses: List<String>) {
+        this.maritalStatues = statuses
         binding.maritalStatusEditText.bindData(statuses)
     }
 
@@ -143,6 +174,10 @@ class EditPersonalDetailsViewImpl(
     override fun showLoading() {
         binding.progress.root.beVisible()
         binding.fabSave.isEnabled = false
+    }
+
+    override fun onDateSelected(date: String) {
+        binding.dateEditText.setText(date)
     }
 
     override fun clearErrors() {
