@@ -119,4 +119,6 @@
     <string name="dialog_btn_cancel_text">Cancel</string>
     <string name="dialog_btn_ok_text">OK</string>
     <string name="take_pic_error_msg">Error occurred while taking picture</string>
+    <string name="photo_update_failed">Failed to upload photo</string>
+    <string name="update_image_error_msg">Error occurred while updating photo</string>
 </resources>

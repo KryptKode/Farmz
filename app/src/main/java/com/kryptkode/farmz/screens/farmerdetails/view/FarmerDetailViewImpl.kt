@@ -71,6 +71,10 @@ class FarmerDetailViewImpl(
         bindIdentification(farmer)
     }
 
+    override fun updateFarmerPhoto(newPhotoUri: String) {
+        imageLoader.load(newPhotoUri, binding.cardPersonalDetails.imagePic)
+    }
+
 
     private fun bindPersonalDetails(farmer: FarmerView) {
         binding.cardPersonalDetails.tvFullName.text = joinNames(farmer)
@@ -83,7 +87,7 @@ class FarmerDetailViewImpl(
         binding.cardPersonalDetails.tvNationality.text = farmer.nationality.capitalize()
         binding.cardPersonalDetails.tvMaritalStatus.text = getMaritalStatus(farmer)
 
-        imageLoader.load(farmer.passportPhoto, binding.cardPersonalDetails.imagePic)
+        updateFarmerPhoto(farmer.passportPhoto)
     }
 
     private fun joinNames(farmer: FarmerView): String {

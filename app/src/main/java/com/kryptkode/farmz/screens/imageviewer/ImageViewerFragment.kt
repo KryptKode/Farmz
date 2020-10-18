@@ -11,8 +11,11 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.navigation.fragment.navArgs
 import com.kryptkode.farmz.R
+import com.kryptkode.farmz.app.logger.Logger
 import com.kryptkode.farmz.app.utils.ToastHelper
+import com.kryptkode.farmz.app.utils.extension.beGone
 import com.kryptkode.farmz.app.utils.extension.beGoneIf
+import com.kryptkode.farmz.app.utils.extension.beVisible
 import com.kryptkode.farmz.app.utils.extension.openAppSettings
 import com.kryptkode.farmz.app.utils.file.FileUtils
 import com.kryptkode.farmz.app.utils.viewbinding.viewBinding
@@ -56,11 +59,15 @@ class ImageViewerFragment : BaseFragment(R.layout.fragment_image_view), DialogEv
     @Inject
     lateinit var screenDataReturnBuffer: ScreenDataReturnBuffer
 
+    @Inject
+    lateinit var logger: Logger
+
     private val binding by viewBinding(FragmentImageViewBinding::bind)
 
     private val args by navArgs<ImageViewerFragmentArgs>()
 
     private val takePicture = registerForActivityResult(ActivityResultContracts.TakePicture()) {
+        logger.d("Picture taken? $it --- path: $currentPhotoPath")
         if (it) {
             loadImage(currentPhotoPath ?: "")
             compressFile()
@@ -81,33 +88,10 @@ class ImageViewerFragment : BaseFragment(R.layout.fragment_image_view), DialogEv
 
         hideLoading()
         val fileUrl = fileUtils.getFileUri(compressedFile)
-
+        logger.d("FIleURI: $fileUrl")
         //return URI
         screenDataReturnBuffer.putValue(args.returnKey, fileUrl)
-
-    }
-
-    private var fileObserver: ImageDirObserver? = null
-
-    private val fileObserverListener = object : ImageDirObserver.ImageDirListener {
-        override fun onCreate(path: String?) {
-            fileObserver?.let { observer ->
-                path?.let {
-                    val file = File(observer.getAbsolutePath(it))
-                    val fileUrl = fileUtils.getFileUri(file)
-                }
-            }
-        }
-
-        override fun onDelete(path: String?) {
-            fileObserver?.let { observer ->
-                path?.let {
-                    val file = File(observer.getAbsolutePath(it))
-
-                }
-            }
-        }
-
+        homeNavigator.navigateUp()
     }
 
     private val requestPermissionLauncher =
@@ -125,11 +109,6 @@ class ImageViewerFragment : BaseFragment(R.layout.fragment_image_view), DialogEv
             }
         }
 
-    private fun initFileObserver() {
-        fileObserver = ImageDirObserver(getRootPathCompressed(), fileObserverListener)
-        lifecycle.addObserver(fileObserver ?: return)
-    }
-
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -139,7 +118,6 @@ class ImageViewerFragment : BaseFragment(R.layout.fragment_image_view), DialogEv
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         fullScreen = savedInstanceState?.getBoolean(FULL_SCREEN_KEY) ?: false
-        initFileObserver()
     }
 
     private fun checkCameraPermission() {
