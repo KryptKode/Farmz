@@ -13,6 +13,7 @@ import com.kryptkode.farmz.app.logger.Logger
 import com.kryptkode.farmz.app.utils.ToastHelper
 import com.kryptkode.farmz.app.utils.date.DisplayedDateFormatter
 import com.kryptkode.farmz.app.utils.livedata.extension.observeEvent
+import com.kryptkode.farmz.datareturn.ScreenDataReturnBuffer
 import com.kryptkode.farmz.navigation.home.HomeNavigator
 import com.kryptkode.farmz.screens.common.ViewFactory
 import com.kryptkode.farmz.screens.common.dialog.DialogEventBus
@@ -48,11 +49,17 @@ class EditIdFragment : BaseFragment(), EditIdView.Listener, DialogEventBus.Liste
     lateinit var displayedDateFormatter: DisplayedDateFormatter
 
     @Inject
+    lateinit var screenDataReturnBuffer: ScreenDataReturnBuffer
+
+    @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val viewModel: EditFarmerViewModel by viewModels { viewModelFactory }
 
     private val args by navArgs<EditPersonalDetailsFragmentArgs>()
+
+
+    private var farmerView: FarmerView? = null
 
     private lateinit var viewMvc: EditIdView
 
@@ -89,6 +96,46 @@ class EditIdFragment : BaseFragment(), EditIdView.Listener, DialogEventBus.Liste
         super.onStart()
         viewMvc.registerListener(this)
         dialogEventBus.registerListener(this)
+        checkIfIdWasUpdated()
+        checkIfFingerprintWasUpdated()
+    }
+
+    private fun checkIfIdWasUpdated() {
+        val key = getIdPhotoReturnKey()
+        if (screenDataReturnBuffer.hasDataForToken(key)) {
+            val newPhotoUri = screenDataReturnBuffer.getValue<String>(key)
+            logger.d("New photo: $newPhotoUri")
+            if (newPhotoUri != null) {
+                farmerView?.let {
+                    farmerView = it.copy(idImage = newPhotoUri)
+                    viewModel.updatePassport(farmerView!!)
+                    viewMvc.bindIdPhoto(newPhotoUri)
+                    screenDataReturnBuffer.removeValue(key)
+                    logger.d("updating photo...")
+                }
+            } else {
+                toastHelper.showMessage(getString(R.string.update_image_error_msg))
+            }
+        }
+    }
+
+    private fun checkIfFingerprintWasUpdated() {
+        val key = getFingerPrintPhotoReturnKey()
+        if (screenDataReturnBuffer.hasDataForToken(key)) {
+            val newPhotoUri = screenDataReturnBuffer.getValue<String>(key)
+            logger.d("New photo: $newPhotoUri")
+            if (newPhotoUri != null) {
+                farmerView?.let {
+                    farmerView = it.copy(fingerprint = newPhotoUri)
+                    viewModel.updatePassport(farmerView!!)
+                    viewMvc.bindFingerPrintPhoto(newPhotoUri)
+                    screenDataReturnBuffer.removeValue(key)
+                    logger.d("updating photo...")
+                }
+            } else {
+                toastHelper.showMessage(getString(R.string.update_image_error_msg))
+            }
+        }
     }
 
     private fun setupObservers() {
@@ -134,6 +181,7 @@ class EditIdFragment : BaseFragment(), EditIdView.Listener, DialogEventBus.Liste
         }
 
         viewModel.farmer.observe(viewLifecycleOwner) {
+            farmerView = it
             viewMvc.bindFarmer(it)
         }
     }
@@ -150,7 +198,15 @@ class EditIdFragment : BaseFragment(), EditIdView.Listener, DialogEventBus.Liste
     }
 
     override fun onChangeIdPic() {
-        homeNavigator.toImageViewer("", "")
+        farmerView?.let {
+            homeNavigator.toImageViewer(it.idImage, getIdPhotoReturnKey())
+        }
+    }
+
+    override fun onChangeFingerPrintPic() {
+        farmerView?.let {
+            homeNavigator.toImageViewer(it.fingerprint, getFingerPrintPhotoReturnKey())
+        }
     }
 
     override fun onChooseExpiryDate(date: String) {
@@ -197,7 +253,19 @@ class EditIdFragment : BaseFragment(), EditIdView.Listener, DialogEventBus.Liste
         lastSelectedDateType = null
     }
 
+
+    private fun getFingerPrintPhotoReturnKey(): String {
+        return javaClass.name.plus(FINGERPRINT_PHOTO_RETURN_KEY)
+    }
+
+
+    private fun getIdPhotoReturnKey(): String {
+        return javaClass.name.plus(ID_PHOTO_RETURN_KEY)
+    }
+
     companion object {
+        private const val ID_PHOTO_RETURN_KEY = "ID_PHOTO_RETURN_KEY"
+        private const val FINGERPRINT_PHOTO_RETURN_KEY = "FINGERPRINT_PHOTO_RETURN_KEY"
         private const val ISSUE_DATE = "ISSUE_DATE"
         private const val EXPIRY_DATE = "EXPIRY_DATE"
         private const val SELECTED_DATE_KEY = "SELECTED_DATE_KEY"

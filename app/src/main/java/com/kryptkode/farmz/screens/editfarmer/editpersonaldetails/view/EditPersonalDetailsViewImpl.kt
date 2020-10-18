@@ -61,7 +61,7 @@ class EditPersonalDetailsViewImpl(
 
         binding.imagePic.setOnClickListener {
             onEachListener {
-                it.onChangePic(farmer.passportPhoto)
+                it.onChangePic()
             }
         }
 

@@ -188,8 +188,10 @@ class EditPersonalDetailsFragment : BaseFragment(), EditPersonalDetailsView.List
         homeNavigator.navigateUp()
     }
 
-    override fun onChangePic(photoUri: String) {
-        homeNavigator.toImageViewer(photoUri, getPhotoReturnKey())
+    override fun onChangePic() {
+        farmerView?.let {
+            homeNavigator.toImageViewer(it.passportPhoto, getPhotoReturnKey())
+        }
     }
 
     override fun onChooseDate(date: String) {

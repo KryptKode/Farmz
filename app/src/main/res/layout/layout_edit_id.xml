@@ -38,10 +38,12 @@
 
             <ImageView
                 android:id="@+id/image_pic"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:contentDescription="@string/id_image_cd"
+                android:layout_width="200dp"
+                android:layout_height="0dp"
                 android:background="?selectableItemBackgroundBorderless"
+                android:contentDescription="@string/id_image_cd"
+                android:scaleType="fitXY"
+                app:layout_constraintDimensionRatio="h,16:9"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                 app:layout_constraintStart_toStartOf="@id/guidelineStart"
                 app:layout_constraintTop_toTopOf="@id/guidelineTop"
@@ -167,12 +169,49 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/bvn_edit_text"
                     android:layout_width="match_parent"
-                    android:inputType="number"
-                    android:maxLength="11"
                     android:layout_height="wrap_content"
-                    android:hint="@string/bvn_name_hint" />
+                    android:hint="@string/bvn_name_hint"
+                    android:inputType="number"
+                    android:maxLength="11" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_fingerprint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="@string/fingerprint_title"
+                android:textAppearance="@style/TextAppearance.App.ListPrimary"
+                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@id/bvn_input" />
+
+            <TextView
+                android:id="@+id/tv_fingerprint_msg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/fingerprint_msg"
+                android:textAppearance="@style/TextAppearance.App.Body"
+                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@id/tv_fingerprint" />
+
+
+            <ImageView
+                android:id="@+id/image_fingerprint"
+                android:layout_width="200dp"
+                android:layout_height="0dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:contentDescription="@string/id_image_cd"
+                android:scaleType="fitXY"
+                app:layout_constraintDimensionRatio="h,16:9"
+                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@id/tv_fingerprint_msg"
+                tools:src="@tools:sample/avatars" />
 
 
             <FrameLayout
@@ -181,7 +220,7 @@
                 android:layout_height="100dp"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                 app:layout_constraintStart_toStartOf="@id/guidelineStart"
-                app:layout_constraintTop_toBottomOf="@id/bvn_input" />
+                app:layout_constraintTop_toBottomOf="@id/image_fingerprint" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guidelineStart"
