@@ -13,4 +13,5 @@ interface HomeNavigator {
     fun toCaptureFarm(farmerId: String)
     fun toUpdatePhoto()
     fun toDatePicker(parseDisplayedDate: Date?)
+    fun toUpdateIdPhoto()
 }

@@ -12,4 +12,11 @@
         <item>@string/data_marital_separated</item>
         <item>@string/data_marital_single</item>
     </string-array>
+
+    <string-array name="data_id_types">
+        <item>@string/data_id_driver_license</item>
+        <item>@string/data_id_national_id</item>
+        <item>@string/data_id_passport</item>
+        <item>@string/data_id_voters_card</item>
+    </string-array>
 </resources>

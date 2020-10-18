@@ -71,6 +71,13 @@
     <string name="data_marital_single">Single</string>
     <string name="data_marital_divorced">Divorced</string>
     <string name="data_marital_separated">Separated</string>
+
+    <string name="data_id_passport">International Passport</string>
+    <string name="data_id_driver_license">Driver\'s Licence</string>
+    <string name="data_id_voters_card">National Voters card</string>
+    <string name="data_id_national_id">National ID</string>
+
+
     <string name="address_hint">Address</string>
     <string name="city_hint">City</string>
     <string name="lga_hint">LGA</string>
@@ -83,8 +90,24 @@
     <string name="details_state_required_message">Please enter a state</string>
     <string name="details_mobile_number_required_message">Please enter a mobile number</string>
     <string name="details_email_address_required_message">Please enter an email address</string>
+
+    <string name="details_id_type_required_message">Please select an ID</string>
+    <string name="details_id_num_required_message">Please enter an ID number</string>
+    <string name="details_id_issue_date_required_message">Please enter a date</string>
+    <string name="details_id_expiry_date_required_message">Please enter a date</string>
+    <string name="details_reg_no_required_message">Please enter a registration number</string>
+    <string name="details_bvn_required_message">Please enter a BVN number</string>
+
     <string name="mobile_hint">Mobile number</string>
     <string name="edit_contact_details_title">Edit contact details</string>
     <string name="edit_address_title">Edit address</string>
+    <string name="edit_ids">Edit IDs</string>
+    <string name="id_type_hint">ID type</string>
+    <string name="id_num_hint">ID number</string>
+    <string name="issue_date_hint">Date issued</string>
+    <string name="expiry_date_hint">Expiry date</string>
+    <string name="reg_no_name_hint">Reg. number</string>
+    <string name="bvn_name_hint">BVN</string>
+    <string name="id_image_cd">ID image</string>
 
 </resources>

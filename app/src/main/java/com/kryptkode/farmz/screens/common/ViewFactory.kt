@@ -7,6 +7,8 @@ import com.kryptkode.farmz.screens.editfarmer.editaddress.view.EditAddressView
 import com.kryptkode.farmz.screens.editfarmer.editaddress.view.EditAddressViewImpl
 import com.kryptkode.farmz.screens.editfarmer.editcontactdetails.view.EditContactDetailsView
 import com.kryptkode.farmz.screens.editfarmer.editcontactdetails.view.EditContactDetailsViewImpl
+import com.kryptkode.farmz.screens.editfarmer.editid.view.EditIdView
+import com.kryptkode.farmz.screens.editfarmer.editid.view.EditIdViewImpl
 import com.kryptkode.farmz.screens.editfarmer.editpersonaldetails.view.EditPersonalDetailsView
 import com.kryptkode.farmz.screens.editfarmer.editpersonaldetails.view.EditPersonalDetailsViewImpl
 import com.kryptkode.farmz.screens.farmerdetails.view.FarmerDetailView
@@ -61,6 +63,14 @@ class ViewFactory(
 
     fun getEditContactView(parent: ViewGroup? = null): EditContactDetailsView {
         return EditContactDetailsViewImpl(
+            layoutInflater,
+            parent
+        )
+    }
+
+    fun getEditIdView(parent: ViewGroup? = null): EditIdView {
+        return EditIdViewImpl(
+            imageLoader,
             layoutInflater,
             parent
         )

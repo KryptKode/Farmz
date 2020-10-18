@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_farmerDetailFragment_to_editContactDetailsFragment"
             app:destination="@id/editContactDetailsFragment" />
+        <action
+            android:id="@+id/action_farmerDetailFragment_to_editIdFragment"
+            app:destination="@id/editIdFragment" />
     </fragment>
 
     <include app:graph="@navigation/login_navigation" />
@@ -86,6 +89,15 @@
         android:label="EditContactDetailsFragment"
         tools:layout="@layout/layout_edit_contact_details">
 
+        <argument
+            android:name="farmerId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editIdFragment"
+        android:name="com.kryptkode.farmz.screens.editfarmer.editid.EditIdFragment"
+        android:label="EditIdFragment" >
         <argument
             android:name="farmerId"
             app:argType="string" />
