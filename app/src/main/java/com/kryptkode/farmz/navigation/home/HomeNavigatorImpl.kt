@@ -36,7 +36,9 @@ class HomeNavigatorImpl @Inject constructor(
     }
 
     override fun toEditContactDetails(farmerId: String) {
-
+        navControllerProvider.getNavController().navigate(
+            FarmerDetailFragmentDirections.actionFarmerDetailFragmentToEditContactDetailsFragment(farmerId)
+        )
     }
 
     override fun toEditPersonalDetails(farmerId: String) {

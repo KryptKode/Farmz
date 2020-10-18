@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:background="?selectableItemBackground"
         android:padding="8dp"
-        android:text="@string/edit_address_title"
+        android:text="@string/edit_contact_details_title"
         android:textAppearance="@style/TextAppearance.App.H2"
         app:drawableStartCompat="@drawable/ic_back"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
@@ -36,7 +36,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/address_input"
+                android:id="@+id/mobile_input"
                 style="@style/Widget.App.TextInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -47,18 +47,18 @@
                 app:layout_constraintTop_toTopOf="@id/guidelineTop">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/address_edit_text"
+                    android:id="@+id/mobile_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/address_hint"
-                    android:inputType="textPostalAddress"
+                    android:hint="@string/mobile_hint"
+                    android:inputType="phone"
                     android:maxLength="@integer/name_length" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/city_input"
+                android:id="@+id/email_input"
                 style="@style/Widget.App.TextInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -66,61 +66,17 @@
                 app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout.HintText"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                 app:layout_constraintStart_toStartOf="@id/guidelineStart"
-                app:layout_constraintTop_toBottomOf="@id/address_input">
+                app:layout_constraintTop_toBottomOf="@id/mobile_input">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/city_edit_text"
+                    android:id="@+id/email_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/city_hint"
-                    android:inputType="text"
+                    android:hint="@string/email_hint"
+                    android:inputType="textEmailAddress"
                     android:maxLength="@integer/name_length" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/lga_input"
-                style="@style/Widget.App.TextInputLayout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout.HintText"
-                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-                app:layout_constraintStart_toStartOf="@id/guidelineStart"
-                app:layout_constraintTop_toBottomOf="@id/city_input">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/lga_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/lga_hint"
-                    android:inputType="text"
-                    android:maxLength="@integer/name_length" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/state_input"
-                style="@style/Widget.App.TextInputLayout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout.HintText"
-                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-                app:layout_constraintStart_toStartOf="@id/guidelineStart"
-                app:layout_constraintTop_toBottomOf="@id/lga_input">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/state_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/state_hint"
-                    android:inputType="text" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
 
             <FrameLayout
                 android:id="@+id/redundant"
@@ -128,7 +84,7 @@
                 android:layout_height="100dp"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                 app:layout_constraintStart_toStartOf="@id/guidelineStart"
-                app:layout_constraintTop_toBottomOf="@id/state_input" />
+                app:layout_constraintTop_toBottomOf="@id/email_input" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guidelineStart"
