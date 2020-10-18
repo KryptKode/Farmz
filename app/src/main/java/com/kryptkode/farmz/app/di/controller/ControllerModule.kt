@@ -4,6 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
+import com.kryptkode.farmz.app.utils.PhoneNumberSanitizer
+import com.kryptkode.farmz.app.utils.date.ServerDisplayedDateConverter
 import com.kryptkode.farmz.navigation.NavControllerProvider
 import com.kryptkode.farmz.screens.common.ViewFactory
 import com.kryptkode.farmz.screens.common.imageloader.ImageLoader
@@ -50,7 +52,17 @@ class ControllerModule(
 
     @Provides
     @ControllerScope
-    fun viewFactory(imageLoader: ImageLoader, layoutInflater: LayoutInflater): ViewFactory {
-        return ViewFactory(imageLoader, layoutInflater)
+    fun viewFactory(
+        imageLoader: ImageLoader,
+        phoneNumberSanitizer: PhoneNumberSanitizer,
+        serverDisplayedDateConverter: ServerDisplayedDateConverter,
+        layoutInflater: LayoutInflater
+    ): ViewFactory {
+        return ViewFactory(
+            phoneNumberSanitizer,
+            serverDisplayedDateConverter,
+            imageLoader,
+            layoutInflater
+        )
     }
 }

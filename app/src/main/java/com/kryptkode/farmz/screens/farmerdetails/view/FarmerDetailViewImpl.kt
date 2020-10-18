@@ -25,6 +25,12 @@ class FarmerDetailViewImpl(
 
     init {
 
+        binding.tvTitle.setOnClickListener {
+            onEachListener {
+                it.onClickBack()
+            }
+        }
+
         binding.cardPersonalDetails.imagePic.setOnClickListener {
             onEachListener {
                 it.onClickPic()
@@ -52,6 +58,12 @@ class FarmerDetailViewImpl(
         binding.cardIdentification.imgEdit.setOnClickListener {
             onEachListener {
                 it.onEditIdentification()
+            }
+        }
+
+        binding.fabCapture.setOnClickListener {
+            onEachListener {
+                it.onCaptureFarm()
             }
         }
     }
@@ -132,9 +144,10 @@ class FarmerDetailViewImpl(
         imageLoader.load(farmer.idImage, binding.cardIdentification.imageId)
         binding.cardIdentification.tvIdType.text = farmer.idType.capitalize()
         binding.cardIdentification.tvIdNum.text = farmer.idNumber.capitalize()
-        binding.cardIdentification.tvIssueDate.text = getDisplayedDate(farmer.issueDate)
-        binding.cardIdentification.tvRegNo.text = farmer.registrationNumber
-        binding.cardIdentification.tvBvn.text = farmer.bvn
+        binding.cardIdentification.tvIssueDate.text = getString(R.string.farmer_id_issue_date, getDisplayedDate(farmer.issueDate))
+        binding.cardIdentification.tvExpiryDate.text = getString(R.string.farmer_id_expiry_date, getDisplayedDate(farmer.expiryDate))
+        binding.cardIdentification.tvRegNo.text = getString(R.string.farmer_id_reg_no, farmer.registrationNumber)
+        binding.cardIdentification.tvBvn.text = getString(R.string.farmer_id_bvn, farmer.bvn)
     }
 
     override val rootView: View

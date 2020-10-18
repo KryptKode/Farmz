@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface FarmerRepository {
     fun getFarmers(): Flow<PagingData<Farmer>>
+    fun getFarmerById(id:String):Flow<Farmer>
 
     companion object {
         @VisibleForTesting

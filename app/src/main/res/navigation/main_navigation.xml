@@ -3,19 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    tools:ignore="UnusedNavigation">
+    tools:ignore="UnusedNavigation"
+    app:startDestination="@id/farmerDetailFragment">
 
     <fragment
         android:id="@+id/navigation_farmers"
         android:name="com.kryptkode.farmz.screens.farmers.FarmersFragment"
         android:label="@string/title_farmers"
-        tools:layout="@layout/layout_farmers" />
+        tools:layout="@layout/layout_farmers" >
+        <action
+            android:id="@+id/action_navigation_farmers_to_farmerDetailFragment"
+            app:destination="@id/farmerDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.kryptkode.farmz.screens.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/layout_dashboard" />
+
+
+    <fragment
+        android:id="@+id/farmerDetailFragment"
+        android:name="com.kryptkode.farmz.screens.farmerdetails.FarmerDetailFragment"
+        android:label="FarmerDetailFragment" >
+        <argument
+            android:name="farmerId"
+            app:argType="string" />
+    </fragment>
 
     <include app:graph="@navigation/login_navigation" />
 </navigation>
