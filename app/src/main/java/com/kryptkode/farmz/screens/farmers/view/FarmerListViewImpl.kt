@@ -30,6 +30,8 @@ class FarmerListViewImpl(
     init {
 
         binding.retryButton.setOnClickListener { adapter.retry() }
+        binding.swipeRefresh.setOnRefreshListener { adapter.refresh() }
+
         binding.recyclerView.adapter = adapter
         adapter.withLoadStateHeaderAndFooter(
             header = FarmerLoadStateAdapter(viewFactory) { adapter.retry() },
@@ -37,12 +39,10 @@ class FarmerListViewImpl(
         )
 
         adapter.addLoadStateListener { loadState ->
-            // Only show the list if refresh succeeds.
-            binding.recyclerView.beVisibleIf(loadState.source.refresh is LoadState.NotLoading)
             // Show loading spinner during initial load or refresh.
-            binding.progress.root.beVisibleIf(loadState.source.refresh is LoadState.Loading)
+            binding.swipeRefresh.isRefreshing = (loadState.refresh is LoadState.Loading)
             // Show the retry state if initial load or refresh fails.
-            binding.retryButton.beVisibleIf(loadState.source.refresh is LoadState.Error)
+            binding.retryButton.beVisibleIf(loadState.refresh is LoadState.Error)
 
             // Toast on any error, regardless of whether it came from RemoteMediator or PagingSource
             val errorState = loadState.source.append as? LoadState.Error

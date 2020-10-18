@@ -33,20 +33,12 @@ class FarmerRemoteMediator @Inject constructor(
 
         val page = when (loadType) {
             LoadType.REFRESH -> {
-                val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
-                remoteKeys?.nextKey?.minus(1) ?: STARTING_PAGE_INDEX
+                STARTING_PAGE_INDEX
             }
             LoadType.PREPEND -> {
-                // The LoadType is PREPEND so some data was loaded before,
-                // so we should have been able to get remote keys
-                // If the remoteKeys are null, then we're an invalid state and we have a bug
-                val remoteKeys = getRemoteKeyForFirstItem(state)
-                    ?: throw InvalidObjectException("Remote key and the prevKey should not be null")
-                // If the previous key is null, then we can't request more data
-                remoteKeys.prevKey
-                    ?: return MediatorResult.Success(
-                        endOfPaginationReached = true
-                    )
+                return MediatorResult.Success(
+                    endOfPaginationReached = true
+                )
             }
             LoadType.APPEND -> {
                 val remoteKeys = getRemoteKeyForLastItem(state)
@@ -56,29 +48,24 @@ class FarmerRemoteMediator @Inject constructor(
 
                 remoteKeys.nextKey
             }
-
         }
 
         try {
 
-            val apiResponse = service.getFarmers(page * state.config.pageSize)
+            val apiResponse = service.getFarmers(page * if(loadType  == LoadType.REFRESH) state.config.initialLoadSize else state.config.pageSize)
             if (apiResponse.status.toBoolean()) {
                 val data = apiResponse.data
                 val endOfPaginationReached = data.totalRecords == data.farmers.size
                 repoDatabase.withTransaction {
-                    // clear all tables in the database
-                    if (loadType == LoadType.REFRESH) {
-                        repoDatabase.farmersRemoteKeysDao().clearRemoteKeys()
-                        repoDatabase.farmersDao().clearFarmers()
-                    }
-
                     val prevKey = if (page == STARTING_PAGE_INDEX) null else page - 1
                     val nextKey = if (endOfPaginationReached) null else page + 1
-                    val keys = data.farmers.map {
+                    val farmers = data.farmers
+
+                    repoDatabase.farmersRemoteKeysDao().insert(farmers.map {
                         FarmerRemoteKeys(farmerId = it.id, prevKey = prevKey, nextKey = nextKey)
-                    }
-                    repoDatabase.farmersRemoteKeysDao().insert(keys)
-                    repoDatabase.farmersDao().insert(data.farmers.map { farmerRemote ->
+                    })
+
+                    repoDatabase.farmersDao().insert(farmers.map { farmerRemote ->
                         val withUpdatedLinks = farmerRemote.copy(
                             passportPhoto = data.imageBaseUrl.plus(farmerRemote.passportPhoto),
                             idImage = data.imageBaseUrl.plus(farmerRemote.idImage),

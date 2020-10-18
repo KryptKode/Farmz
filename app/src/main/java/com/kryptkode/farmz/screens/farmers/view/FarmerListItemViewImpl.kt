@@ -24,9 +24,9 @@ class FarmerListItemViewImpl(
             binding.shimmer.shimmerRoot.beGone()
             binding.shimmer.shimmerRoot.stopShimmer()
             imageLoader.load(item.passportPhoto, binding.image)
-            binding.nameTextView.text = item.firstName.capitalize().plus(item.surname.capitalize())
+            binding.nameTextView.text = item.firstName.capitalize().plus(" ").plus(item.surname.capitalize())
             binding.locationTextView.text =
-                item.state.capitalize().plus(",").plus(item.city.capitalize())
+                item.state.capitalize().plus(", ").plus(item.city.capitalize())
             binding.root.setOnClickListener {
                 onEachListener {
                     it.onItemClick(item)

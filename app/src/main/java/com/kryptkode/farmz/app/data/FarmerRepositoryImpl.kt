@@ -21,7 +21,11 @@ class FarmerRepositoryImpl(
 
     override fun getFarmers(): Flow<PagingData<Farmer>> {
         return Pager(
-            config = PagingConfig(pageSize = NETWORK_PAGE_SIZE, enablePlaceholders = false),
+            config = PagingConfig(
+                pageSize = NETWORK_PAGE_SIZE,
+                enablePlaceholders = false,
+                initialLoadSize = 100
+            ),
             remoteMediator = remoteMediator,
             pagingSourceFactory = { appDatabase.farmersDao().getFarmers() }
         ).flow.map {

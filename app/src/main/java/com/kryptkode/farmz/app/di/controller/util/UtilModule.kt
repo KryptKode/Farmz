@@ -40,7 +40,7 @@ class UtilModule {
 
     @Provides
     @ControllerScope
-    fun provideImageLoader(): ImageLoader {
-        return ImageLoaderImpl()
+    fun provideImageLoader(context: Context): ImageLoader {
+        return ImageLoaderImpl(context)
     }
 }
