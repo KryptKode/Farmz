@@ -2,8 +2,9 @@ package com.kryptkode.farmz.app.data.network.mapper
 
 import com.kryptkode.farmz.app.data.network.response.FarmerRemote
 import com.kryptkode.farmz.app.domain.Farmer
+import javax.inject.Inject
 
-class FarmerApiMapperImpl : FarmerApiMapper {
+class FarmerApiMapperImpl @Inject constructor() : FarmerApiMapper {
 
     override fun mapRemoteToDomain(farmerRemote: FarmerRemote): Farmer {
         return Farmer(

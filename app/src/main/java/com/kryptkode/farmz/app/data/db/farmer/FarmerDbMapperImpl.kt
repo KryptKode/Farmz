@@ -1,8 +1,9 @@
 package com.kryptkode.farmz.app.data.db.farmer
 
 import com.kryptkode.farmz.app.domain.Farmer
+import javax.inject.Inject
 
-class FarmerDbMapperImpl : FarmerDbMapper {
+class FarmerDbMapperImpl @Inject constructor() : FarmerDbMapper {
 
     override fun mapDbToDomain(dbFarmer: DbFarmer): Farmer {
         return Farmer(

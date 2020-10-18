@@ -24,5 +24,7 @@
     <string name="validation_name_short_message">Please enter a name greater than %d characters</string>
     <string name="validation_password_required_message">A password is required</string>
     <string name="validation_password_short_message">Please enter a password greater than %d characters</string>
+    <string name="retry_text">Retry</string>
+    <string name="error_message_generic">An error occurred. Please try again</string>
 
 </resources>
