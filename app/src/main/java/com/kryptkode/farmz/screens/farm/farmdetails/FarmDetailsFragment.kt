@@ -174,7 +174,7 @@ class FarmDetailsFragment : BaseFragment(), FarmDetailsView.Listener {
                 farmCoordinates = viewModel.getLocation()
             )
             if (validator.validateFarm(uiFarm!!)) {
-                viewModel.addFarm(uiFarm!!)
+                viewModel.saveFarm(uiFarm!!)
             }
         }
     }
