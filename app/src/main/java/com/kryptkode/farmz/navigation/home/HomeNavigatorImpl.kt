@@ -82,13 +82,16 @@ class HomeNavigatorImpl @Inject constructor(
 
     override fun toSelectLocation(listOf: List<UiFarmLocation>, returnKey: String) {
         navControllerProvider.getNavController().navigate(
-            SelectRegionFragmentDirections.actionToSelectRegionFragment(listOf.toTypedArray(), returnKey)
+            SelectRegionFragmentDirections.actionToSelectRegionFragment(
+                listOf.toTypedArray(),
+                returnKey
+            )
         )
     }
 
     override fun toFarmDetails(id: Int) {
         navControllerProvider.getNavController().navigate(
-            FarmerDetailFragmentDirections.actionFarmerDetailFragmentToFarmDetailsFragment(id)
+            FarmerDetailFragmentDirections.actionToFarmDetailsFragment(id)
         )
     }
 

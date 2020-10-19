@@ -33,6 +33,19 @@
             app:layout_constraintTop_toBottomOf="@id/tv_title"
             tools:listitem="@layout/item_farm" />
 
+        <include
+            android:id="@+id/farms_empty"
+            layout="@layout/empty_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="h,1:0.8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
         <include layout="@layout/app_guidelines_details" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

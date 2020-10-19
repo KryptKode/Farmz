@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import com.kryptkode.farmz.R
+import com.kryptkode.farmz.app.utils.extension.beVisibleIf
 import com.kryptkode.farmz.databinding.LayoutFarmerDetailBinding
 import com.kryptkode.farmz.screens.common.ViewFactory
 import com.kryptkode.farmz.screens.common.imageloader.ImageLoader
@@ -42,6 +43,9 @@ class FarmerDetailViewImpl(
 
 
         adapter.addLoadStateListener { loadState ->
+            binding.cardFarms.farmsEmpty.root.beVisibleIf(
+                adapter.itemCount <= 0 && !loadState.source.refresh.endOfPaginationReached
+            )
             // Toast on any error, regardless of whether it came from RemoteMediator or PagingSource
             val errorState = loadState.source.append as? LoadState.Error
                 ?: loadState.source.prepend as? LoadState.Error
@@ -95,6 +99,9 @@ class FarmerDetailViewImpl(
                 it.onCaptureFarm()
             }
         }
+
+        binding.cardFarms.farmsEmpty.tvMessage.text = getString(R.string.empty_farms_msg)
+
     }
 
     override fun bindFarmer(farmer: FarmerView) {

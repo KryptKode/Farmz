@@ -144,5 +144,6 @@
     <string name="captured_farmers">Captured farmers</string>
     <string name="view_all">View all</string>
     <string name="last_captured">Last captured on %s</string>
+    <string name="empty_farms_msg">No farms have been added yet</string>
 
 </resources>

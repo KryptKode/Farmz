@@ -47,6 +47,9 @@ class DashboardViewMvcImpl(
 
 
         adapter.addLoadStateListener { loadState ->
+            binding.farms.farmsEmpty.root.beVisibleIf(
+                adapter.itemCount <= 0 && !loadState.source.refresh.endOfPaginationReached
+            )
             binding.farms.progressBar.beVisibleIf((loadState.refresh is LoadState.Loading))
             binding.farms.dataGroup.beGoneIf((loadState.refresh is LoadState.Loading))
             // Toast on any error, regardless of whether it came from RemoteMediator or PagingSource
@@ -60,6 +63,8 @@ class DashboardViewMvcImpl(
                 }
             }
         }
+
+        binding.farms.farmsEmpty.tvMessage.text = getString(R.string.empty_farms_msg)
     }
 
     override fun bindLastCapturedFarmers(count: Int) {

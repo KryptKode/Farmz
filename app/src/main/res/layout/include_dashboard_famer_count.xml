@@ -15,7 +15,7 @@
             android:id="@+id/data_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="tv_title,tv_farms_count,tv_last_date,img_edit"/>
+            app:constraint_referenced_ids="tv_title,tv_farms_count,tv_last_date,img_edit" />
 
 
         <TextView
@@ -23,7 +23,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/captured_farm"
-            android:textAppearance="@style/TextAppearance.App.ListPrimary"
+            android:textAppearance="@style/TextAppearance.App.Small"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toTopOf="@id/guidelineTop" />
 
@@ -50,7 +50,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:gravity="center_vertical"
-            android:textAppearance="@style/TextAppearance.App.Body"
+            android:textAppearance="@style/TextAppearance.App.Body2"
             app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"

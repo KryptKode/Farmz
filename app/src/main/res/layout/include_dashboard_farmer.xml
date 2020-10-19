@@ -15,12 +15,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/title_farmers"
-            android:textAppearance="@style/TextAppearance.App.ListPrimary"
+            android:textAppearance="@style/TextAppearance.App.Body"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toTopOf="@id/guidelineTop" />
 
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.kryptkode.farmz.app.customviews.EmptyRecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
