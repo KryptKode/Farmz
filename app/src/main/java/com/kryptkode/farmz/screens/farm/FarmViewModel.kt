@@ -13,6 +13,7 @@ import com.kryptkode.farmz.screens.farm.model.UiFarmLocation
 import com.kryptkode.farmz.screens.farm.model.UiFarmMapper
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 
 class FarmViewModel @Inject constructor(
@@ -64,7 +65,7 @@ class FarmViewModel @Inject constructor(
         viewModelScope.launch {
             showLoading()
             when (val result =
-                farmRepository.updateFarmer(uiFarmMapper.mapViewToDomain(uiFarm))) {
+                farmRepository.updateFarmer(uiFarmMapper.mapViewToDomain(uiFarm).copy(dateLastUpdated = Calendar.getInstance().time))) {
                 is DataState.Success -> {
                     hideLoading()
                     mutableGoToNext.postValue(Event(Unit))

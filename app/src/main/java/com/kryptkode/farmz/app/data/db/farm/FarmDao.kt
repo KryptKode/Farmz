@@ -35,11 +35,11 @@ abstract class FarmDao : BaseDao<DbFarm> {
     @Query("SELECT COUNT(DISTINCT farmerId) from farms")
     abstract fun countCapturedFarmers(): Flow<Int>
 
-    @Query("SELECT * FROM farms ORDER BY dateLastUpdated LIMIT :limit")
+    @Query("SELECT * FROM farms ORDER BY dateLastUpdated DESC LIMIT :limit")
     abstract fun getLastUpdatedFarms(limit: Int): PagingSource<Int, DbFarm>
 
 
-    @Query("SELECT dateLastUpdated FROM farms ORDER BY dateLastUpdated LIMIT 1")
+    @Query("SELECT dateLastUpdated FROM farms ORDER BY dateLastUpdated DESC LIMIT 1")
     abstract fun getLastUpdatedDate(): Flow<Date>
 
     @Query("DELETE FROM farms")
