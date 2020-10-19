@@ -1,11 +1,14 @@
 package com.kryptkode.farmz.navigation.home
 
 import com.kryptkode.farmz.navigation.NavControllerProvider
+import com.kryptkode.farmz.screens.capturefarm.model.UiFarmLocation
 import com.kryptkode.farmz.screens.datedialog.DateDialogDirections
 import com.kryptkode.farmz.screens.farmerdetails.FarmerDetailFragmentDirections
 import com.kryptkode.farmz.screens.farmers.FarmersFragmentDirections
 import com.kryptkode.farmz.screens.imageviewer.ImageViewerFragmentDirections
 import com.kryptkode.farmz.screens.infodialog.Info
+import com.kryptkode.farmz.screens.infodialog.InfoDialogDirections
+import com.kryptkode.farmz.screens.selectregion.SelectRegionFragmentDirections
 import java.util.*
 import javax.inject.Inject
 
@@ -61,7 +64,9 @@ class HomeNavigatorImpl @Inject constructor(
     }
 
     override fun toCaptureFarm(farmerId: String) {
-
+        navControllerProvider.getNavController().navigate(
+            FarmerDetailFragmentDirections.actionFarmerDetailFragmentToCaptureFarmFragment(farmerId)
+        )
     }
 
     override fun toDatePicker(parseDisplayedDate: Date?) {
@@ -70,6 +75,14 @@ class HomeNavigatorImpl @Inject constructor(
     }
 
     override fun toInfoDialog(info: Info) {
+        navControllerProvider.getNavController().navigate(
+            InfoDialogDirections.actionToInfoDialog(info)
+        )
+    }
 
+    override fun toSelectLocation(listOf: List<UiFarmLocation>, returnKey: String) {
+        navControllerProvider.getNavController().navigate(
+            SelectRegionFragmentDirections.actionToSelectRegionFragment(listOf.toTypedArray(), returnKey)
+        )
     }
 }

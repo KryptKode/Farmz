@@ -1,6 +1,7 @@
 package com.kryptkode.farmz.app
 
 import androidx.multidex.MultiDexApplication
+import com.google.android.gms.maps.MapsInitializer
 import com.kryptkode.farmz.app.di.app.ApplicationComponent
 import com.kryptkode.farmz.app.di.app.ApplicationModule
 import com.kryptkode.farmz.app.di.app.DaggerApplicationComponent
@@ -14,5 +15,10 @@ open class App : MultiDexApplication() {
         DaggerApplicationComponent.builder()
             .applicationModule(ApplicationModule(this))
             .build()
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        MapsInitializer.initialize(this)
     }
 }

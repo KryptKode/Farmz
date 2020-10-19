@@ -2,6 +2,8 @@ package com.kryptkode.farmz.screens.common
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.kryptkode.farmz.screens.capturefarm.view.CaptureFarmView
+import com.kryptkode.farmz.screens.capturefarm.view.CaptureFarmViewImpl
 import com.kryptkode.farmz.screens.common.imageloader.ImageLoader
 import com.kryptkode.farmz.screens.editfarmer.editaddress.view.EditAddressView
 import com.kryptkode.farmz.screens.editfarmer.editaddress.view.EditAddressViewImpl
@@ -71,6 +73,13 @@ class ViewFactory(
     fun getEditIdView(parent: ViewGroup? = null): EditIdView {
         return EditIdViewImpl(
             imageLoader,
+            layoutInflater,
+            parent
+        )
+    }
+
+    fun getCaptureView(parent: ViewGroup? = null): CaptureFarmView {
+        return CaptureFarmViewImpl(
             layoutInflater,
             parent
         )
