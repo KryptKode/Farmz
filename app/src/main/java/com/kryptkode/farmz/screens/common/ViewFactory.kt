@@ -16,6 +16,10 @@ import com.kryptkode.farmz.screens.editfarmer.editpersonaldetails.view.EditPerso
 import com.kryptkode.farmz.screens.farmerdetails.view.FarmerDetailView
 import com.kryptkode.farmz.screens.farmerdetails.view.FarmerDetailViewImpl
 import com.kryptkode.farmz.screens.farmers.view.*
+import com.kryptkode.farmz.screens.farmlist.itemview.FarmListItemView
+import com.kryptkode.farmz.screens.farmlist.itemview.FarmListItemViewImpl
+import com.kryptkode.farmz.screens.farmlist.view.FarmListViewMvc
+import com.kryptkode.farmz.screens.farmlist.view.FarmListViewMvcImpl
 import com.kryptkode.farmz.screens.login.view.LoginView
 import com.kryptkode.farmz.screens.login.view.LoginViewImpl
 
@@ -80,6 +84,21 @@ class ViewFactory(
 
     fun getCaptureView(parent: ViewGroup? = null): CaptureFarmView {
         return CaptureFarmViewImpl(
+            layoutInflater,
+            parent
+        )
+    }
+
+    fun getFarmItemView(parent: ViewGroup? = null): FarmListItemView {
+        return FarmListItemViewImpl(
+            layoutInflater,
+            parent
+        )
+    }
+
+    fun getFarmListView(parent: ViewGroup? = null): FarmListViewMvc {
+        return FarmListViewMvcImpl(
+            this,
             layoutInflater,
             parent
         )
