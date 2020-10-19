@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_farmerDetailFragment_to_editIdFragment"
             app:destination="@id/editIdFragment" />
+        <action
+            android:id="@+id/action_farmerDetailFragment_to_captureFarmFragment"
+            app:destination="@id/captureFarmFragment" />
     </fragment>
 
     <include app:graph="@navigation/login_navigation" />
@@ -134,5 +137,14 @@
         <argument
             android:name="infoParms"
             app:argType="com.kryptkode.farmz.screens.infodialog.Info" />
+    </fragment>
+    <fragment
+        android:id="@+id/captureFarmFragment"
+        android:name="com.kryptkode.farmz.screens.capturefarm.CaptureFarmFragment"
+        android:label="CaptureFarmFragment"
+        tools:layout="@layout/layout_capture">
+        <argument
+            android:name="farmerId"
+            app:argType="string" />
     </fragment>
 </navigation>

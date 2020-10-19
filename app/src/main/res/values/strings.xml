@@ -127,4 +127,9 @@
     <string name="add_location">Add location</string>
     <string name="farm_location_hint">Farm location</string>
     <string name="capture_farm_title">Capture farm</string>
+
+    <string name="capture_farm_name_required_message">Please enter a name</string>
+    <string name="capture_farm_location_required_message">Please enter a location</string>
+    <string name="capture_farm_coordinates_required_message">Please add a location</string>
+
 </resources>

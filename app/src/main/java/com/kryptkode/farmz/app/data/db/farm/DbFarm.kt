@@ -10,7 +10,7 @@ data class DbFarm(
     val farmerId: String,
     val name: String,
     val location: String,
-    val dbFarmCoordinates: DbFarmCoordinates
+    val dbFarmCoordinates: List<DbFarmLocation>
 ) {
     companion object {
         const val TABLE_NAME = "farms"

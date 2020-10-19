@@ -1,21 +1,18 @@
-package com.kryptkode.farmz.app.data.db.farm.mapper
+package com.kryptkode.farmz.screens.capturefarm.model
 
-import com.kryptkode.farmz.app.data.db.farm.DbFarm
-import com.kryptkode.farmz.app.data.db.farm.DbFarmLocation
 import com.kryptkode.farmz.app.domain.farm.Farm
 import com.kryptkode.farmz.app.domain.farm.FarmLocation
 import javax.inject.Inject
 
-class FarmDbMapperImpl @Inject constructor(
-) : FarmDbMapper {
+class UiFarmMapperImpl @Inject constructor() : UiFarmMapper {
 
-    override fun mapDbToDomain(farm: DbFarm): Farm {
+    override fun mapViewToDomain(farm: UiFarm): Farm {
         return Farm(
             farm.id,
             farm.farmerId,
             farm.name,
             farm.location,
-            farm.dbFarmCoordinates.map {
+            farm.farmCoordinates.map {
                 FarmLocation(
                     it.latitude,
                     it.longitude
@@ -24,17 +21,14 @@ class FarmDbMapperImpl @Inject constructor(
         )
     }
 
-    override fun mapDomainToDb(farm: Farm): DbFarm {
-        return DbFarm(
+    override fun mapDomainToView(farm: Farm): UiFarm {
+        return UiFarm(
             farm.id,
             farm.farmerId,
             farm.name,
             farm.location,
             farm.farmCoordinates.map {
-                DbFarmLocation(
-                    it.latitude,
-                    it.longitude
-                )
+                UiFarmLocation(it.latitude, it.longitude)
             }
         )
     }

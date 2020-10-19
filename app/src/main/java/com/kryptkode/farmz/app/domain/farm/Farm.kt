@@ -5,5 +5,5 @@ data class Farm(
     val farmerId: String,
     val name: String,
     val location: String,
-    val farmCoordinates: FarmCoordinates
+    val farmCoordinates: List<FarmLocation>
 )
