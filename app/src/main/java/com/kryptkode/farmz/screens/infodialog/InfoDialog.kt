@@ -3,6 +3,7 @@ package com.kryptkode.farmz.screens.infodialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.kryptkode.farmz.screens.common.DialogViewFactory
 import com.kryptkode.farmz.screens.common.dialog.BaseDialog
@@ -22,26 +23,29 @@ class InfoDialog : BaseDialog(), InfoDialogViewMvc.Listener {
 
     private var listener: Listener? = null
 
-    private val info by lazy {
-        arguments?.getParcelable<Info>(INFO_KEY)!!
-    }
+    private val args by navArgs<InfoDialogArgs>()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         controllerComponent.inject(this)
     }
 
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         viewMvc = dialogViewFactory.getInfoDialogView()
         bindViews()
         val dialog = MaterialAlertDialogBuilder(requireContext())
             .setView(viewMvc.rootView)
-        viewMvc.registerListener(this)
         return dialog.create()
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewMvc.registerListener(this)
+    }
+
     private fun bindViews() {
-        viewMvc.bindInfo(info)
+        viewMvc.bindInfo(args.infoParms)
     }
 
     override fun onStop() {
@@ -51,19 +55,19 @@ class InfoDialog : BaseDialog(), InfoDialogViewMvc.Listener {
 
     override fun onPositiveButtonClick() {
         listener?.onPositiveButtonClick()
-        dialogEventBus.postEvent(InfoEvent(InfoEvent.Button.POSITIVE, info.payload))
+        dialogEventBus.postEvent(InfoEvent(InfoEvent.Button.POSITIVE, args.infoParms.payload))
         dismiss()
     }
 
     override fun onNeutralButtonClick() {
         listener?.onNeutralButtonClick()
-        dialogEventBus.postEvent(InfoEvent(InfoEvent.Button.NEUTRAL, info.payload))
+        dialogEventBus.postEvent(InfoEvent(InfoEvent.Button.NEUTRAL, args.infoParms.payload))
         dismiss()
     }
 
     override fun onNegativeButtonClick() {
         listener?.onNegativeButtonClick()
-        dialogEventBus.postEvent(InfoEvent(InfoEvent.Button.NEGATIVE, info.payload))
+        dialogEventBus.postEvent(InfoEvent(InfoEvent.Button.NEGATIVE, args.infoParms.payload))
         dismiss()
     }
 

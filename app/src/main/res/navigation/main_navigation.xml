@@ -133,7 +133,7 @@
         android:id="@+id/action_to_infoDialog"
         app:destination="@id/infoDialog" />
 
-    <fragment
+    <dialog
         android:id="@+id/infoDialog"
         android:name="com.kryptkode.farmz.screens.infodialog.InfoDialog"
         android:label="InfoDialog"
@@ -141,7 +141,7 @@
         <argument
             android:name="infoParms"
             app:argType="com.kryptkode.farmz.screens.infodialog.Info" />
-    </fragment>
+    </dialog>
     <fragment
         android:id="@+id/captureFarmFragment"
         android:name="com.kryptkode.farmz.screens.farm.capturefarm.CaptureFarmFragment"

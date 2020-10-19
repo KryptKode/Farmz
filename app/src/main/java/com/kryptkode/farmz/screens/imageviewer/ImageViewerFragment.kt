@@ -268,7 +268,9 @@ class ImageViewerFragment : BaseFragment(R.layout.fragment_image_view), DialogEv
                     PAYLOAD_RATIONALE -> {
                         when (event.button) {
                             InfoEvent.Button.POSITIVE -> {
-                                checkCameraPermission()
+                                requestPermissionLauncher.launch(
+                                    Manifest.permission.CAMERA
+                                )
                             }
                             else -> {
 
