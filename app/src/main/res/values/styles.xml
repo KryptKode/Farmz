@@ -91,7 +91,6 @@
     </style>
 
     <style name="Widget.App.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="android:minHeight">?actionBarSize</item>
         <item name="android:textAppearance">@style/TextAppearance.App.Button</item>
     </style>
 

@@ -17,4 +17,5 @@ interface HomeNavigator {
     fun toInfoDialog(info: Info)
     fun toSelectLocation(listOf: List<UiFarmLocation>, returnKey: String)
     fun toFarmDetails(id: Int)
+    fun toFarmsList()
 }

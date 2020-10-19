@@ -91,4 +91,8 @@ class HomeNavigatorImpl @Inject constructor(
             FarmerDetailFragmentDirections.actionFarmerDetailFragmentToFarmDetailsFragment(id)
         )
     }
+
+    override fun toFarmsList() {
+
+    }
 }

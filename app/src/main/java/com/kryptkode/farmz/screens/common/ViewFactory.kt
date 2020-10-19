@@ -3,6 +3,8 @@ package com.kryptkode.farmz.screens.common
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.kryptkode.farmz.screens.common.imageloader.ImageLoader
+import com.kryptkode.farmz.screens.dashboard.view.DashboardViewMvc
+import com.kryptkode.farmz.screens.dashboard.view.DashboardViewMvcImpl
 import com.kryptkode.farmz.screens.editfarmer.editaddress.view.EditAddressView
 import com.kryptkode.farmz.screens.editfarmer.editaddress.view.EditAddressViewImpl
 import com.kryptkode.farmz.screens.editfarmer.editcontactdetails.view.EditContactDetailsView
@@ -109,6 +111,14 @@ class ViewFactory(
 
     fun getFarmDetailsView(parent: ViewGroup? = null): FarmDetailsView {
         return FarmDetailsViewImpl(
+            layoutInflater,
+            parent
+        )
+    }
+
+    fun getDashboardView(parent: ViewGroup? = null): DashboardViewMvc {
+        return DashboardViewMvcImpl(
+            this,
             layoutInflater,
             parent
         )

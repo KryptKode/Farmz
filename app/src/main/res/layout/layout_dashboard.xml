@@ -16,9 +16,9 @@
             android:layout_marginTop="@dimen/login_default_margin"
             android:contentDescription="@string/app_name"
             app:layout_constraintDimensionRatio="h,1:0.3"
-            app:layout_constraintEnd_toEndOf="@id/guideline_r"
-            app:layout_constraintStart_toStartOf="@id/guideline_l"
-            app:layout_constraintTop_toTopOf="@id/guideline_t"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintTop_toTopOf="@id/guidelineTop"
             app:srcCompat="@drawable/ic_farming" />
 
 
@@ -27,15 +27,94 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/login_welcome_margin_top"
-            android:text="Dashboard"
+            android:text="@string/dashboard_title"
             android:textAppearance="@style/TextAppearance.App.H2"
-            app:layout_constraintEnd_toEndOf="@id/guideline_r"
-            app:layout_constraintStart_toStartOf="@id/guideline_l"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toBottomOf="@id/img_app_icon" />
 
 
+        <include
+            android:id="@+id/captured_farm_card"
+            layout="@layout/include_dashboard_farm_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@id/capture_farmer_card"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
-        <include layout="@layout/app_guidelines" />
+        <include
+            android:id="@+id/capture_farmer_card"
+            layout="@layout/include_dashboard_famer_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            app:layout_constraintStart_toEndOf="@id/captured_farm_card"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/capture_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="captured_farm_card,capture_farmer_card" />
+
+        <include
+            android:id="@+id/farms"
+            layout="@layout/include_dashboard_farm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@id/capture_barrier" />
+
+
+        <include
+            android:id="@+id/farmers"
+            layout="@layout/include_dashboard_farmer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@id/farms" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <include layout="@layout/app_guidelines_ltr" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

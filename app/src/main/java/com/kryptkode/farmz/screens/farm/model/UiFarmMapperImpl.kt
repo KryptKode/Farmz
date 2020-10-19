@@ -2,9 +2,12 @@ package com.kryptkode.farmz.screens.farm.model
 
 import com.kryptkode.farmz.app.domain.farm.Farm
 import com.kryptkode.farmz.app.domain.farm.FarmLocation
+import com.kryptkode.farmz.app.utils.date.DisplayedDateFormatter
 import javax.inject.Inject
 
-class UiFarmMapperImpl @Inject constructor() : UiFarmMapper {
+class UiFarmMapperImpl @Inject constructor(
+    private val displayedDateFormatter: DisplayedDateFormatter
+) : UiFarmMapper {
 
     override fun mapViewToDomain(farm: UiFarm): Farm {
         return Farm(
@@ -17,7 +20,9 @@ class UiFarmMapperImpl @Inject constructor() : UiFarmMapper {
                     it.latitude,
                     it.longitude
                 )
-            }
+            },
+            displayedDateFormatter.parseDisplayedDate(farm.dateCreated)!!,
+            displayedDateFormatter.parseDisplayedDate(farm.dateLastUpdated)!!,
         )
     }
 
@@ -29,7 +34,9 @@ class UiFarmMapperImpl @Inject constructor() : UiFarmMapper {
             farm.location,
             farm.farmCoordinates.map {
                 UiFarmLocation(it.latitude, it.longitude)
-            }
+            },
+            displayedDateFormatter.formatToDisplayedDate(farm.dateCreated),
+            displayedDateFormatter.formatToDisplayedDate(farm.dateLastUpdated),
         )
     }
 }
