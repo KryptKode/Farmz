@@ -7,9 +7,10 @@ import kotlinx.coroutines.flow.Flow
 
 interface FarmRepository {
     fun getFarms(): Flow<PagingData<Farm>>
-    fun getFarmsByFarmer(farmerId: String):  Flow<PagingData<Farm>>
+    fun getFarmsByFarmer(farmerId: String): Flow<PagingData<Farm>>
     fun getFarmById(id: Int): Flow<Farm>
     suspend fun updateFarmer(farm: Farm): DataState<Unit>
+    suspend fun addFarm(farm: Farm): DataState<Unit>
 
     companion object {
         @VisibleForTesting

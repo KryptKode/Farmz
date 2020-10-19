@@ -131,6 +131,22 @@ class CaptureFarmFragment : BaseFragment(), CaptureFarmView.Listener {
         validator.farmLocationError.observeEvent(viewLifecycleOwner) {
             viewMvc.showLocationError(it)
         }
+
+        viewModel.showLoading.observeEvent(viewLifecycleOwner) {
+            viewMvc.showLoading()
+        }
+
+        viewModel.hideLoading.observeEvent(viewLifecycleOwner) {
+            viewMvc.hideLoading()
+        }
+
+        viewModel.goToNext.observeEvent(viewLifecycleOwner) {
+            homeNavigator.navigateUp()
+        }
+
+        viewModel.showErrorMessage.observeEvent(viewLifecycleOwner) {
+            toastHelper.showMessage(it)
+        }
     }
 
     override fun onAddLocation() {
@@ -141,7 +157,7 @@ class CaptureFarmFragment : BaseFragment(), CaptureFarmView.Listener {
         viewMvc.clearErrors()
         val uiFarm = UiFarm(0, args.farmerId, farmName, farmLocation, viewModel.getLocation())
         if (validator.validateFarm(uiFarm)) {
-            viewModel.saveFarm(uiFarm)
+            viewModel.addFarm(uiFarm)
         }
     }
 

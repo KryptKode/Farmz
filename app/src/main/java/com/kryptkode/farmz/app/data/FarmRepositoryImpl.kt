@@ -69,4 +69,13 @@ class FarmRepositoryImpl @Inject constructor(
             }
         }
     }
+
+    override suspend fun addFarm(farm: Farm): DataState<Unit> {
+        return withContext(dispatchers.io()) {
+            appDatabase.farmsDao().insert(
+                farmDbMapper.mapDomainToDb(farm)
+            )
+            DataState.Success(Unit)
+        }
+    }
 }
