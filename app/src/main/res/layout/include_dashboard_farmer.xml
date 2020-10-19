@@ -14,13 +14,13 @@
             android:id="@+id/tv_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/title_farms"
-            android:textAppearance="@style/TextAppearance.App.ListPrimary"
+            android:text="@string/title_farmers"
+            android:textAppearance="@style/TextAppearance.App.Body"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toTopOf="@id/guidelineTop" />
 
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.kryptkode.farmz.app.customviews.EmptyRecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -31,22 +31,33 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
-            tools:listitem="@layout/item_farm" />
+            tools:itemCount="3"
+            tools:listitem="@layout/item_farmer" />
 
-        <include
-            android:id="@+id/farms_empty"
-            layout="@layout/empty_layout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="h,1:0.8"
+        <Button
+            android:id="@+id/btn_view_all"
+            style="@style/Widget.App.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/view_all"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@id/recycler_view" />
 
         <include layout="@layout/app_guidelines_details" />
+
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

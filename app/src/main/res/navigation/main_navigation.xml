@@ -46,9 +46,6 @@
         <action
             android:id="@+id/action_farmerDetailFragment_to_captureFarmFragment"
             app:destination="@id/captureFarmFragment" />
-        <action
-            android:id="@+id/action_farmerDetailFragment_to_farmDetailsFragment"
-            app:destination="@id/farmDetailsFragment" />
     </fragment>
 
     <include app:graph="@navigation/login_navigation" />
@@ -168,6 +165,10 @@
             android:name="returnKey"
             app:argType="string" />
     </fragment>
+
+    <action
+        android:id="@+id/action_to_farmDetailsFragment"
+        app:destination="@id/farmDetailsFragment" />
 
     <fragment
         android:id="@+id/farmDetailsFragment"

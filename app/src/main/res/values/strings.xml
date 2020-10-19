@@ -139,5 +139,11 @@
     <string name="add_farm_error">Could not add farm, try again</string>
     <string name="title_farms">Farms</string>
     <string name="farm_details_title">Farm details</string>
+    <string name="dashboard_title">Dashboard</string>
+    <string name="captured_farm">Captured farm</string>
+    <string name="captured_farmers">Captured farmers</string>
+    <string name="view_all">View all</string>
+    <string name="last_captured">Last captured on %s</string>
+    <string name="empty_farms_msg">No farms have been added yet</string>
 
 </resources>

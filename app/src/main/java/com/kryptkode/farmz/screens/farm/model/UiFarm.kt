@@ -9,7 +9,9 @@ data class UiFarm(
     val farmerId: String,
     val name: String,
     val location: String,
-    val farmCoordinates: List<UiFarmLocation>
+    val farmCoordinates: List<UiFarmLocation>,
+    val dateLastUpdated: String ="",
+    val dateCreated: String=""
 ) : Parcelable
 
 @Parcelize

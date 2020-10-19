@@ -7,7 +7,7 @@
 
     <color name="colorSecondary">#ad7d4d</color>
     <color name="colorSecondaryDark">#966342</color>
-    <color name="colorCard">@color/cardview_light_background</color>
+    <color name="colorCard">#171717</color>
 
     <color name="colorAccent">#FFC107</color>
     <color name="colorOnAccent">#FFFFFF</color>

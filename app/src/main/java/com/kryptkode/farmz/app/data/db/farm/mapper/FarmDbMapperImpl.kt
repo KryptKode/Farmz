@@ -20,7 +20,9 @@ class FarmDbMapperImpl @Inject constructor(
                     it.latitude,
                     it.longitude
                 )
-            }
+            },
+            farm.dateLastUpdated,
+            farm.dateCreated
         )
     }
 
@@ -35,7 +37,9 @@ class FarmDbMapperImpl @Inject constructor(
                     it.latitude,
                     it.longitude
                 )
-            }
+            },
+            farm.dateLastUpdated,
+            farm.dateCreated
         )
     }
 }

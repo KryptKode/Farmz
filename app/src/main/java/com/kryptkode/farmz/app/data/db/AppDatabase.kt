@@ -22,7 +22,8 @@ import com.kryptkode.farmz.app.data.db.keys.FarmerRemoteKeysDao
     exportSchema = true
 )
 @TypeConverters(
-    DbFarmCoordinatesConverter::class
+    DbFarmCoordinatesConverter::class,
+    DateConverter::class
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun farmersDao(): FarmersDao
