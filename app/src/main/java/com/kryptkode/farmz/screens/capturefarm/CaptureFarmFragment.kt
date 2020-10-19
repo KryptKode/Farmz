@@ -12,6 +12,7 @@ import com.kryptkode.farmz.app.logger.Logger
 import com.kryptkode.farmz.app.utils.ToastHelper
 import com.kryptkode.farmz.app.utils.livedata.extension.observeEvent
 import com.kryptkode.farmz.navigation.home.HomeNavigator
+import com.kryptkode.farmz.screens.capturefarm.model.UiFarm
 import com.kryptkode.farmz.screens.capturefarm.view.CaptureFarmView
 import com.kryptkode.farmz.screens.common.ViewFactory
 import com.kryptkode.farmz.screens.common.fragment.BaseFragment
@@ -88,11 +89,15 @@ class CaptureFarmFragment : BaseFragment(), CaptureFarmView.Listener {
 
     }
 
-    override fun onSave() {
-
+    override fun onSave(farmName: String, farmLocation: String) {
+        viewMvc.clearErrors()
+        val uiFarm = UiFarm(0, args.farmerId, farmName, farmLocation, viewModel.farmLocation)
+        if (validator.validateFarm(uiFarm)) {
+            viewModel.saveFarm(uiFarm)
+        }
     }
 
     override fun onBackClick() {
-
+        homeNavigator.navigateUp()
     }
 }

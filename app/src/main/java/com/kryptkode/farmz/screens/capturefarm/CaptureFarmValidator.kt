@@ -24,7 +24,7 @@ class CaptureFarmValidator @Inject constructor(private val context: Context) {
     val farmCoordinatesError = mutableFarmCoordinatesError.asLiveData()
 
 
-    fun validateFarmName(uiFarm: UiFarm): Boolean {
+    fun validateFarm(uiFarm: UiFarm): Boolean {
 //        Hack to ensure all fields are validated at once
         var result = validateFarmName(uiFarm.name, mutableFarmNameError)
         result = validateFarmLocation(uiFarm.location, mutableFarmLocationError) || result

@@ -61,7 +61,9 @@ class HomeNavigatorImpl @Inject constructor(
     }
 
     override fun toCaptureFarm(farmerId: String) {
-
+        navControllerProvider.getNavController().navigate(
+            FarmerDetailFragmentDirections.actionFarmerDetailFragmentToCaptureFarmFragment(farmerId)
+        )
     }
 
     override fun toDatePicker(parseDisplayedDate: Date?) {

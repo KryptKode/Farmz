@@ -1,12 +1,13 @@
 package com.kryptkode.farmz.screens.capturefarm.view
 
+import com.kryptkode.farmz.screens.capturefarm.model.UiFarmLocation
 import com.kryptkode.farmz.screens.common.view.BaseObservableViewMvc
 
 abstract class CaptureFarmView : BaseObservableViewMvc<CaptureFarmView.Listener>() {
 
     interface Listener {
         fun onAddLocation()
-        fun onSave()
+        fun onSave(farmName:String, farmLocation:String)
         fun onBackClick()
     }
 
@@ -17,6 +18,6 @@ abstract class CaptureFarmView : BaseObservableViewMvc<CaptureFarmView.Listener>
 
     abstract fun showLoading()
     abstract fun hideLoading()
-    abstract fun onSelectLocation()
+    abstract fun onSelectLocation(locations:List<UiFarmLocation>)
 
 }

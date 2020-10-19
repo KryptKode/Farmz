@@ -4,18 +4,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
 import com.kryptkode.farmz.app.utils.extension.beGone
 import com.kryptkode.farmz.app.utils.extension.beVisible
 import com.kryptkode.farmz.databinding.LayoutCaptureBinding
+import com.kryptkode.farmz.screens.capturefarm.model.UiFarmLocation
 
 class CaptureFarmViewImpl(
     layoutInflater: LayoutInflater,
     parent: ViewGroup?
-) : CaptureFarmView() {
+) : CaptureFarmView(), OnMapReadyCallback {
 
     private val binding = LayoutCaptureBinding.inflate(layoutInflater, parent, false)
 
+    private var googleMap: GoogleMap? = null
+
     init {
+
+        binding.mapView.getMapAsync(this)
 
         binding.farmLocationEditText.addTextChangedListener {
             clearLocationError()
@@ -28,7 +35,8 @@ class CaptureFarmViewImpl(
         binding.fabSave.setOnClickListener {
             onEachListener {
                 it.onSave(
-
+                    binding.farmNameEditText.text.toString(),
+                    binding.farmLocationEditText.text.toString()
                 )
             }
         }
@@ -78,10 +86,25 @@ class CaptureFarmViewImpl(
         binding.farmNameInput.error = null
     }
 
-    override fun onSelectLocation() {
+    override fun onSelectLocation(locations: List<UiFarmLocation>) {
+        binding.mapView.beVisible()
 
     }
 
     override val rootView: View
         get() = binding.root
+
+    override fun onMapReady(map: GoogleMap?) {
+        googleMap = map
+        googleMap?.disableUserInput()
+
+    }
+
+    private fun GoogleMap.disableUserInput() {
+        googleMap?.uiSettings?.isZoomControlsEnabled = false
+        googleMap?.uiSettings?.isZoomGesturesEnabled = false
+        googleMap?.uiSettings?.isCompassEnabled = false
+        googleMap?.uiSettings?.isScrollGesturesEnabledDuringRotateOrZoom = false
+        googleMap?.uiSettings?.setAllGesturesEnabled(false)
+    }
 }
