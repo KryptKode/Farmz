@@ -1,8 +1,6 @@
-package com.kryptkode.farmz.screens.capturefarm
+package com.kryptkode.farmz.screens.farm
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.kryptkode.farmz.R
 import com.kryptkode.farmz.app.data.state.DataState
 import com.kryptkode.farmz.app.domain.farm.FarmRepository
@@ -10,18 +8,28 @@ import com.kryptkode.farmz.app.logger.Logger
 import com.kryptkode.farmz.app.utils.StringResource
 import com.kryptkode.farmz.app.utils.livedata.event.Event
 import com.kryptkode.farmz.app.utils.livedata.extension.asLiveData
-import com.kryptkode.farmz.screens.capturefarm.model.UiFarm
-import com.kryptkode.farmz.screens.capturefarm.model.UiFarmLocation
-import com.kryptkode.farmz.screens.capturefarm.model.UiFarmMapper
+import com.kryptkode.farmz.screens.farm.model.UiFarm
+import com.kryptkode.farmz.screens.farm.model.UiFarmLocation
+import com.kryptkode.farmz.screens.farm.model.UiFarmMapper
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class CaptureFarmViewModel @Inject constructor(
+class FarmViewModel @Inject constructor(
     private val farmRepository: FarmRepository,
     private val uiFarmMapper: UiFarmMapper,
     private val stringResource: StringResource,
     private val logger: Logger
 ) : ViewModel() {
+
+
+    private val farmId = MutableLiveData<Int>()
+
+    val farm = farmId.switchMap { id ->
+        farmRepository.getFarmById(id).map {
+            uiFarmMapper.mapDomainToView(it)
+        }.asLiveData(viewModelScope.coroutineContext)
+    }
 
     private val mutableShowLoading = MutableLiveData<Event<Unit>>()
     val showLoading = mutableShowLoading.asLiveData()
@@ -68,6 +76,10 @@ class CaptureFarmViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun getFarm(id: Int) {
+        farmId.postValue(id)
     }
 
     fun setLocation(coordinates: List<UiFarmLocation>) {

@@ -36,16 +36,12 @@ class InfoDialog : BaseDialog(), InfoDialogViewMvc.Listener {
         bindViews()
         val dialog = MaterialAlertDialogBuilder(requireContext())
             .setView(viewMvc.rootView)
+        viewMvc.registerListener(this)
         return dialog.create()
     }
 
     private fun bindViews() {
         viewMvc.bindInfo(info)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        viewMvc.registerListener(this)
     }
 
     override fun onStop() {

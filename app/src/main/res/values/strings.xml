@@ -137,5 +137,7 @@
     <string name="drag_title">Select region</string>
     <string name="add_location_error_msg">Unable to add location. Please try again</string>
     <string name="add_farm_error">Could not add farm, try again</string>
+    <string name="title_farms">Farms</string>
+    <string name="farm_details_title">Farm details</string>
 
 </resources>

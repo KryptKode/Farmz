@@ -4,12 +4,13 @@ import com.kryptkode.farmz.app.di.controller.navigator.NavigatorModule
 import com.kryptkode.farmz.app.di.controller.util.UtilModule
 import com.kryptkode.farmz.app.di.controller.viewmodel.ViewModelModule
 import com.kryptkode.farmz.screens.MainActivity
-import com.kryptkode.farmz.screens.capturefarm.CaptureFarmFragment
 import com.kryptkode.farmz.screens.datedialog.DateDialog
 import com.kryptkode.farmz.screens.editfarmer.editaddress.EditAddressFragment
 import com.kryptkode.farmz.screens.editfarmer.editcontactdetails.EditContactDetailsFragment
 import com.kryptkode.farmz.screens.editfarmer.editid.EditIdFragment
 import com.kryptkode.farmz.screens.editfarmer.editpersonaldetails.EditPersonalDetailsFragment
+import com.kryptkode.farmz.screens.farm.capturefarm.CaptureFarmFragment
+import com.kryptkode.farmz.screens.farm.farmdetails.FarmDetailsFragment
 import com.kryptkode.farmz.screens.farmerdetails.FarmerDetailFragment
 import com.kryptkode.farmz.screens.farmers.FarmersFragment
 import com.kryptkode.farmz.screens.imageviewer.ImageViewerFragment
@@ -46,4 +47,5 @@ interface ControllerComponent {
     fun inject(infoDialog: InfoDialog)
     fun inject(captureFarmFragment: CaptureFarmFragment)
     fun inject(selectRegionFragment: SelectRegionFragment)
+    fun inject(farmDetailsFragment: FarmDetailsFragment)
 }

@@ -1,4 +1,4 @@
-package com.kryptkode.farmz.screens.capturefarm.model
+package com.kryptkode.farmz.screens.farm.model
 
 import com.kryptkode.farmz.app.domain.farm.Farm
 import com.kryptkode.farmz.app.domain.farm.FarmLocation

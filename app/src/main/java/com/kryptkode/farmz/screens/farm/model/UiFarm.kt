@@ -1,4 +1,4 @@
-package com.kryptkode.farmz.screens.capturefarm.model
+package com.kryptkode.farmz.screens.farm.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
