@@ -27,6 +27,13 @@ android {
                                      "$projectDir/schemas".toString()]
             }
         }
+
+        // Read the API key from ./secure.properties into R.string.maps_api_key
+        def secureProps = new Properties()
+        if (file("../secure.properties").exists()) {
+            file("../secure.properties")?.withInputStream { secureProps.load(it) }
+        }
+        resValue "string", "maps_api_key", (secureProps.getProperty("MAPS_API_KEY") ?: "")
     }
 
     sourceSets {
@@ -139,6 +146,10 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
     implementation 'id.zelory:compressor:2.1.0'
+
+    //maps
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.maps.android:maps-ktx:2.1.1'
 
 
     def espressoVersion = '3.3.0'
