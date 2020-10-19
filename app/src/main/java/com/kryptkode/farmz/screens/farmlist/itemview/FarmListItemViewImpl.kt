@@ -15,13 +15,15 @@ class FarmListItemViewImpl (
     private val binding = ItemFarmBinding.inflate(layoutInflater, parent, false)
 
     @SuppressLint("DefaultLocale")
-    override fun bind(item: UiFarm) {
-        binding.locationTextView.text = item.location.capitalize()
-        binding.nameTextView.text = item.name.capitalize()
+    override fun bind(item: UiFarm?) {
+        if(item != null){
+            binding.locationTextView.text = item.location.capitalize()
+            binding.nameTextView.text = item.name.capitalize()
 
-        binding.root.setOnClickListener {
-            onEachListener {
-                it.onFarmClick(item)
+            binding.root.setOnClickListener {
+                onEachListener {
+                    it.onFarmClick(item)
+                }
             }
         }
     }

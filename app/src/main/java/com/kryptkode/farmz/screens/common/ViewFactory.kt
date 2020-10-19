@@ -47,6 +47,7 @@ class ViewFactory(
     fun getFarmerDetailView(parent: ViewGroup? = null): FarmerDetailView {
         return FarmerDetailViewImpl(
             imageLoader,
+            this,
             layoutInflater,
             parent
         )

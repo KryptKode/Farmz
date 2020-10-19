@@ -8,5 +8,5 @@ abstract class FarmListItemView: BaseObservableViewMvc<FarmListItemView.Listener
         fun onFarmClick(item:UiFarm)
     }
 
-    abstract fun bind(item:UiFarm)
+    abstract fun bind(item:UiFarm?)
 }

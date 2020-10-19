@@ -4,22 +4,55 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.LoadState
+import androidx.paging.PagingData
 import com.kryptkode.farmz.R
 import com.kryptkode.farmz.databinding.LayoutFarmerDetailBinding
+import com.kryptkode.farmz.screens.capturefarm.model.UiFarm
+import com.kryptkode.farmz.screens.common.ViewFactory
 import com.kryptkode.farmz.screens.common.imageloader.ImageLoader
+import com.kryptkode.farmz.screens.farmers.loading.FarmerLoadStateAdapter
 import com.kryptkode.farmz.screens.farmers.model.FarmerView
+import com.kryptkode.farmz.screens.farmlist.view.FarmListAdapter
 
 @SuppressLint("DefaultLocale")
 class FarmerDetailViewImpl(
     private val imageLoader: ImageLoader,
+    viewFactory: ViewFactory,
     layoutInflater: LayoutInflater,
     parent: ViewGroup?
 ) : FarmerDetailView() {
 
     private val binding = LayoutFarmerDetailBinding.inflate(layoutInflater, parent, false)
 
+    private val adapter = FarmListAdapter(viewFactory) { item ->
+        onEachListener {
+            it.onItemClick(item)
+        }
+    }
 
     init {
+
+        binding.cardFarms.recyclerView.adapter = adapter
+
+        adapter.withLoadStateHeaderAndFooter(
+            header = FarmerLoadStateAdapter(viewFactory) { adapter.retry() },
+            footer = FarmerLoadStateAdapter(viewFactory) { adapter.retry() }
+        )
+
+
+        adapter.addLoadStateListener { loadState ->
+            // Toast on any error, regardless of whether it came from RemoteMediator or PagingSource
+            val errorState = loadState.source.append as? LoadState.Error
+                ?: loadState.source.prepend as? LoadState.Error
+                ?: loadState.append as? LoadState.Error
+                ?: loadState.prepend as? LoadState.Error
+            errorState?.let { error ->
+                onEachListener {
+                    it.onLoadError(error.error.message ?: getString(R.string.error_message_generic))
+                }
+            }
+        }
 
         binding.tvTitle.setOnClickListener {
             onEachListener {
@@ -75,6 +108,9 @@ class FarmerDetailViewImpl(
         imageLoader.load(newPhotoUri, binding.cardPersonalDetails.imagePic)
     }
 
+    override suspend fun bindFarms(data: PagingData<UiFarm>) {
+        adapter.submitData(data)
+    }
 
     private fun bindPersonalDetails(farmer: FarmerView) {
         binding.cardPersonalDetails.tvFullName.text = joinNames(farmer)

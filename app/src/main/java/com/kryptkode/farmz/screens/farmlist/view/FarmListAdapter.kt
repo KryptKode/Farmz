@@ -1,8 +1,8 @@
 package com.kryptkode.farmz.screens.farmlist.view
 
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kryptkode.farmz.screens.capturefarm.model.UiFarm
 import com.kryptkode.farmz.screens.common.ViewFactory
@@ -11,7 +11,7 @@ import com.kryptkode.farmz.screens.farmlist.itemview.FarmListItemView
 class FarmListAdapter (
     private val viewFactory: ViewFactory,
     private val onClickItem: (UiFarm) -> Unit
-) : ListAdapter<UiFarm, FarmListAdapter.FarmListViewHolder>(DIFF_UTIL), FarmListItemView.Listener {
+) : PagingDataAdapter<UiFarm, FarmListAdapter.FarmListViewHolder>(DIFF_UTIL), FarmListItemView.Listener {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FarmListViewHolder {

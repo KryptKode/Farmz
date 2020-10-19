@@ -47,7 +47,7 @@ class CaptureFarmViewModel @Inject constructor(
             } catch (e: Exception) {
                 hideLoading()
                 logger.e("Error while adding farm", e)
-                showErrorMessage(context.getString(R.string.add_farm_error))
+                showErrorMessage(stringResource.getString(R.string.add_farm_error))
             }
         }
     }

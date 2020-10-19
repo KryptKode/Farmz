@@ -1,9 +1,6 @@
 package com.kryptkode.farmz.screens.farmerdetails
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.*
 import com.kryptkode.farmz.R
 import com.kryptkode.farmz.app.logger.Logger
 import com.kryptkode.farmz.app.utils.StringResource
@@ -12,8 +9,10 @@ import com.kryptkode.farmz.app.utils.livedata.extension.observe
 import com.kryptkode.farmz.app.utils.livedata.extension.observeEvent
 import com.kryptkode.farmz.datareturn.ScreenDataReturnBuffer
 import com.kryptkode.farmz.navigation.home.HomeNavigator
+import com.kryptkode.farmz.screens.capturefarm.model.UiFarm
 import com.kryptkode.farmz.screens.farmerdetails.view.FarmerDetailView
 import com.kryptkode.farmz.screens.farmers.model.FarmerView
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class FarmerDetailController @Inject constructor(
@@ -75,11 +74,18 @@ class FarmerDetailController @Inject constructor(
         }
     }
 
+    @Suppress("COMPATIBILITY_WARNING")
     private fun setupObservers() {
-        @Suppress("COMPATIBILITY_WARNING")
+
         viewModel.farmer.observe(lifeCycleOwner) {
             farmerView = it
             farmerListView.bindFarmer(it)
+        }
+
+        viewModel.farms.observe(lifeCycleOwner){
+            lifeCycleOwner.lifecycleScope.launch {
+                farmerListView.bindFarms(it)
+            }
         }
 
         viewModel.showErrorMessage.observeEvent(lifeCycleOwner) {
@@ -112,6 +118,14 @@ class FarmerDetailController @Inject constructor(
         farmerView?.let {
             homeNavigator.toImageViewer(it.passportPhoto, getPhotoReturnKey())
         }
+    }
+
+    override fun onItemClick(item: UiFarm) {
+
+    }
+
+    override fun onLoadError(error: String) {
+        toastHelper.showMessage(error)
     }
 
     override fun onClickBack() {

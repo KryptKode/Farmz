@@ -76,6 +76,16 @@
                 app:layout_constraintStart_toStartOf="@id/guidelineStart"
                 app:layout_constraintTop_toBottomOf="@id/card_contact" />
 
+            <include
+                android:id="@+id/card_farms"
+                layout="@layout/include_details_farms"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@id/card_identification" />
+
 
             <FrameLayout
                 android:id="@+id/redundant"
@@ -83,7 +93,7 @@
                 android:layout_height="100dp"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                 app:layout_constraintStart_toStartOf="@id/guidelineStart"
-                app:layout_constraintTop_toBottomOf="@id/card_identification" />
+                app:layout_constraintTop_toBottomOf="@id/card_farms" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guidelineStart"
