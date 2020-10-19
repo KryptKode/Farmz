@@ -1,6 +1,7 @@
 package com.kryptkode.farmz.screens.farm
 
 import androidx.lifecycle.*
+import androidx.paging.map
 import com.kryptkode.farmz.R
 import com.kryptkode.farmz.app.data.state.DataState
 import com.kryptkode.farmz.app.domain.farm.FarmRepository
@@ -13,6 +14,7 @@ import com.kryptkode.farmz.screens.farm.model.UiFarmLocation
 import com.kryptkode.farmz.screens.farm.model.UiFarmMapper
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 
 class FarmViewModel @Inject constructor(
@@ -24,6 +26,10 @@ class FarmViewModel @Inject constructor(
 
 
     private val farmId = MutableLiveData<Int>()
+
+    val farms = farmRepository.getFarms().map { data ->
+        data.map { uiFarmMapper.mapDomainToView(it) }
+    }.asLiveData(viewModelScope.coroutineContext)
 
     val farm = farmId.switchMap { id ->
         farmRepository.getFarmById(id).map {
@@ -64,7 +70,10 @@ class FarmViewModel @Inject constructor(
         viewModelScope.launch {
             showLoading()
             when (val result =
-                farmRepository.updateFarmer(uiFarmMapper.mapViewToDomain(uiFarm))) {
+                farmRepository.updateFarmer(
+                    uiFarmMapper.mapViewToDomain(uiFarm)
+                        .copy(dateLastUpdated = Calendar.getInstance().time)
+                )) {
                 is DataState.Success -> {
                     hideLoading()
                     mutableGoToNext.postValue(Event(Unit))

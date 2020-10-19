@@ -1,5 +1,6 @@
 package com.kryptkode.farmz.navigation.home
 
+import com.kryptkode.farmz.R
 import com.kryptkode.farmz.navigation.NavControllerProvider
 import com.kryptkode.farmz.screens.datedialog.DateDialogDirections
 import com.kryptkode.farmz.screens.farm.model.UiFarmLocation
@@ -96,6 +97,8 @@ class HomeNavigatorImpl @Inject constructor(
     }
 
     override fun toFarmsList() {
-
+        navControllerProvider.getNavController().navigate(
+            R.id.action_navigation_dashboard_to_farmListFragment
+        )
     }
 }

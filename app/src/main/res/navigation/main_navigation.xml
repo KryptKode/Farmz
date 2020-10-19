@@ -20,7 +20,11 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.kryptkode.farmz.screens.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/layout_dashboard" />
+        tools:layout="@layout/layout_dashboard" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_farmListFragment"
+            app:destination="@id/farmListFragment" />
+    </fragment>
 
 
     <fragment
@@ -179,5 +183,11 @@
             android:name="farmId"
             app:argType="integer" />
     </fragment>
+
+    <fragment
+        android:id="@+id/farmListFragment"
+        android:name="com.kryptkode.farmz.screens.farm.farmlist.FarmListFragment"
+        android:label="FarmListFragment"
+        tools:layout="@layout/layout_farms"/>
 
 </navigation>

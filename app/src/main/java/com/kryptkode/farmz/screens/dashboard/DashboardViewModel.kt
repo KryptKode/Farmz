@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import androidx.paging.map
 import com.kryptkode.farmz.app.domain.farm.FarmRepository
-import com.kryptkode.farmz.app.utils.date.DisplayedDateFormatter
+import com.kryptkode.farmz.app.utils.date.DisplayedDateTimeFormatter
 import com.kryptkode.farmz.app.utils.livedata.event.Event
 import com.kryptkode.farmz.app.utils.livedata.extension.asLiveData
 import com.kryptkode.farmz.screens.farm.model.UiFarmMapper
@@ -18,7 +18,7 @@ import javax.inject.Inject
 class DashboardViewModel @Inject constructor(
     farmRepository: FarmRepository,
     private val uiFarmMapper: UiFarmMapper,
-    private val displayedDateFormatter: DisplayedDateFormatter,
+    private val displayedDateFormatter: DisplayedDateTimeFormatter,
 ) : ViewModel() {
 
     val farms = farmRepository.getLastUpdatedFarms(FARMS_LIMIT).map { data ->
