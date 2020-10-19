@@ -15,6 +15,7 @@ import com.kryptkode.farmz.screens.farmers.FarmersFragment
 import com.kryptkode.farmz.screens.imageviewer.ImageViewerFragment
 import com.kryptkode.farmz.screens.infodialog.InfoDialog
 import com.kryptkode.farmz.screens.login.LoginFragment
+import com.kryptkode.farmz.screens.selectregion.SelectRegionFragment
 import com.kryptkode.farmz.screens.splash.SplashActivity
 import dagger.Subcomponent
 
@@ -44,4 +45,5 @@ interface ControllerComponent {
     fun inject(imageViewerFragment: ImageViewerFragment)
     fun inject(infoDialog: InfoDialog)
     fun inject(captureFarmFragment: CaptureFarmFragment)
+    fun inject(selectRegionFragment: SelectRegionFragment)
 }

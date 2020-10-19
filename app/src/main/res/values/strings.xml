@@ -131,5 +131,10 @@
     <string name="capture_farm_name_required_message">Please enter a name</string>
     <string name="capture_farm_location_required_message">Please enter a location</string>
     <string name="capture_farm_coordinates_required_message">Please add a location</string>
+    <string name="done_text">Done</string>
+    <string name="draw_text">Draw</string>
+    <string name="clear_text">Clear</string>
+    <string name="drag_title">Select region</string>
+    <string name="add_location_error_msg">Unable to add location. Please try again</string>
 
 </resources>

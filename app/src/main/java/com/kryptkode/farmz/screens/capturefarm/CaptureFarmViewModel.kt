@@ -7,10 +7,19 @@ import javax.inject.Inject
 
 class CaptureFarmViewModel @Inject constructor() : ViewModel() {
 
-    var farmLocation = mutableListOf<UiFarmLocation>()
+    private var farmLocation = mutableListOf<UiFarmLocation>()
 
     fun saveFarm(uiFarm: UiFarm) {
 
+    }
+
+    fun setLocation(coordinates: List<UiFarmLocation>) {
+        farmLocation.clear()
+        farmLocation.addAll(coordinates)
+    }
+
+    fun getLocation(): List<UiFarmLocation> {
+        return farmLocation
     }
 
 }

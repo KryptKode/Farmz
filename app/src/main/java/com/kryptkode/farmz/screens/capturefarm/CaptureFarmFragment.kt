@@ -8,11 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.kryptkode.farmz.R
 import com.kryptkode.farmz.app.logger.Logger
 import com.kryptkode.farmz.app.utils.ToastHelper
 import com.kryptkode.farmz.app.utils.livedata.extension.observeEvent
+import com.kryptkode.farmz.datareturn.ScreenDataReturnBuffer
 import com.kryptkode.farmz.navigation.home.HomeNavigator
 import com.kryptkode.farmz.screens.capturefarm.model.UiFarm
+import com.kryptkode.farmz.screens.capturefarm.model.UiFarmLocation
 import com.kryptkode.farmz.screens.capturefarm.view.CaptureFarmView
 import com.kryptkode.farmz.screens.common.ViewFactory
 import com.kryptkode.farmz.screens.common.fragment.BaseFragment
@@ -35,6 +38,8 @@ class CaptureFarmFragment : BaseFragment(), CaptureFarmView.Listener {
     @Inject
     lateinit var validator: CaptureFarmValidator
 
+    @Inject
+    lateinit var screenDataReturnBuffer: ScreenDataReturnBuffer
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -51,6 +56,7 @@ class CaptureFarmFragment : BaseFragment(), CaptureFarmView.Listener {
         controllerComponent.inject(this)
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -58,17 +64,59 @@ class CaptureFarmFragment : BaseFragment(), CaptureFarmView.Listener {
     ): View? {
         viewMvc = viewFactory.getCaptureView(container)
         setupObservers()
+        viewMvc.getMap().onCreate(savedInstanceState)
+        viewMvc.onSelectLocation(viewModel.getLocation())
         return viewMvc.rootView
     }
 
     override fun onStart() {
         super.onStart()
+        viewMvc.getMap().onStart()
         viewMvc.registerListener(this)
+        checkIfRegionWasSelected()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewMvc.getMap().onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewMvc.getMap().onPause()
     }
 
     override fun onStop() {
         super.onStop()
         viewMvc.unregisterListener(this)
+        viewMvc.getMap().onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewMvc.getMap().onDestroy()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        viewMvc.getMap().onSaveInstanceState(outState)
+    }
+
+
+    private fun checkIfRegionWasSelected() {
+        val key = getRegionReturnKey()
+        if (screenDataReturnBuffer.hasDataForToken(key)) {
+            val coordinates = screenDataReturnBuffer.getValue<List<UiFarmLocation>>(key)
+            logger.d("New locations: $coordinates")
+            if (coordinates != null) {
+                viewModel.setLocation(coordinates)
+                viewMvc.onSelectLocation(coordinates)
+                screenDataReturnBuffer.removeValue(key)
+                logger.d("updating coordinates...")
+            } else {
+                toastHelper.showMessage(getString(R.string.add_location_error_msg))
+            }
+        }
     }
 
     private fun setupObservers() {
@@ -86,12 +134,12 @@ class CaptureFarmFragment : BaseFragment(), CaptureFarmView.Listener {
     }
 
     override fun onAddLocation() {
-
+        homeNavigator.toSelectLocation(viewModel.getLocation(), getRegionReturnKey())
     }
 
     override fun onSave(farmName: String, farmLocation: String) {
         viewMvc.clearErrors()
-        val uiFarm = UiFarm(0, args.farmerId, farmName, farmLocation, viewModel.farmLocation)
+        val uiFarm = UiFarm(0, args.farmerId, farmName, farmLocation, viewModel.getLocation())
         if (validator.validateFarm(uiFarm)) {
             viewModel.saveFarm(uiFarm)
         }
@@ -99,5 +147,14 @@ class CaptureFarmFragment : BaseFragment(), CaptureFarmView.Listener {
 
     override fun onBackClick() {
         homeNavigator.navigateUp()
+    }
+
+    private fun getRegionReturnKey(): String {
+        return javaClass.name.plus(REGION_RETURN_KEY)
+    }
+
+    companion object {
+
+        private const val REGION_RETURN_KEY = "REGION_RETURN_KEY"
     }
 }

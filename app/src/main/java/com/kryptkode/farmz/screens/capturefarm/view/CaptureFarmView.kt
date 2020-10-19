@@ -1,5 +1,6 @@
 package com.kryptkode.farmz.screens.capturefarm.view
 
+import com.google.android.gms.maps.MapView
 import com.kryptkode.farmz.screens.capturefarm.model.UiFarmLocation
 import com.kryptkode.farmz.screens.common.view.BaseObservableViewMvc
 
@@ -15,6 +16,8 @@ abstract class CaptureFarmView : BaseObservableViewMvc<CaptureFarmView.Listener>
     abstract fun showNameError(message: String)
 
     abstract fun clearErrors()
+
+    abstract fun getMap():MapView
 
     abstract fun showLoading()
     abstract fun hideLoading()

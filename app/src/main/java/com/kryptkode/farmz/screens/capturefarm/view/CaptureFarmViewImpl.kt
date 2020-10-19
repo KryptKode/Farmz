@@ -4,25 +4,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.kryptkode.farmz.app.utils.extension.beGone
-import com.kryptkode.farmz.app.utils.extension.beVisible
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
+import com.kryptkode.farmz.app.utils.extension.*
 import com.kryptkode.farmz.databinding.LayoutCaptureBinding
 import com.kryptkode.farmz.screens.capturefarm.model.UiFarmLocation
 
 class CaptureFarmViewImpl(
     layoutInflater: LayoutInflater,
     parent: ViewGroup?
-) : CaptureFarmView(), OnMapReadyCallback {
+) : CaptureFarmView() {
 
     private val binding = LayoutCaptureBinding.inflate(layoutInflater, parent, false)
 
-    private var googleMap: GoogleMap? = null
+    private var points: MutableList<LatLng> = mutableListOf()
 
     init {
 
-        binding.mapView.getMapAsync(this)
+        initMap()
 
         binding.farmLocationEditText.addTextChangedListener {
             clearLocationError()
@@ -52,6 +53,32 @@ class CaptureFarmViewImpl(
                 it.onAddLocation()
             }
         }
+    }
+
+
+    private fun initMap() {
+        binding.map.getMapAsync { map ->
+            map.disableUserInput()
+            if (points.isNotEmpty()) {
+                val latLngBounds = LatLngBounds.builder()
+                points.onEach {
+                    latLngBounds.include(it)
+                }
+                map.moveCamera(
+                    CameraUpdateFactory.newLatLngZoom(
+                        latLngBounds.build().center,
+                        16f
+                    )
+                )
+                map.drawPolygon(binding.root.context, points)
+
+                map.setOnMapClickListener {
+                    onEachListener {
+                        it.onAddLocation()
+                    }
+                }
+            }
+        }
 
     }
 
@@ -78,6 +105,10 @@ class CaptureFarmViewImpl(
         clearNameError()
     }
 
+    override fun getMap(): MapView {
+        return binding.map
+    }
+
     private fun clearLocationError() {
         binding.farmLocationInput.error = null
     }
@@ -87,24 +118,14 @@ class CaptureFarmViewImpl(
     }
 
     override fun onSelectLocation(locations: List<UiFarmLocation>) {
-        binding.mapView.beVisible()
+        points.clear()
+        points.addAll(locations.map {
+            LatLng(it.latitude, it.longitude)
+        })
 
+        binding.map.beVisibleIf(points.isNotEmpty())
     }
 
     override val rootView: View
         get() = binding.root
-
-    override fun onMapReady(map: GoogleMap?) {
-        googleMap = map
-        googleMap?.disableUserInput()
-
-    }
-
-    private fun GoogleMap.disableUserInput() {
-        googleMap?.uiSettings?.isZoomControlsEnabled = false
-        googleMap?.uiSettings?.isZoomGesturesEnabled = false
-        googleMap?.uiSettings?.isCompassEnabled = false
-        googleMap?.uiSettings?.isScrollGesturesEnabledDuringRotateOrZoom = false
-        googleMap?.uiSettings?.setAllGesturesEnabled(false)
-    }
 }

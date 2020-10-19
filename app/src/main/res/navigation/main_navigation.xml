@@ -147,4 +147,22 @@
             android:name="farmerId"
             app:argType="string" />
     </fragment>
+
+    <action
+        android:id="@+id/action_to_selectRegionFragment"
+        app:destination="@id/selectRegionFragment" />
+
+    <fragment
+        android:id="@+id/selectRegionFragment"
+        android:name="com.kryptkode.farmz.screens.selectregion.SelectRegionFragment"
+        android:label="SelectRegionFragment"
+        tools:layout="@layout/fragment_select_region" >
+        <argument
+            android:name="locations"
+            app:argType="com.kryptkode.farmz.screens.capturefarm.model.UiFarmLocation[]" />
+        <argument
+            android:name="returnKey"
+            app:argType="string" />
+    </fragment>
+
 </navigation>
