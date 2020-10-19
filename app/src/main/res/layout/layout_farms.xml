@@ -47,7 +47,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/item_farmer" />
+                tools:listitem="@layout/item_farm" />
 
             <Button
                 android:id="@+id/retry_button"
@@ -61,7 +61,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-            <include layout="@layout/app_guidelines" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

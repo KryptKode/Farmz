@@ -29,7 +29,7 @@ class FarmListViewMvcImpl(
         binding.recyclerView.adapter = adapter
         binding.swipeRefresh.setOnRefreshListener {
             onEachListener {
-                it.onRefresh()
+                adapter.refresh()
             }
         }
 
@@ -62,5 +62,5 @@ class FarmListViewMvcImpl(
     }
 
     override val rootView: View
-        get() = binding.recyclerView
+        get() = binding.root
 }

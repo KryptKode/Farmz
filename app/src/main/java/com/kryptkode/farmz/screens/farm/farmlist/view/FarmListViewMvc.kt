@@ -7,7 +7,6 @@ import com.kryptkode.farmz.screens.farm.model.UiFarm
 abstract class FarmListViewMvc: BaseObservableViewMvc<FarmListViewMvc.Listener>() {
     interface  Listener {
         fun onItemClick(item: UiFarm)
-        fun onRefresh()
         fun onLoadError(error: String)
     }
 

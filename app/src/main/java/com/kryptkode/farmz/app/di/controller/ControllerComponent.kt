@@ -12,6 +12,7 @@ import com.kryptkode.farmz.screens.editfarmer.editid.EditIdFragment
 import com.kryptkode.farmz.screens.editfarmer.editpersonaldetails.EditPersonalDetailsFragment
 import com.kryptkode.farmz.screens.farm.capturefarm.CaptureFarmFragment
 import com.kryptkode.farmz.screens.farm.farmdetails.FarmDetailsFragment
+import com.kryptkode.farmz.screens.farm.farmlist.FarmListFragment
 import com.kryptkode.farmz.screens.farmerdetails.FarmerDetailFragment
 import com.kryptkode.farmz.screens.farmers.FarmersFragment
 import com.kryptkode.farmz.screens.imageviewer.ImageViewerFragment
@@ -50,4 +51,5 @@ interface ControllerComponent {
     fun inject(selectRegionFragment: SelectRegionFragment)
     fun inject(farmDetailsFragment: FarmDetailsFragment)
     fun inject(dashboardFragment: DashboardFragment)
+    fun inject(farmListFragment: FarmListFragment)
 }
