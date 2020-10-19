@@ -13,7 +13,6 @@ import com.kryptkode.farmz.app.data.network.mapper.FarmerApiMapper
 import com.kryptkode.farmz.app.data.network.service.FarmersService
 import retrofit2.HttpException
 import java.io.IOException
-import java.io.InvalidObjectException
 import javax.inject.Inject
 
 private const val STARTING_PAGE_INDEX = 1
@@ -43,10 +42,10 @@ class FarmerRemoteMediator @Inject constructor(
             LoadType.APPEND -> {
                 val remoteKeys = getRemoteKeyForLastItem(state)
                 if (remoteKeys?.nextKey == null) {
-                    throw InvalidObjectException("Remote key should not be null for $loadType")
+                    STARTING_PAGE_INDEX
+                }else{
+                    remoteKeys.nextKey
                 }
-
-                remoteKeys.nextKey
             }
         }
 
