@@ -8,12 +8,12 @@ import androidx.paging.LoadState
 import androidx.paging.PagingData
 import com.kryptkode.farmz.R
 import com.kryptkode.farmz.databinding.LayoutFarmerDetailBinding
-import com.kryptkode.farmz.screens.capturefarm.model.UiFarm
 import com.kryptkode.farmz.screens.common.ViewFactory
 import com.kryptkode.farmz.screens.common.imageloader.ImageLoader
+import com.kryptkode.farmz.screens.farm.farmlist.view.FarmListAdapter
+import com.kryptkode.farmz.screens.farm.model.UiFarm
 import com.kryptkode.farmz.screens.farmers.loading.FarmerLoadStateAdapter
 import com.kryptkode.farmz.screens.farmers.model.FarmerView
-import com.kryptkode.farmz.screens.farmlist.view.FarmListAdapter
 
 @SuppressLint("DefaultLocale")
 class FarmerDetailViewImpl(

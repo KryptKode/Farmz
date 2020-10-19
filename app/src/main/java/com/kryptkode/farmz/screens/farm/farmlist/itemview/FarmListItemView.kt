@@ -1,7 +1,7 @@
-package com.kryptkode.farmz.screens.farmlist.itemview
+package com.kryptkode.farmz.screens.farm.farmlist.itemview
 
-import com.kryptkode.farmz.screens.capturefarm.model.UiFarm
 import com.kryptkode.farmz.screens.common.view.BaseObservableViewMvc
+import com.kryptkode.farmz.screens.farm.model.UiFarm
 
 abstract class FarmListItemView: BaseObservableViewMvc<FarmListItemView.Listener>() {
     interface Listener{

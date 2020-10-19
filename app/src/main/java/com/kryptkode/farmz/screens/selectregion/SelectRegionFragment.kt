@@ -23,8 +23,8 @@ import com.kryptkode.farmz.app.utils.viewbinding.viewBinding
 import com.kryptkode.farmz.databinding.FragmentSelectRegionBinding
 import com.kryptkode.farmz.datareturn.ScreenDataReturnBuffer
 import com.kryptkode.farmz.navigation.home.HomeNavigator
-import com.kryptkode.farmz.screens.capturefarm.model.UiFarmLocation
 import com.kryptkode.farmz.screens.common.fragment.BaseFragment
+import com.kryptkode.farmz.screens.farm.model.UiFarmLocation
 import javax.inject.Inject
 
 

@@ -1,12 +1,12 @@
-package com.kryptkode.farmz.screens.farmlist.view
+package com.kryptkode.farmz.screens.farm.farmlist.view
 
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.kryptkode.farmz.screens.capturefarm.model.UiFarm
 import com.kryptkode.farmz.screens.common.ViewFactory
-import com.kryptkode.farmz.screens.farmlist.itemview.FarmListItemView
+import com.kryptkode.farmz.screens.farm.farmlist.itemview.FarmListItemView
+import com.kryptkode.farmz.screens.farm.model.UiFarm
 
 class FarmListAdapter (
     private val viewFactory: ViewFactory,

@@ -11,7 +11,7 @@ import com.kryptkode.farmz.app.logger.Logger
 import com.kryptkode.farmz.app.utils.StringResource
 import com.kryptkode.farmz.app.utils.livedata.event.Event
 import com.kryptkode.farmz.app.utils.livedata.extension.asLiveData
-import com.kryptkode.farmz.screens.capturefarm.model.UiFarmMapper
+import com.kryptkode.farmz.screens.farm.model.UiFarmMapper
 import com.kryptkode.farmz.screens.farmers.model.FarmerView
 import com.kryptkode.farmz.screens.farmers.model.FarmerViewMapper
 import kotlinx.coroutines.flow.map
@@ -43,7 +43,6 @@ class FarmerDetailViewModel @Inject constructor(
         farmRepository.getFarmsByFarmer(id).map { data ->
             data.map { uiFarmMapper.mapDomainToView(it) }
         }.cachedIn(viewModelScope).asLiveData()
-
     }
 
     fun getFarmer(id: String) {

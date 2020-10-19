@@ -1,4 +1,4 @@
-package com.kryptkode.farmz.screens.farmlist.view
+package com.kryptkode.farmz.screens.farm.farmlist.view
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +8,8 @@ import androidx.paging.PagingData
 import com.kryptkode.farmz.R
 import com.kryptkode.farmz.app.utils.extension.beVisibleIf
 import com.kryptkode.farmz.databinding.LayoutFarmsBinding
-import com.kryptkode.farmz.screens.capturefarm.model.UiFarm
 import com.kryptkode.farmz.screens.common.ViewFactory
+import com.kryptkode.farmz.screens.farm.model.UiFarm
 import com.kryptkode.farmz.screens.farmers.loading.FarmerLoadStateAdapter
 
 class FarmListViewMvcImpl(

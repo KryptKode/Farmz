@@ -1,8 +1,8 @@
 package com.kryptkode.farmz.screens.farmerdetails.view
 
 import androidx.paging.PagingData
-import com.kryptkode.farmz.screens.capturefarm.model.UiFarm
 import com.kryptkode.farmz.screens.common.view.BaseObservableViewMvc
+import com.kryptkode.farmz.screens.farm.model.UiFarm
 import com.kryptkode.farmz.screens.farmers.model.FarmerView
 
 abstract class FarmerDetailView : BaseObservableViewMvc<FarmerDetailView.Listener>() {

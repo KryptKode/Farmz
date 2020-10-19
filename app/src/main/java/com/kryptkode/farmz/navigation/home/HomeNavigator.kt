@@ -1,6 +1,6 @@
 package com.kryptkode.farmz.navigation.home
 
-import com.kryptkode.farmz.screens.capturefarm.model.UiFarmLocation
+import com.kryptkode.farmz.screens.farm.model.UiFarmLocation
 import com.kryptkode.farmz.screens.infodialog.Info
 import java.util.*
 
@@ -16,4 +16,5 @@ interface HomeNavigator {
     fun toDatePicker(parseDisplayedDate: Date?)
     fun toInfoDialog(info: Info)
     fun toSelectLocation(listOf: List<UiFarmLocation>, returnKey: String)
+    fun toFarmDetails(id: Int)
 }

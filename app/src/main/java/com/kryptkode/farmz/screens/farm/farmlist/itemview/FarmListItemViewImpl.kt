@@ -1,11 +1,11 @@
-package com.kryptkode.farmz.screens.farmlist.itemview
+package com.kryptkode.farmz.screens.farm.farmlist.itemview
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.kryptkode.farmz.databinding.ItemFarmBinding
-import com.kryptkode.farmz.screens.capturefarm.model.UiFarm
+import com.kryptkode.farmz.screens.farm.model.UiFarm
 
 class FarmListItemViewImpl (
     layoutInflater: LayoutInflater,

@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_farmerDetailFragment_to_captureFarmFragment"
             app:destination="@id/captureFarmFragment" />
+        <action
+            android:id="@+id/action_farmerDetailFragment_to_farmDetailsFragment"
+            app:destination="@id/farmDetailsFragment" />
     </fragment>
 
     <include app:graph="@navigation/login_navigation" />
@@ -140,12 +143,13 @@
     </fragment>
     <fragment
         android:id="@+id/captureFarmFragment"
-        android:name="com.kryptkode.farmz.screens.capturefarm.CaptureFarmFragment"
+        android:name="com.kryptkode.farmz.screens.farm.capturefarm.CaptureFarmFragment"
         android:label="CaptureFarmFragment"
         tools:layout="@layout/layout_capture">
         <argument
             android:name="farmerId"
             app:argType="string" />
+
     </fragment>
 
     <action
@@ -159,10 +163,20 @@
         tools:layout="@layout/fragment_select_region" >
         <argument
             android:name="locations"
-            app:argType="com.kryptkode.farmz.screens.capturefarm.model.UiFarmLocation[]" />
+            app:argType="com.kryptkode.farmz.screens.farm.model.UiFarmLocation[]" />
         <argument
             android:name="returnKey"
             app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/farmDetailsFragment"
+        android:name="com.kryptkode.farmz.screens.farm.farmdetails.FarmDetailsFragment"
+        android:label="FarmDetailsFragment"
+        tools:layout="@layout/layout_farm_details">
+        <argument
+            android:name="farmId"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

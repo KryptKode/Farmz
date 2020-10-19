@@ -1,10 +1,11 @@
-package com.kryptkode.farmz.screens.capturefarm.view
+package com.kryptkode.farmz.screens.farm.farmdetails.view
 
 import com.google.android.gms.maps.MapView
-import com.kryptkode.farmz.screens.capturefarm.model.UiFarmLocation
 import com.kryptkode.farmz.screens.common.view.BaseObservableViewMvc
+import com.kryptkode.farmz.screens.farm.model.UiFarm
+import com.kryptkode.farmz.screens.farm.model.UiFarmLocation
 
-abstract class CaptureFarmView : BaseObservableViewMvc<CaptureFarmView.Listener>() {
+abstract class FarmDetailsView : BaseObservableViewMvc<FarmDetailsView.Listener>() {
 
     interface Listener {
         fun onAddLocation()
@@ -22,5 +23,7 @@ abstract class CaptureFarmView : BaseObservableViewMvc<CaptureFarmView.Listener>
     abstract fun showLoading()
     abstract fun hideLoading()
     abstract fun onSelectLocation(locations:List<UiFarmLocation>)
+
+    abstract fun bindFarm(uiFarm: UiFarm)
 
 }

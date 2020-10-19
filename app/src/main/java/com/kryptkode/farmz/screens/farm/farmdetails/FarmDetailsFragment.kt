@@ -1,4 +1,4 @@
-package com.kryptkode.farmz.screens.capturefarm
+package com.kryptkode.farmz.screens.farm.farmdetails
 
 import android.content.Context
 import android.os.Bundle
@@ -11,17 +11,21 @@ import androidx.navigation.fragment.navArgs
 import com.kryptkode.farmz.R
 import com.kryptkode.farmz.app.logger.Logger
 import com.kryptkode.farmz.app.utils.ToastHelper
+import com.kryptkode.farmz.app.utils.livedata.extension.observe
 import com.kryptkode.farmz.app.utils.livedata.extension.observeEvent
 import com.kryptkode.farmz.datareturn.ScreenDataReturnBuffer
 import com.kryptkode.farmz.navigation.home.HomeNavigator
-import com.kryptkode.farmz.screens.capturefarm.model.UiFarm
-import com.kryptkode.farmz.screens.capturefarm.model.UiFarmLocation
-import com.kryptkode.farmz.screens.capturefarm.view.CaptureFarmView
 import com.kryptkode.farmz.screens.common.ViewFactory
 import com.kryptkode.farmz.screens.common.fragment.BaseFragment
+import com.kryptkode.farmz.screens.farm.FarmValidator
+import com.kryptkode.farmz.screens.farm.FarmViewModel
+import com.kryptkode.farmz.screens.farm.farmdetails.view.FarmDetailsView
+import com.kryptkode.farmz.screens.farm.model.UiFarm
+import com.kryptkode.farmz.screens.farm.model.UiFarmLocation
 import javax.inject.Inject
 
-class CaptureFarmFragment : BaseFragment(), CaptureFarmView.Listener {
+@Suppress("COMPATIBILITY_WARNING")
+class FarmDetailsFragment : BaseFragment(), FarmDetailsView.Listener {
 
     @Inject
     lateinit var logger: Logger
@@ -36,7 +40,7 @@ class CaptureFarmFragment : BaseFragment(), CaptureFarmView.Listener {
     lateinit var viewFactory: ViewFactory
 
     @Inject
-    lateinit var validator: CaptureFarmValidator
+    lateinit var validator: FarmValidator
 
     @Inject
     lateinit var screenDataReturnBuffer: ScreenDataReturnBuffer
@@ -44,12 +48,14 @@ class CaptureFarmFragment : BaseFragment(), CaptureFarmView.Listener {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private val viewModel: CaptureFarmViewModel by viewModels { viewModelFactory }
+    private val viewModel: FarmViewModel by viewModels { viewModelFactory }
 
-    private val args by navArgs<CaptureFarmFragmentArgs>()
+    private val args by navArgs<FarmDetailsFragmentArgs>()
+
+    private var uiFarm: UiFarm? = null
 
 
-    private lateinit var viewMvc: CaptureFarmView
+    private lateinit var viewMvc: FarmDetailsView
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -62,10 +68,9 @@ class CaptureFarmFragment : BaseFragment(), CaptureFarmView.Listener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewMvc = viewFactory.getCaptureView(container)
+        viewMvc = viewFactory.getFarmDetailsView(container)
         setupObservers()
         viewMvc.getMap().onCreate(savedInstanceState)
-        viewMvc.onSelectLocation(viewModel.getLocation())
         return viewMvc.rootView
     }
 
@@ -73,6 +78,7 @@ class CaptureFarmFragment : BaseFragment(), CaptureFarmView.Listener {
         super.onStart()
         viewMvc.getMap().onStart()
         viewMvc.registerListener(this)
+        viewModel.getFarm(args.farmId)
         checkIfRegionWasSelected()
     }
 
@@ -147,6 +153,12 @@ class CaptureFarmFragment : BaseFragment(), CaptureFarmView.Listener {
         viewModel.showErrorMessage.observeEvent(viewLifecycleOwner) {
             toastHelper.showMessage(it)
         }
+
+        viewModel.farm.observe(viewLifecycleOwner) {
+            uiFarm = it
+            viewModel.setLocation(it.farmCoordinates)
+            viewMvc.bindFarm(it)
+        }
     }
 
     override fun onAddLocation() {
@@ -155,9 +167,15 @@ class CaptureFarmFragment : BaseFragment(), CaptureFarmView.Listener {
 
     override fun onSave(farmName: String, farmLocation: String) {
         viewMvc.clearErrors()
-        val uiFarm = UiFarm(0, args.farmerId, farmName, farmLocation, viewModel.getLocation())
-        if (validator.validateFarm(uiFarm)) {
-            viewModel.addFarm(uiFarm)
+        uiFarm?.let { farm ->
+            uiFarm = farm.copy(
+                name = farmName,
+                location = farmLocation,
+                farmCoordinates = viewModel.getLocation()
+            )
+            if (validator.validateFarm(uiFarm!!)) {
+                viewModel.addFarm(uiFarm!!)
+            }
         }
     }
 
@@ -170,7 +188,6 @@ class CaptureFarmFragment : BaseFragment(), CaptureFarmView.Listener {
     }
 
     companion object {
-
         private const val REGION_RETURN_KEY = "REGION_RETURN_KEY"
     }
 }

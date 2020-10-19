@@ -9,7 +9,7 @@ import com.kryptkode.farmz.app.utils.livedata.extension.observe
 import com.kryptkode.farmz.app.utils.livedata.extension.observeEvent
 import com.kryptkode.farmz.datareturn.ScreenDataReturnBuffer
 import com.kryptkode.farmz.navigation.home.HomeNavigator
-import com.kryptkode.farmz.screens.capturefarm.model.UiFarm
+import com.kryptkode.farmz.screens.farm.model.UiFarm
 import com.kryptkode.farmz.screens.farmerdetails.view.FarmerDetailView
 import com.kryptkode.farmz.screens.farmers.model.FarmerView
 import kotlinx.coroutines.launch
@@ -121,7 +121,7 @@ class FarmerDetailController @Inject constructor(
     }
 
     override fun onItemClick(item: UiFarm) {
-
+        homeNavigator.toFarmDetails(item.id)
     }
 
     override fun onLoadError(error: String) {

@@ -1,18 +1,18 @@
-package com.kryptkode.farmz.screens.capturefarm
+package com.kryptkode.farmz.screens.farm
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.kryptkode.farmz.R
 import com.kryptkode.farmz.app.utils.livedata.event.Event
 import com.kryptkode.farmz.app.utils.livedata.extension.asLiveData
-import com.kryptkode.farmz.screens.capturefarm.model.UiFarm
-import com.kryptkode.farmz.screens.capturefarm.model.UiFarmLocation
+import com.kryptkode.farmz.screens.farm.model.UiFarm
+import com.kryptkode.farmz.screens.farm.model.UiFarmLocation
 import javax.inject.Inject
 
 /**
  * Created by kryptkode on 11/24/2019.
  */
-class CaptureFarmValidator @Inject constructor(private val context: Context) {
+class FarmValidator @Inject constructor(private val context: Context) {
 
     private val mutableFarmNameError = MutableLiveData<Event<String>>()
     val farmNameError = mutableFarmNameError.asLiveData()
