@@ -6,12 +6,12 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
-class DisplayedDateFormatter @Inject constructor(){
+class DisplayedDateFormatter @Inject constructor() {
     private val displayedDateFormatter = SimpleDateFormat("MMM d, yyyy", Locale.ENGLISH)
 
     fun formatToDisplayedDate(date: Date?): String {
         return if (date == null) {
-            "---"
+            displayedDateFormatter.format(Date())
         } else {
             displayedDateFormatter.format(date)
         }
@@ -22,7 +22,7 @@ class DisplayedDateFormatter @Inject constructor(){
             displayedDateFormatter.parse(date)
         } catch (ex: ParseException) {
             Timber.w(ex, "Error parsing date")
-            return null
+            return Date()
         }
     }
 }

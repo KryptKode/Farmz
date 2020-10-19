@@ -1,23 +1,55 @@
 package com.kryptkode.farmz.screens.dashboard
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
+import androidx.paging.map
 import com.kryptkode.farmz.app.domain.farm.FarmRepository
-import com.kryptkode.farmz.app.domain.farmer.FarmerRepository
-import com.kryptkode.farmz.app.logger.Logger
-import com.kryptkode.farmz.app.utils.StringResource
+import com.kryptkode.farmz.app.utils.date.DisplayedDateFormatter
+import com.kryptkode.farmz.app.utils.livedata.event.Event
+import com.kryptkode.farmz.app.utils.livedata.extension.asLiveData
 import com.kryptkode.farmz.screens.farm.model.UiFarmMapper
-import com.kryptkode.farmz.screens.farmers.model.FarmerViewMapper
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class DashboardViewModel @Inject constructor(
-    private val farmerRepository: FarmerRepository,
-    private val farmerViewMapper: FarmerViewMapper,
-    private val farmRepository: FarmRepository,
+    farmRepository: FarmRepository,
     private val uiFarmMapper: UiFarmMapper,
-    private val stringResource: StringResource,
-    private val logger: Logger
-) : ViewModel(){
+    private val displayedDateFormatter: DisplayedDateFormatter,
+) : ViewModel() {
 
+    val farms = farmRepository.getLastUpdatedFarms(FARMS_LIMIT).map { data ->
+        data.map { uiFarmMapper.mapDomainToView(it) }
+    }.cachedIn(viewModelScope).catch {
 
+    }.asLiveData()
+
+    val lastUpdatedDate = farmRepository.getLastUpdatedDate().map {
+        displayedDateFormatter.formatToDisplayedDate(it)
+    }.catch {
+
+    }.asLiveData()
+
+    val farmsCount = farmRepository.getFarmsCount().catch {
+
+    }.asLiveData()
+
+    val capturedFarmersCount = farmRepository.getCapturedFarmerCount().catch {
+
+    }.asLiveData()
+
+    private val mutableShowErrorMessage = MutableLiveData<Event<String>>()
+    val showErrorMessage = mutableShowErrorMessage.asLiveData()
+
+    private fun showErrorMessage(@Suppress("SameParameterValue") message: String) {
+        mutableShowErrorMessage.postValue(Event(message))
+    }
+
+    companion object {
+        private const val FARMS_LIMIT = 7
+    }
 
 }

@@ -14,6 +14,7 @@ import com.kryptkode.farmz.app.domain.farm.FarmRepository.Companion.PAGE_SIZE
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import java.util.*
 import javax.inject.Inject
 
 class FarmRepositoryImpl @Inject constructor(
@@ -76,6 +77,32 @@ class FarmRepositoryImpl @Inject constructor(
                 farmDbMapper.mapDomainToDb(farm)
             )
             DataState.Success(Unit)
+        }
+    }
+
+    override fun getLastUpdatedDate(): Flow<Date> {
+        return appDatabase.farmsDao().getLastUpdatedDate()
+    }
+
+    override fun getCapturedFarmerCount(): Flow<Int> {
+        return appDatabase.farmsDao().countCapturedFarmers()
+    }
+
+    override fun getFarmsCount(): Flow<Int> {
+        return appDatabase.farmsDao().countFarms()
+    }
+
+    override fun getLastUpdatedFarms(limit: Int): Flow<PagingData<Farm>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = PAGE_SIZE,
+                enablePlaceholders = false,
+            ),
+            pagingSourceFactory = { appDatabase.farmsDao().getLastUpdatedFarms(limit) }
+        ).flow.map {
+            it.map {
+                farmDbMapper.mapDbToDomain(it)
+            }
         }
     }
 }

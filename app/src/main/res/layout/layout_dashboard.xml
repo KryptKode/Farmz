@@ -40,6 +40,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp"
             app:layout_constraintEnd_toStartOf="@id/capture_farmer_card"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
@@ -49,6 +50,7 @@
             layout="@layout/include_dashboard_famer_count"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             app:layout_constraintStart_toEndOf="@id/captured_farm_card"

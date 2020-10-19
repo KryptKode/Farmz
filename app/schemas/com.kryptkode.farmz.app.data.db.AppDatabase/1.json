@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "6caca7213263e2576bfc32e31f69d9ca",
+    "identityHash": "db7d62d445ddafe4b719fa200398dd63",
     "entities": [
       {
         "tableName": "farmers",
@@ -202,7 +202,7 @@
       },
       {
         "tableName": "farms",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `farmerId` TEXT NOT NULL, `name` TEXT NOT NULL, `location` TEXT NOT NULL, `dbFarmCoordinates` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `farmerId` TEXT NOT NULL, `name` TEXT NOT NULL, `location` TEXT NOT NULL, `dbFarmCoordinates` TEXT NOT NULL, `dateLastUpdated` TEXT NOT NULL, `dateCreated` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -233,6 +233,18 @@
             "columnName": "dbFarmCoordinates",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "dateLastUpdated",
+            "columnName": "dateLastUpdated",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateCreated",
+            "columnName": "dateCreated",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -248,7 +260,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6caca7213263e2576bfc32e31f69d9ca')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'db7d62d445ddafe4b719fa200398dd63')"
     ]
   }
 }

@@ -12,8 +12,10 @@ abstract class DashboardViewMvc : BaseObservableViewMvc<DashboardViewMvc.Listene
         fun onLoadError(s: String)
     }
 
-    abstract fun bindLastCapturedFarms(count: Int, date: String)
-    abstract fun bindLastCapturedFarmers(count: Int, date: String)
+    abstract fun bindLastCapturedFarms(count: Int)
+    abstract fun bindLastCapturedFarmsDate(date: String)
+    abstract fun bindLastCapturedFarmers(count: Int)
+    abstract fun bindLastCapturedFarmersDate(date: String)
     abstract suspend fun bindFarms(data: PagingData<UiFarm>)
 
     abstract fun showLastCapturedFarmersLoading()

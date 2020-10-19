@@ -62,15 +62,20 @@ class DashboardViewMvcImpl(
         }
     }
 
-    override fun bindLastCapturedFarms(count: Int, date: String) {
-        binding.capturedFarmCard.tvFarmsCount.text = count.toString()
-        binding.capturedFarmCard.tvLastDate.text = getString(R.string.last_captured, date)
+    override fun bindLastCapturedFarmers(count: Int) {
+        binding.captureFarmerCard.tvFarmsCount.text = count.toString()
     }
 
-    override fun bindLastCapturedFarmers(count: Int, date: String) {
-        binding.captureFarmerCard.dataGroup.beVisible()
-        binding.captureFarmerCard.tvFarmsCount.text = count.toString()
+    override fun bindLastCapturedFarmersDate(date: String) {
         binding.captureFarmerCard.tvLastDate.text = getString(R.string.last_captured, date)
+    }
+
+    override fun bindLastCapturedFarms(count: Int) {
+        binding.capturedFarmCard.tvFarmsCount.text = count.toString()
+    }
+
+    override fun bindLastCapturedFarmsDate(date: String) {
+        binding.capturedFarmCard.tvLastDate.text = getString(R.string.last_captured, date)
     }
 
     override suspend fun bindFarms(data: PagingData<UiFarm>) {
