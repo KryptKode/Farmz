@@ -9,12 +9,10 @@ import com.kryptkode.farmz.screens.farmers.model.FarmerViewMapper
 import com.kryptkode.farmz.utils.FarmerDataFactory
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import org.junit.Before
 import org.junit.Rule
-import org.junit.Test
 
 @ExperimentalCoroutinesApi
 class FarmersViewModelTest {
@@ -42,16 +40,6 @@ class FarmersViewModelTest {
         viewModel = FarmersViewModel(farmerRepository, farmerViewMapper)
         stubFarmerRepository()
         stubFarmerViewMapper()
-    }
-
-    @Test
-    fun `loadFarmers calls repository`() {
-
-        viewModel.loadFarmers()
-
-        verify {
-            farmerRepository.getFarmers()
-        }
     }
 
 
