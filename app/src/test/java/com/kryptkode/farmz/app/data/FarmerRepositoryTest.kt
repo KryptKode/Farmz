@@ -8,6 +8,7 @@ import com.kryptkode.farmz.app.data.db.AppDatabase
 import com.kryptkode.farmz.app.data.db.farmer.DbFarmer
 import com.kryptkode.farmz.app.data.db.farmer.FarmerDbMapper
 import com.kryptkode.farmz.app.data.db.farmer.FarmersDao
+import com.kryptkode.farmz.app.dispatcher.AppDispatchers
 import com.kryptkode.farmz.app.domain.farmer.FarmerRepository
 import com.kryptkode.farmz.base.MainCoroutineRule
 import com.kryptkode.farmz.utils.FarmerDataFactory
@@ -42,6 +43,9 @@ class FarmerRepositoryTest {
     lateinit var farmerDbMapper: FarmerDbMapper
 
     @MockK
+    lateinit var dispatchers: AppDispatchers
+
+    @MockK
     lateinit var remoteMediator: FarmerRemoteMediator
 
     private val farmerFactory = FarmerDataFactory()
@@ -49,7 +53,7 @@ class FarmerRepositoryTest {
     @Before
     fun setUp() {
         MockKAnnotations.init(this, relaxUnitFun = true)
-        farmerRepository = FarmerRepositoryImpl(remoteMediator, appDatabase, farmerDbMapper)
+        farmerRepository = FarmerRepositoryImpl(dispatchers, remoteMediator, appDatabase, farmerDbMapper)
         coEvery {
             remoteMediator.initialize()
         } returns RemoteMediator.InitializeAction.SKIP_INITIAL_REFRESH
