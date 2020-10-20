@@ -28,8 +28,8 @@ android {
 ```
 
 ## Download APK
-You can download the APK from [releases](https://github.com/KryptKode/Farmz/releases/tag/0.0.1) <br/>
-Use email `a@b.c` and password `123456` to log in
+You can download the APK from [releases](https://github.com/KryptKode/Farmz/releases) <br/>
+Use email `a@b.c` and password `123456` to log in. The app was tested on only Android 10 for now
 
 
 ## What you can learn
