@@ -28,7 +28,7 @@ android {
 ```
 
 ## Download APK
-You can download the APK from [releases](https://play.google.com/store/apps/details?id=com.momentolabs.app.security.applocker&hl=en) <br/>
+You can download the APK from [releases](https://github.com/KryptKode/Farmz/releases/tag/0.0.1) <br/>
 Use email `a@b.c` and password `123456` to log in
 
 
