@@ -118,12 +118,10 @@ dependencies {
 
     implementation "androidx.multidex:multidex:2.0.1"
 
+    implementation "androidx.activity:activity-ktx:1.2.0-beta01"
+    implementation "androidx.fragment:fragment-ktx:1.3.0-beta01"
+
     implementation "com.jakewharton.timber:timber:4.7.1"
-
-    def permissionsDispatcherVersion = "4.7.0"
-    implementation "org.permissionsdispatcher:permissionsdispatcher:${permissionsDispatcherVersion}"
-    kapt "org.permissionsdispatcher:permissionsdispatcher-processor:${permissionsDispatcherVersion}"
-
 
     def daggerVersion = "2.27"
     implementation "com.google.dagger:dagger-android:$daggerVersion"
