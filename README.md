@@ -81,12 +81,18 @@ Use email `a@b.c` and password `123456` to log in. The app was tested on only An
 [delegates]:https://kotlinlang.org/docs/reference/delegated-properties.html
 [results]:https://developer.android.com/training/basics/intents/result
 
+## Unit Tests
+Some unit tests are under the `app/src/test` and `app/src/androidTest` directories, to run them, click the test package and right click and select `Run all tests in...`
+
+<img src="https://user-images.githubusercontent.com/25648077/96579859-5c3d8d00-12cf-11eb-92f2-b83311e5ece9.png" alt="Run tests screenshot" width="302" />
 
 ## Possible Improvements
 - Add logout funtionality
 - Change theme
 - Improve pagination
 - Use multiple back stacks on bottom navigation
+- Improve maps experience
+- Delete added farms
 - Improve UI/UX
 
 
