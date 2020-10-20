@@ -19,3 +19,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Keep the name cos it's used on the navigation graphs
+-keepnames class com.kryptkode.farmz.screens.farm.model.UiFarm { *; }
+-keepnames class com.kryptkode.farmz.screens.farm.model.UiFarmLocation { *; }
+-keepnames class com.kryptkode.farmz.screens.farmers.model.FarmerView { *; }
+-keepnames class com.kryptkode.farmz.screens.infodialog.Info { *; }
