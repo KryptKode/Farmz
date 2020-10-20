@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="data_gender">
+        <item>@string/data_gender_female</item>
+        <item>@string/data_gender_male</item>
+        <item>@string/data_gender_other</item>
+    </string-array>
+
+    <string-array name="data_marital_status">
+        <item>@string/data_marital_divorced</item>
+        <item>@string/data_marital_married</item>
+        <item>@string/data_marital_separated</item>
+        <item>@string/data_marital_single</item>
+    </string-array>
+
+    <string-array name="data_id_types">
+        <item>@string/data_id_driver_license</item>
+        <item>@string/data_id_national_id</item>
+        <item>@string/data_id_passport</item>
+        <item>@string/data_id_voters_card</item>
+    </string-array>
+</resources>

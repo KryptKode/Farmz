@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/farmerDetailFragment"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/navigation_farmers"
+        android:name="com.kryptkode.farmz.screens.farmers.FarmersFragment"
+        android:label="@string/title_farmers"
+        tools:layout="@layout/layout_farmers">
+        <action
+            android:id="@+id/action_navigation_farmers_to_farmerDetailFragment"
+            app:destination="@id/farmerDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.kryptkode.farmz.screens.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/layout_dashboard" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_farmListFragment"
+            app:destination="@id/farmListFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/farmerDetailFragment"
+        android:name="com.kryptkode.farmz.screens.farmerdetails.FarmerDetailFragment"
+        android:label="FarmerDetailFragment"
+        tools:layout="@layout/layout_farmer_detail">
+        <argument
+            android:name="farmerId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_farmerDetailFragment_to_editPersonalDetailsFragment"
+            app:destination="@id/editPersonalDetailsFragment" />
+        <action
+            android:id="@+id/action_farmerDetailFragment_to_editAddressFragment"
+            app:destination="@id/editAddressFragment" />
+        <action
+            android:id="@+id/action_farmerDetailFragment_to_editContactDetailsFragment"
+            app:destination="@id/editContactDetailsFragment" />
+        <action
+            android:id="@+id/action_farmerDetailFragment_to_editIdFragment"
+            app:destination="@id/editIdFragment" />
+        <action
+            android:id="@+id/action_farmerDetailFragment_to_captureFarmFragment"
+            app:destination="@id/captureFarmFragment" />
+    </fragment>
+
+    <include app:graph="@navigation/login_navigation" />
+    <fragment
+        android:id="@+id/editPersonalDetailsFragment"
+        android:name="com.kryptkode.farmz.screens.editfarmer.editpersonaldetails.EditPersonalDetailsFragment"
+        android:label="EditPersonalDetailsFragment"
+        tools:layout="@layout/layout_edit_personal_details">
+        <argument
+            android:name="farmerId"
+            app:argType="string" />
+    </fragment>
+
+
+    <action
+        android:id="@+id/action_to_dateDialog"
+        app:destination="@id/dateDialog" />
+
+    <dialog
+        android:id="@+id/dateDialog"
+        android:name="com.kryptkode.farmz.screens.datedialog.DateDialog"
+        android:label="DateDialog">
+
+        <argument
+            android:name="date"
+            app:argType="java.util.Date"
+            app:nullable="true" />
+    </dialog>
+
+    <fragment
+        android:id="@+id/editAddressFragment"
+        android:name="com.kryptkode.farmz.screens.editfarmer.editaddress.EditAddressFragment"
+        android:label="EditAddressFragment"
+        tools:layout="@layout/layout_edit_address">
+
+        <argument
+            android:name="farmerId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editContactDetailsFragment"
+        android:name="com.kryptkode.farmz.screens.editfarmer.editcontactdetails.EditContactDetailsFragment"
+        android:label="EditContactDetailsFragment"
+        tools:layout="@layout/layout_edit_contact_details">
+
+        <argument
+            android:name="farmerId"
+            app:argType="string" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/editIdFragment"
+        android:name="com.kryptkode.farmz.screens.editfarmer.editid.EditIdFragment"
+        android:label="EditIdFragment"
+        tools:layout="@layout/layout_edit_id">
+        <argument
+            android:name="farmerId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/imageViewerFragment"
+        android:name="com.kryptkode.farmz.screens.imageviewer.ImageViewerFragment"
+        android:label="ImageViewerFragment"
+        tools:layout="@layout/fragment_image_view">
+        <argument
+            android:name="imagePath"
+            app:argType="string" />
+        <argument
+            android:name="returnKey"
+            app:argType="string" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_to_imageViewerFragment"
+        app:destination="@id/imageViewerFragment" />
+
+    <action
+        android:id="@+id/action_to_infoDialog"
+        app:destination="@id/infoDialog" />
+
+    <dialog
+        android:id="@+id/infoDialog"
+        android:name="com.kryptkode.farmz.screens.infodialog.InfoDialog"
+        android:label="InfoDialog"
+        tools:layout="@layout/dialog_info">
+        <argument
+            android:name="infoParms"
+            app:argType="com.kryptkode.farmz.screens.infodialog.Info" />
+    </dialog>
+    <fragment
+        android:id="@+id/captureFarmFragment"
+        android:name="com.kryptkode.farmz.screens.farm.capturefarm.CaptureFarmFragment"
+        android:label="CaptureFarmFragment"
+        tools:layout="@layout/layout_capture">
+        <argument
+            android:name="farmerId"
+            app:argType="string" />
+
+    </fragment>
+
+    <action
+        android:id="@+id/action_to_selectRegionFragment"
+        app:destination="@id/selectRegionFragment" />
+
+    <fragment
+        android:id="@+id/selectRegionFragment"
+        android:name="com.kryptkode.farmz.screens.selectregion.SelectRegionFragment"
+        android:label="SelectRegionFragment"
+        tools:layout="@layout/fragment_select_region" >
+        <argument
+            android:name="locations"
+            app:argType="com.kryptkode.farmz.screens.farm.model.UiFarmLocation[]" />
+        <argument
+            android:name="returnKey"
+            app:argType="string" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_to_farmDetailsFragment"
+        app:destination="@id/farmDetailsFragment" />
+
+    <fragment
+        android:id="@+id/farmDetailsFragment"
+        android:name="com.kryptkode.farmz.screens.farm.farmdetails.FarmDetailsFragment"
+        android:label="FarmDetailsFragment"
+        tools:layout="@layout/layout_farm_details">
+        <argument
+            android:name="farmId"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/farmListFragment"
+        android:name="com.kryptkode.farmz.screens.farm.farmlist.FarmListFragment"
+        android:label="FarmListFragment"
+        tools:layout="@layout/layout_farms"/>
+
+</navigation>

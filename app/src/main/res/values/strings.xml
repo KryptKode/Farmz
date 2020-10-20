@@ -1,4 +1,149 @@
 <resources>
-    <string name="app_name">Flash Alerts</string>
+    <string name="app_name">Farmz</string>
     <string name="toggle_item_icon_content_description">Action icon</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_farmers">Farmers</string>
+
+
+    <!--LOGIN-->
+    <string name="email_hint">Email address</string>
+    <string name="password_hint">Password</string>
+    <string name="login_welcome_text">Welcome Back!</string>
+    <string name="login_welcome_message">Please login to continue.</string>
+    <string name="login_forgot_password">Forgot password?</string>
+    <string name="login_btn_text">Login</string>
+    <string name="login_sign_up_btn_text">Create Account Here</string>
+    <string name="login_signup_message">New to %s?</string>
+
+
+    <!--VALIDATION-->
+    <string name="validation_email_required_message">Your email is required</string>
+    <string name="validation_valid_email_required_message">Please enter a valid email</string>
+    <string name="validation_name_required_message">Please enter your name</string>
+    <string name="validation_name_short_message">Please enter a name greater than %d characters</string>
+    <string name="validation_password_required_message">A password is required</string>
+    <string name="validation_password_short_message">Please enter a password greater than %d characters</string>
+    <string name="retry_text">Retry</string>
+    <string name="error_message_generic">An error occurred. Please try again</string>
+
+
+    <!--DETAILS-->
+    <string name="edit_content_description">Edit button</string>
+    <string name="title_farmer_details">Farmer details</string>
+    <string name="title_address">Address</string>
+    <string name="title_contact">Contact</string>
+    <string name="title_identification">Identification</string>
+    <string name="farmer_full_name">%1$s %2$s %3$s</string>
+    <string name="farmer_full_name_no_middle_name">%1$s %2$s</string>
+    <string name="farmer_marital_status">%1$s to %2$s</string>
+    <string name="farmer_dob">Born on %1$s</string>
+    <string name="farmer_id_issue_date">Issued on %1$s</string>
+    <string name="farmer_id_expiry_date">Expires on %1$s</string>
+    <string name="farmer_id_reg_no">Reg # %1$s</string>
+    <string name="farmer_id_bvn">BVN # %1$s</string>
+    <string name="capture_farm_btn_text">Capture Farm</string>
+    <string name="save_text">Save</string>
+    <string name="first_name_hint">First name</string>
+    <string name="middle_name_hint">Middle name</string>
+    <string name="last_name_hint">Surname</string>
+    <string name="date_of_birth_hint">Date of birth</string>
+    <string name="gender_hint">Gender</string>
+    <string name="occupation_hint">Occupation</string>
+    <string name="nationality_hint">Nationality</string>
+    <string name="marital_status_hint">Marital status</string>
+    <string name="spouse_name_hint">Spouse name</string>
+    <string name="edit_details_title">Edit details</string>
+
+
+    <string name="details_first_name_required_message">Please enter a name</string>
+    <string name="details_last_name_required_message">Please enter a name</string>
+    <string name="details_nationality_required_message">Please enter a nationality eg. Nigerian</string>
+    <string name="details_dob_required_message">Please select a date</string>
+    <string name="details_gender_required_message">Please select a gender</string>
+    <string name="details_occupation_required_message">Please enter an occupation </string>
+    <string name="details_marital_status_required_message">Please select a marital status</string>
+
+    <string name="data_gender_male">Male</string>
+    <string name="data_gender_female">Female</string>
+    <string name="data_gender_other">Other gender</string>
+
+    <string name="data_marital_married">Married</string>
+    <string name="data_marital_single">Single</string>
+    <string name="data_marital_divorced">Divorced</string>
+    <string name="data_marital_separated">Separated</string>
+
+    <string name="data_id_passport">International Passport</string>
+    <string name="data_id_driver_license">Driver\'s Licence</string>
+    <string name="data_id_voters_card">National Voters Card</string>
+    <string name="data_id_national_id">National ID Card</string>
+
+
+    <string name="address_hint">Address</string>
+    <string name="city_hint">City</string>
+    <string name="lga_hint">LGA</string>
+    <string name="state_hint">State</string>
+
+
+    <string name="details_address_required_message">Please enter an address</string>
+    <string name="details_city_required_message">Please enter a city</string>
+    <string name="details_lga_required_message">Please enter an LGA</string>
+    <string name="details_state_required_message">Please enter a state</string>
+    <string name="details_mobile_number_required_message">Please enter a mobile number</string>
+    <string name="details_email_address_required_message">Please enter an email address</string>
+
+    <string name="details_id_type_required_message">Please select an ID</string>
+    <string name="details_id_num_required_message">Please enter an ID number</string>
+    <string name="details_id_issue_date_required_message">Please enter a date</string>
+    <string name="details_id_expiry_date_required_message">Please enter a date</string>
+    <string name="details_reg_no_required_message">Please enter a registration number</string>
+    <string name="details_bvn_required_message">Please enter a BVN number</string>
+
+    <string name="mobile_hint">Mobile number</string>
+    <string name="edit_contact_details_title">Edit contact details</string>
+    <string name="edit_address_title">Edit address</string>
+    <string name="edit_ids">Edit IDs</string>
+    <string name="id_type_hint">ID type</string>
+    <string name="id_num_hint">ID number</string>
+    <string name="issue_date_hint">Date issued</string>
+    <string name="expiry_date_hint">Expiry date</string>
+    <string name="reg_no_name_hint">Reg. number</string>
+    <string name="bvn_name_hint">BVN</string>
+    <string name="id_image_cd">ID image</string>
+
+    <string name="change_pic_create_file_error">An error occurred while creating file for image, please check if there is free space in your SD card and try again</string>
+
+    <string name="allow_camera_permission_title">Allow Permission</string>
+    <string name="allow_camera_permission_msg">For the app to access the camera flash light, it needs the permission, please allow.</string>
+    <string name="allow_camera_permission_never_ask">For the app to access the camera flash light, it needs the permission, please allow.\nClick OK to go to settings to allow.</string>
+
+    <string name="dialog_btn_cancel_text">Cancel</string>
+    <string name="dialog_btn_ok_text">OK</string>
+    <string name="take_pic_error_msg">Error occurred while taking picture</string>
+    <string name="photo_update_failed">Failed to upload photo</string>
+    <string name="update_image_error_msg">Error occurred while updating photo</string>
+    <string name="fingerprint_title">Fingerprint</string>
+    <string name="fingerprint_msg">Tap image to change</string>
+    <string name="farm_name_hint">Farm name</string>
+    <string name="add_location">Add location</string>
+    <string name="farm_location_hint">Farm location</string>
+    <string name="capture_farm_title">Capture farm</string>
+
+    <string name="capture_farm_name_required_message">Please enter a name</string>
+    <string name="capture_farm_location_required_message">Please enter a location</string>
+    <string name="capture_farm_coordinates_required_message">Please add a location</string>
+    <string name="done_text">Done</string>
+    <string name="draw_text">Draw</string>
+    <string name="clear_text">Clear</string>
+    <string name="drag_title">Select region</string>
+    <string name="add_location_error_msg">Unable to add location. Please try again</string>
+    <string name="add_farm_error">Could not add farm, try again</string>
+    <string name="title_farms">Farms</string>
+    <string name="farm_details_title">Farm details</string>
+    <string name="dashboard_title">Dashboard</string>
+    <string name="captured_farm">Captured farm</string>
+    <string name="captured_farmers">Captured farmers</string>
+    <string name="view_all">View all</string>
+    <string name="last_captured">Last captured on %s</string>
+    <string name="empty_farms_msg">No farms have been added yet</string>
+
 </resources>
