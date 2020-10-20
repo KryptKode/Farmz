@@ -36,8 +36,7 @@ class LoginControllerTest {
     @Before
     fun setUp() {
         controller = LoginController(loginNavigator, toastHelper, validator)
-        stubLoginRegisterListener()
-        stubLoginUnregisterListener()
+        stubLoginViewListener()
         setupController()
         stubViewModelLiveData()
         stubValidatorLiveData()
@@ -134,15 +133,17 @@ class LoginControllerTest {
         controller.bindLifeCycleOwner(lifecycleOwner)
     }
 
-    private fun stubLoginRegisterListener() {
+    private fun stubLoginViewListener() {
         every {
             loginView.registerListener(any())
         } returns Unit
-    }
 
-    private fun stubLoginUnregisterListener() {
         every {
             loginView.unregisterListener(any())
+        } returns Unit
+
+        every {
+            loginView.hideKeyboard()
         } returns Unit
     }
 
